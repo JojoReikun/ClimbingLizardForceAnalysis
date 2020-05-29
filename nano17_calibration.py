@@ -104,7 +104,7 @@ def calibrate_x_y_cop_nano17(open_frame, file, filename, tempdir):
             if not os.path.exists(out_dir):
                 os.makedirs(out_dir)
             file_save = filename.split(".")[0]
-            cv2.imwrite(os.path.join(out_dir, "{}_labeled.png".format(file_save)), frame)
+            cv2.imwrite(os.path.join(out_dir, "{}_{}_labeled.png".format(file_save, open_frame)), frame)
             print("saved labeled image {}_labeled".format(file_save))
         elif next == True and key == ord("n"):
             return box_coords, p1, p2, x_calib, y_calib
