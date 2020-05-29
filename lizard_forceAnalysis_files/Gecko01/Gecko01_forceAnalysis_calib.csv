@@ -1,98 +1,98 @@
-,file,family,code,video_frame_count,foot,footfall_begin,footfall_end,open_frame,CoP,footfall_point,conversion_factor,x_calib_mm,y_calib_mm,notes
-0,gdub2_down_23.avi,Gecko,gdub2,260,,,,,"(nan, nan)","(nan, nan)",,,,
-1,gdub2_down_25.avi,Gecko,gdub2,262,,,,,"(nan, nan)","(nan, nan)",,,,
-2,gdub2_down_26.avi,Gecko,gdub2,167,,,,,"(nan, nan)","(nan, nan)",,,,
-3,gdub2_up_19.avi,Gecko,gdub2,600,FL,252.0,456.0,354.0,"(535, 208)","(521, 232)",1.33,10.526,-18.045,paused step on forceplate
-4,gdub2_up_20.avi,Gecko,gdub2,169,FR,82.0,96.0,89.0,"(535, 205)","(532, 212)",1.3599999999999999,2.206,-5.147,HR on forceplate when lifting FR
-5,gdub2_up_22.avi,Gecko,gdub2,405,HR,166.0,194.0,180.0,"(535, 206)","(526, 233)",1.38,6.522,-19.565,FR still slightly on forceplate when HR touches
-6,gdub2_up_24.avi,Gecko,gdub2,551,FL,247.0,325.0,286.0,"(535, 208)","(545, 195)",1.29,-7.752,10.078,HL on forceplate when lifting FL
-7,gdub3_down_23.avi,Gecko,gdub3,247,,,,,"(nan, nan)","(nan, nan)",,,,
-8,gdub3_down_26.avi,Gecko,gdub3,210,,,,,"(nan, nan)","(nan, nan)",,,,
-9,gdub3_down_27.avi,Gecko,gdub3,185,,,,,"(nan, nan)","(nan, nan)",,,,
-10,gdub3_down_29.avi,Gecko,gdub3,210,HR,84.0,96.0,90.0,"(538, 220)","(511, 197)",1.3599999999999999,19.853,16.912,
-11,gdub3_down_30.avi,Gecko,gdub3,208,HR,35.0,43.0,39.0,"(532, 200)","(512, 225)",1.3900000000000001,14.388,-17.986,
-12,gdub3_down_31.avi,Gecko,gdub3,258,FL,58.0,70.0,64.0,"(535, 201)","(534, 230)",1.3599999999999999,0.735,-21.324,also has HR footfall on forceplate after
-13,gdub3_down_32.avi,Gecko,gdub3,262,FR,58.0,67.0,62.0,"(536, 184)","(549, 202)",1.38,-9.42,-13.043,also has HR footfall on forceplate after
-14,gdub3_up_22.avi,Gecko,gdub3,216,FL,29.0,36.0,32.0,"(536, 216)","(521, 213)",1.35,11.111,2.222,
-15,gdub3_up_24.avi,Gecko,gdub3,268,FL,101.0,118.0,110.0,"(536, 218)","(523, 223)",1.48,8.784,-3.378,HL on forceplate when lifting FL
-16,gdub3_up_25.avi,Gecko,gdub3,373,FL,150.0,208.0,179.0,"(536, 216)","(512, 224)",1.38,17.391,-5.797,paused step on forceplate
-17,gdub3_up_28.avi,Gecko,gdub3,299,HR,62.0,101.0,82.0,"(536, 220)","(547, 215)",1.39,-7.914,3.597,climbing slow
-18,gdub5_down_16.avi,Gecko,gdub5,251,HR,68.0,81.0,74.0,"(533, 211)","(505, 222)",1.34,20.896,-8.209,
-19,gdub5_down_18.avi,Gecko,gdub5,1102,,,,,"(nan, nan)","(nan, nan)",,,,paused step on forceplate for almost whole video
-20,gdub5_down_20.avi,Gecko,gdub5,466,HL,302.0,312.0,307.0,"(534, 211)","(531, 224)",1.37,2.19,-9.489,
-21,gdub5_down_22.avi,Gecko,gdub5,211,,,,,"(nan, nan)","(nan, nan)",,,,no foot fully on forceplate
-22,gdub5_down_24.avi,Gecko,gdub5,374,HR,123.0,228.0,176.0,"(534, 212)","(529, 217)",1.32,3.788,-3.788,paused step on forceplate
-23,gdub5_down_25.avi,Gecko,gdub5,250,FL,92.0,103.0,98.0,"(534, 210)","(535, 208)",1.4,-0.714,1.429,
-24,gdub5_up_15.avi,Gecko,gdub5,372,HR,104.0,126.0,115.0,"(533, 210)","(549, 220)",1.35,-11.852,-7.407,
-25,gdub5_up_17.avi,Gecko,gdub5,278,FR,92.0,103.0,98.0,"(535, 210)","(521, 236)",1.33,10.526,-19.549,HR on forceplate when lifting FR
-26,gdub5_up_19.avi,Gecko,gdub5,278,FL,93.0,104.0,98.0,"(534, 210)","(526, 224)",1.3,6.154,-10.769,also has HL footfall on forceplate after
-27,gdub5_up_21.avi,Gecko,gdub5,310,HL,71.0,137.0,104.0,"(532, 212)","(521, 200)",1.27,8.661,9.449,paused step on forceplate
-28,gdub5_up_23.avi,Gecko,gdub5,248,FL,47.0,62.0,54.0,"(534, 212)","(514, 210)",1.3,15.385,1.538,HL on forceplate when lifting FL
-29,skrys11_down_02.avi,Gecko,skrys11,291,HL,52.0,203.0,128.0,"(530, 200)","(515, 221)",1.3,11.538,-16.154,"very sticky gecko, paused step on forceplate"
-30,skrys11_down_04.avi,Gecko,skrys11,249,HR,42.0,131.0,86.0,"(530, 200)","(512, 176)",1.32,13.636,18.182,"very sticky gecko, paused step on forceplate"
-31,skrys11_down_06.avi,Gecko,skrys11,376,HR,139.0,263.0,201.0,"(530, 198)","(546, 214)",1.4,-11.429,-11.429,"very sticky gecko, paused step on forceplate"
-32,skrys11_down_07.avi,Gecko,skrys11,366,FR,29.0,58.0,44.0,"(528, 199)","(542, 177)",1.33,-10.526,16.541,"very sticky gecko, paused step on forceplate"
-33,skrys11_up_01.avi,Gecko,skrys11,242,FR,30.0,62.0,46.0,"(530, 199)","(499, 196)",1.37,22.628,2.19,very sticky gecko
-34,skrys11_up_03.avi,Gecko,skrys11,332,HL,159.0,205.0,182.0,"(530, 199)","(529, 177)",1.36,0.735,16.176,"very sticky gecko, also has FL footfall on forceplate before"
-35,skrys11_up_05.avi,Gecko,skrys11,425,FL,42.0,170.0,106.0,"(532, 198)","(540, 207)",1.32,-6.061,-6.818,"very sticky gecko, paused step on forceplate"
-36,skrys11_up_08.avi,Gecko,skrys11,301,FL,51.0,81.0,66.0,"(529, 199)","(501, 175)",1.36,20.588,17.647,very sticky gecko
-37,skrys11_up_09.avi,Gecko,skrys11,310,HR,142.0,176.0,159.0,"(532, 198)","(537, 205)",1.44,-3.472,-4.861,"very sticky gecko, also has FR footfall on forceplate before"
-38,skrys1_down_03.avi,Gecko,skrys1,466,,,,,"(nan, nan)","(nan, nan)",,,,"very sticky gecko, feet on forceplate but stop-and-go"
-39,skrys1_down_04.avi,Gecko,skrys1,400,,,,,"(nan, nan)","(nan, nan)",,,,"very sticky gecko, feet on forceplate but stop-and-go"
-40,skrys1_down_06.avi,Gecko,skrys1,211,HR,88.0,158.0,123.0,"(532, 200)","(529, 194)",1.3,2.308,4.615,"very sticky gecko, paused step on forceplate"
-41,skrys1_down_07.avi,Gecko,skrys1,331,FR,95.0,205.0,150.0,"(534, 202)","(536, 218)",1.35,-1.481,-11.852,"very sticky gecko, paused step on forceplate"
-42,skrys1_down_08.avi,Gecko,skrys1,477,,,,,"(nan, nan)","(nan, nan)",,,,"very sticky gecko, feet on forceplate but stop-and-go"
-43,skrys1_up_01.avi,Gecko,skrys1,356,,,,,"(nan, nan)","(nan, nan)",,,,
-44,skrys1_up_02.avi,Gecko,skrys1,648,,,,,"(nan, nan)","(nan, nan)",,,,
-45,skrys1_up_05.avi,Gecko,skrys1,415,,,,,"(nan, nan)","(nan, nan)",,,,"very sticky gecko, feet on forceplate but stop-and-go"
-46,skrys2_down_02.avi,Gecko,skrys2,91,,,,,"(nan, nan)","(nan, nan)",,,,
-47,skrys2_down_03.avi,Gecko,skrys2,131,HL,11.0,34.0,22.0,"(533, 200)","(543, 212)",1.4100000000000001,-7.092,-8.511,very sticky gecko
-48,skrys2_down_06.avi,Gecko,skrys2,220,,,,,"(nan, nan)","(nan, nan)",,,,"very sticky gecko, feet on forceplate but stop-and-go"
-49,skrys2_up_01.avi,Gecko,skrys2,257,FL,64.0,107.0,86.0,"(532, 202)","(550, 183)",1.3599999999999999,-13.235,13.971,"very sticky gecko, also has HL footfall on forceplate after"
-50,skrys2_up_04.avi,Gecko,skrys2,216,HL,97.0,129.0,113.0,"(532, 202)","(554, 182)",1.3900000000000001,-15.827,14.388,very sticky gecko
-51,skrys2_up_05.avi,Gecko,skrys2,211,FL,73.0,118.0,96.0,"(534, 201)","(559, 177)",1.37,-18.248,17.518,"very sticky gecko, also has HL footfall on forceplate after"
-52,skrys2_up_07.avi,Gecko,skrys2,160,HL,75.0,104.0,90.0,"(534, 200)","(542, 195)",1.3199999999999998,-6.061,3.788,"very sticky gecko, also has FL footfall on forceplate before"
-53,skrys3_down_04.avi,Gecko,skrys3,288,HL,104.0,221.0,162.0,"(536, 184)","(555, 191)",1.3599999999999999,-13.971,-5.147,"very sticky gecko, paused step on forceplate"
-54,skrys3_down_05.avi,Gecko,skrys3,269,HR,43.0,182.0,112.0,"(538, 186)","(523, 170)",1.39,10.791,11.511,"very sticky gecko, paused step on forceplate"
-55,skrys3_down_06.avi,Gecko,skrys3,275,,,,,"(nan, nan)","(nan, nan)",,,,"very sticky gecko, feet on forceplate but stop-and-go"
-56,skrys3_up_01.avi,Gecko,skrys3,288,HL,24.0,103.0,64.0,"(535, 186)","(543, 180)",1.3900000000000001,-5.755,4.317,very sticky gecko
-57,skrys3_up_02.avi,Gecko,skrys3,508,HR,299.0,401.0,350.0,"(537, 186)","(548, 187)",1.4100000000000001,-7.801,-0.709,climbs backwards!
-58,skrys3_up_03.avi,Gecko,skrys3,293,,,,,"(nan, nan)","(nan, nan)",,,,"very sticky gecko, foot on forceplate but stop-and-go"
-59,skrys4_down_01.avi,Gecko,skrys4,239,,,,,"(nan, nan)","(nan, nan)",,,,"very sticky gecko, foot on forceplate but stop-and-go"
-60,skrys4_down_05.avi,Gecko,skrys4,367,,,,,"(nan, nan)","(nan, nan)",,,,
-61,skrys4_down_07.avi,Gecko,skrys4,508,FL,283.0,336.0,310.0,"(528, 201)","(507, 224)",1.41,14.894,-16.312,"very sticky gecko, paused step on forceplate"
-62,skrys4_down_10.avi,Gecko,skrys4,614,,,,,"(nan, nan)","(nan, nan)",,,,"very sticky gecko, foot on forceplate but stop-and-go"
-63,skrys4_up_02.avi,Gecko,skrys4,225,,,,,"(nan, nan)","(nan, nan)",,,,
-64,skrys4_up_04.avi,Gecko,skrys4,234,FL,35.0,159.0,97.0,"(528, 204)","(515, 210)",1.34,9.701,-4.478,"very sticky gecko, paused step on forceplate"
-65,skrys4_up_06.avi,Gecko,skrys4,188,FL,47.0,88.0,68.0,"(526, 204)","(505, 203)",1.4,15.0,0.714,"very sticky gecko, paused step on forceplate"
-66,skrys4_up_08.avi,Gecko,skrys4,224,HR,47.0,123.0,85.0,"(526, 203)","(546, 216)",1.3599999999999999,-14.706,-9.559,"very sticky gecko, paused step on forceplate"
-67,skrys4_up_09.avi,Gecko,skrys4,230,HR,133.0,156.0,144.0,"(528, 200)","(539, 207)",1.47,-7.483,-4.762,
-68,skrys9_down_03.avi,Gecko,skrys9,240,FR,50.0,86.0,68.0,"(526, 206)","(514, 205)",1.45,8.276,0.69,also has HR footfall on forceplate after
-69,skrys9_down_06.avi,Gecko,skrys9,207,HR,117.0,142.0,130.0,"(527, 204)","(508, 227)",1.39,13.669,-16.547,
-70,skrys9_down_08.avi,Gecko,skrys9,237,FR,33.0,114.0,74.0,"(528, 204)","(521, 229)",1.39,5.036,-17.986,paused step on forceplate
-71,skrys9_down_12.avi,Gecko,skrys9,329,FR,59.0,121.0,90.0,"(528, 200)","(507, 194)",1.42,14.789,4.225,very slow
-72,skrys9_down_14.avi,Gecko,skrys9,256,FR,53.0,94.0,74.0,"(530, 199)","(538, 199)",1.36,-5.882,0.0,
-73,skrys9_down_16.avi,Gecko,skrys9,393,HR,137.0,172.0,154.0,"(528, 200)","(540, 175)",1.3900000000000001,-8.633,17.986,
-74,skrys9_down_18.avi,Gecko,skrys9,236,FR,51.0,85.0,68.0,"(529, 198)","(521, 181)",1.41,5.674,12.057,also has HR footfall on forceplate after
-75,skrys9_down_19.avi,Gecko,skrys9,436,HR,209.0,279.0,244.0,"(529, 198)","(506, 181)",1.37,16.788,12.409,paused step on forceplate
-76,skrys9_up_01.avi,Gecko,skrys9,253,FR,63.0,141.0,102.0,"(526, 204)","(541, 207)",1.41,-10.638,-2.128,also has HR footfall on forceplate after
-77,skrys9_up_02.avi,Gecko,skrys9,234,FR,65.0,98.0,82.0,"(528, 204)","(531, 218)",1.37,-2.19,-10.219,also has HR footfall on forceplate after
-78,skrys9_up_04.avi,Gecko,skrys9,316,HR,120.0,176.0,148.0,"(528, 202)","(518, 221)",1.3900000000000001,7.194,-13.669,FR still slightly on forceplate when HR touches
-79,skrys9_up_05.avi,Gecko,skrys9,601,FL,216.0,258.0,237.0,"(526, 204)","(497, 181)",1.39,20.863,16.547,very slow
-80,skrys9_up_07.avi,Gecko,skrys9,402,FL,120.0,196.0,158.0,"(526, 204)","(532, 229)",1.43,-4.196,-17.483,"also has HR footfall on forceplate after, paused step on forceplate"
-81,skrys9_up_10.avi,Gecko,skrys9,470,HL,296.0,343.0,320.0,"(526, 206)","(537, 220)",1.42,-7.746,-9.859,
-82,skrys9_up_11.avi,Gecko,skrys9,288,FR,54.0,115.0,84.0,"(528, 199)","(507, 206)",1.35,15.556,-5.185,
-83,skrys9_up_13.avi,Gecko,skrys9,333,FR,79.0,146.0,112.0,"(530, 197)","(498, 205)",1.38,23.188,-5.797,
-84,skrys9_up_15.avi,Gecko,skrys9,376,HR,225.0,282.0,254.0,"(529, 199)","(500, 213)",1.4,20.714,-10.0,
-85,skrys9_up_17.avi,Gecko,skrys9,266,HL,82.0,135.0,108.0,"(530, 198)","(547, 208)",1.36,-12.5,-7.353,
-86,Swil1_up_08.avi,Gecko,Swil1,167,HR,73.0,98.0,86.0,"(534, 191)","(522, 172)",1.32,9.091,14.394,also has FR on forceplate twice but slipping
-87,Swil1_up_09.avi,Gecko,Swil1,324,FL,106.0,139.0,122.0,"(533, 190)","(534, 204)",1.35,-0.741,-10.37,also has HL on forceplate after
-88,swil2_up_01.avi,Gecko,swil2,168,HL,73.0,89.0,81.0,"(531, 189)","(538, 182)",1.34,-5.224,5.224,
-89,swil9_down_03.avi,Gecko,swil9,97,,,,,"(nan, nan)","(nan, nan)",,,,
-90,swil9_down_05.avi,Gecko,swil9,116,,,,,"(nan, nan)","(nan, nan)",,,,
-91,swil9_down_07.avi,Gecko,swil9,287,HR,208.0,214.0,211.0,"(528, 204)","(507, 208)",1.3599999999999999,15.441,-2.941,
-92,swil9_up_01.avi,Gecko,swil9,380,FL,26.0,45.0,36.0,"(527, 203)","(506, 173)",1.34,15.672,22.388,
-93,swil9_up_02.avi,Gecko,swil9,178,HR,80.0,90.0,85.0,"(526, 202)","(549, 182)",1.4,-16.429,14.286,very fast
-94,swil9_up_04.avi,Gecko,swil9,175,FR,73.0,78.0,76.0,"(526, 202)","(518, 219)",1.41,5.674,-12.057,very fast
-95,swil9_up_06.avi,Gecko,swil9,146,FL,12.0,29.0,20.0,"(526, 202)","(511, 215)",1.38,10.87,-9.42,
-96,swil9_up_08.avi,Gecko,swil9,126,FL,16.0,36.0,26.0,"(526, 204)","(502, 227)",1.37,17.518,-16.788,
+,file,family,code,video_frame_count,framerate,foot,footfall_begin,footfall_end,open_frame,CoP,footfall_point,conversion_factor,x_calib_mm,y_calib_mm,notes
+0,gdub2_down_23.avi,Gecko,gdub2,260,250,,,,,"(nan, nan)","(nan, nan)",,,,
+1,gdub2_down_25.avi,Gecko,gdub2,262,250,,,,,"(nan, nan)","(nan, nan)",,,,
+2,gdub2_down_26.avi,Gecko,gdub2,167,250,,,,,"(nan, nan)","(nan, nan)",,,,
+3,gdub2_up_19.avi,Gecko,gdub2,600,250,FL,252,456,354,"(535, 208)","(521, 232)",1.33,10.526,-18.045,paused step on forceplate
+4,gdub2_up_20.avi,Gecko,gdub2,169,250,FR,82,96,89,"(535, 205)","(532, 212)",1.36,2.206,-5.147,HR on forceplate when lifting FR
+5,gdub2_up_22.avi,Gecko,gdub2,405,250,HR,166,194,180,"(535, 206)","(526, 233)",1.38,6.522,-19.565,FR still slightly on forceplate when HR touches
+6,gdub2_up_24.avi,Gecko,gdub2,551,250,FL,247,325,286,"(535, 208)","(545, 195)",1.29,-7.752,10.078,HL on forceplate when lifting FL
+7,gdub3_down_23.avi,Gecko,gdub3,247,250,,,,,"(nan, nan)","(nan, nan)",,,,
+8,gdub3_down_26.avi,Gecko,gdub3,210,250,,,,,"(nan, nan)","(nan, nan)",,,,
+9,gdub3_down_27.avi,Gecko,gdub3,185,250,,,,,"(nan, nan)","(nan, nan)",,,,
+10,gdub3_down_29.avi,Gecko,gdub3,210,250,HR,84,96,90,"(538, 220)","(511, 197)",1.36,19.853,16.912,
+11,gdub3_down_30.avi,Gecko,gdub3,208,250,HR,35,43,39,"(532, 200)","(512, 225)",1.39,14.388,-17.986,
+12,gdub3_down_31.avi,Gecko,gdub3,258,250,FL,58,70,64,"(535, 201)","(534, 230)",1.36,0.735,-21.324,also has HR footfall on forceplate after
+13,gdub3_down_32.avi,Gecko,gdub3,262,250,FR,58,67,62,"(536, 184)","(549, 202)",1.38,-9.42,-13.043,also has HR footfall on forceplate after
+14,gdub3_up_22.avi,Gecko,gdub3,216,250,FL,29,36,32,"(536, 216)","(521, 213)",1.35,11.111,2.222,
+15,gdub3_up_24.avi,Gecko,gdub3,268,250,FL,101,118,110,"(536, 218)","(523, 223)",1.48,8.784,-3.378,HL on forceplate when lifting FL
+16,gdub3_up_25.avi,Gecko,gdub3,373,250,FL,150,208,179,"(536, 216)","(512, 224)",1.38,17.391,-5.797,paused step on forceplate
+17,gdub3_up_28.avi,Gecko,gdub3,299,250,HR,62,101,82,"(536, 220)","(547, 215)",1.39,-7.914,3.597,climbing slow
+18,gdub5_down_16.avi,Gecko,gdub5,251,250,HR,68,81,74,"(533, 211)","(505, 222)",1.34,20.896,-8.209,
+19,gdub5_down_18.avi,Gecko,gdub5,1102,250,,,,,"(nan, nan)","(nan, nan)",,,,paused step on forceplate for almost whole video
+20,gdub5_down_20.avi,Gecko,gdub5,466,250,HL,302,312,307,"(534, 211)","(531, 224)",1.37,2.19,-9.489,
+21,gdub5_down_22.avi,Gecko,gdub5,211,250,,,,,"(nan, nan)","(nan, nan)",,,,no foot fully on forceplate
+22,gdub5_down_24.avi,Gecko,gdub5,374,250,HR,123,228,176,"(534, 212)","(529, 217)",1.32,3.788,-3.788,paused step on forceplate
+23,gdub5_down_25.avi,Gecko,gdub5,250,250,FL,92,103,98,"(534, 210)","(535, 208)",1.4,-0.714,1.429,
+24,gdub5_up_15.avi,Gecko,gdub5,372,250,HR,104,126,115,"(533, 210)","(549, 220)",1.35,-11.852,-7.407,
+25,gdub5_up_17.avi,Gecko,gdub5,278,250,FR,92,103,98,"(535, 210)","(521, 236)",1.33,10.526,-19.549,HR on forceplate when lifting FR
+26,gdub5_up_19.avi,Gecko,gdub5,278,250,FL,93,104,98,"(534, 210)","(526, 224)",1.3,6.154,-10.769,also has HL footfall on forceplate after
+27,gdub5_up_21.avi,Gecko,gdub5,310,250,HL,71,137,104,"(532, 212)","(521, 200)",1.27,8.661,9.449,paused step on forceplate
+28,gdub5_up_23.avi,Gecko,gdub5,248,250,FL,47,62,54,"(534, 212)","(514, 210)",1.3,15.385,1.538,HL on forceplate when lifting FL
+29,skrys11_down_02.avi,Gecko,skrys11,291,100,HL,52,203,128,"(530, 200)","(515, 221)",1.3,11.538,-16.154,"very sticky gecko, paused step on forceplate"
+30,skrys11_down_04.avi,Gecko,skrys11,249,100,HR,42,131,86,"(530, 200)","(512, 176)",1.32,13.636,18.182,"very sticky gecko, paused step on forceplate"
+31,skrys11_down_06.avi,Gecko,skrys11,376,100,HR,139,263,201,"(530, 198)","(546, 214)",1.4,-11.429,-11.429,"very sticky gecko, paused step on forceplate"
+32,skrys11_down_07.avi,Gecko,skrys11,366,100,FR,29,58,44,"(528, 199)","(542, 177)",1.33,-10.526,16.541,"very sticky gecko, paused step on forceplate"
+33,skrys11_up_01.avi,Gecko,skrys11,242,100,FR,30,62,46,"(530, 199)","(499, 196)",1.37,22.628,2.19,very sticky gecko
+34,skrys11_up_03.avi,Gecko,skrys11,332,100,HL,159,205,182,"(530, 199)","(529, 177)",1.36,0.735,16.176,"very sticky gecko, also has FL footfall on forceplate before"
+35,skrys11_up_05.avi,Gecko,skrys11,425,100,FL,42,170,106,"(532, 198)","(540, 207)",1.32,-6.061,-6.818,"very sticky gecko, paused step on forceplate"
+36,skrys11_up_08.avi,Gecko,skrys11,301,100,FL,51,81,66,"(529, 199)","(501, 175)",1.36,20.588,17.647,very sticky gecko
+37,skrys11_up_09.avi,Gecko,skrys11,310,100,HR,142,176,159,"(532, 198)","(537, 205)",1.44,-3.472,-4.861,"very sticky gecko, also has FR footfall on forceplate before"
+38,skrys1_down_03.avi,Gecko,skrys1,466,100,,,,,"(nan, nan)","(nan, nan)",,,,"very sticky gecko, feet on forceplate but stop-and-go"
+39,skrys1_down_04.avi,Gecko,skrys1,400,100,,,,,"(nan, nan)","(nan, nan)",,,,"very sticky gecko, feet on forceplate but stop-and-go"
+40,skrys1_down_06.avi,Gecko,skrys1,211,100,HR,88,158,123,"(532, 200)","(529, 194)",1.3,2.308,4.615,"very sticky gecko, paused step on forceplate"
+41,skrys1_down_07.avi,Gecko,skrys1,331,100,FR,95,205,150,"(534, 202)","(536, 218)",1.35,-1.481,-11.852,"very sticky gecko, paused step on forceplate"
+42,skrys1_down_08.avi,Gecko,skrys1,477,100,,,,,"(nan, nan)","(nan, nan)",,,,"very sticky gecko, feet on forceplate but stop-and-go"
+43,skrys1_up_01.avi,Gecko,skrys1,356,100,,,,,"(nan, nan)","(nan, nan)",,,,
+44,skrys1_up_02.avi,Gecko,skrys1,648,100,,,,,"(nan, nan)","(nan, nan)",,,,
+45,skrys1_up_05.avi,Gecko,skrys1,415,100,,,,,"(nan, nan)","(nan, nan)",,,,"very sticky gecko, feet on forceplate but stop-and-go"
+46,skrys2_down_02.avi,Gecko,skrys2,91,100,,,,,"(nan, nan)","(nan, nan)",,,,
+47,skrys2_down_03.avi,Gecko,skrys2,131,100,HL,11,34,22,"(533, 200)","(543, 212)",1.41,-7.092,-8.511,very sticky gecko
+48,skrys2_down_06.avi,Gecko,skrys2,220,100,,,,,"(nan, nan)","(nan, nan)",,,,"very sticky gecko, feet on forceplate but stop-and-go"
+49,skrys2_up_01.avi,Gecko,skrys2,257,100,FL,64,107,86,"(532, 202)","(550, 183)",1.36,-13.235,13.971,"very sticky gecko, also has HL footfall on forceplate after"
+50,skrys2_up_04.avi,Gecko,skrys2,216,100,HL,97,129,113,"(532, 202)","(554, 182)",1.39,-15.827,14.388,very sticky gecko
+51,skrys2_up_05.avi,Gecko,skrys2,211,100,FL,73,118,96,"(534, 201)","(559, 177)",1.37,-18.248,17.518,"very sticky gecko, also has HL footfall on forceplate after"
+52,skrys2_up_07.avi,Gecko,skrys2,160,100,HL,75,104,90,"(534, 200)","(542, 195)",1.32,-6.061,3.788,"very sticky gecko, also has FL footfall on forceplate before"
+53,skrys3_down_04.avi,Gecko,skrys3,288,100,HL,104,221,162,"(536, 184)","(555, 191)",1.36,-13.971,-5.147,"very sticky gecko, paused step on forceplate"
+54,skrys3_down_05.avi,Gecko,skrys3,269,100,HR,43,182,112,"(538, 186)","(523, 170)",1.39,10.791,11.511,"very sticky gecko, paused step on forceplate"
+55,skrys3_down_06.avi,Gecko,skrys3,275,100,,,,,"(nan, nan)","(nan, nan)",,,,"very sticky gecko, feet on forceplate but stop-and-go"
+56,skrys3_up_01.avi,Gecko,skrys3,288,250,HL,24,103,64,"(535, 186)","(543, 180)",1.39,-5.755,4.317,very sticky gecko
+57,skrys3_up_02.avi,Gecko,skrys3,508,250,HR,299,401,350,"(537, 186)","(548, 187)",1.41,-7.801,-0.709,climbs backwards!
+58,skrys3_up_03.avi,Gecko,skrys3,293,250,,,,,"(nan, nan)","(nan, nan)",,,,"very sticky gecko, foot on forceplate but stop-and-go"
+59,skrys4_down_01.avi,Gecko,skrys4,239,100,,,,,"(nan, nan)","(nan, nan)",,,,"very sticky gecko, foot on forceplate but stop-and-go"
+60,skrys4_down_05.avi,Gecko,skrys4,367,100,,,,,"(nan, nan)","(nan, nan)",,,,
+61,skrys4_down_07.avi,Gecko,skrys4,508,100,FL,283,336,310,"(528, 201)","(507, 224)",1.41,14.894,-16.312,"very sticky gecko, paused step on forceplate"
+62,skrys4_down_10.avi,Gecko,skrys4,614,100,,,,,"(nan, nan)","(nan, nan)",,,,"very sticky gecko, foot on forceplate but stop-and-go"
+63,skrys4_up_02.avi,Gecko,skrys4,225,100,,,,,"(nan, nan)","(nan, nan)",,,,
+64,skrys4_up_04.avi,Gecko,skrys4,234,100,FL,35,159,97,"(528, 204)","(515, 210)",1.34,9.701,-4.478,"very sticky gecko, paused step on forceplate"
+65,skrys4_up_06.avi,Gecko,skrys4,188,100,FL,47,88,68,"(526, 204)","(505, 203)",1.4,15,0.714,"very sticky gecko, paused step on forceplate"
+66,skrys4_up_08.avi,Gecko,skrys4,224,100,HR,47,123,85,"(526, 203)","(546, 216)",1.36,-14.706,-9.559,"very sticky gecko, paused step on forceplate"
+67,skrys4_up_09.avi,Gecko,skrys4,230,100,HR,133,156,144,"(528, 200)","(539, 207)",1.47,-7.483,-4.762,
+68,skrys9_down_03.avi,Gecko,skrys9,240,100,FR,50,86,68,"(526, 206)","(514, 205)",1.45,8.276,0.69,also has HR footfall on forceplate after
+69,skrys9_down_06.avi,Gecko,skrys9,207,100,HR,117,142,130,"(527, 204)","(508, 227)",1.39,13.669,-16.547,
+70,skrys9_down_08.avi,Gecko,skrys9,237,100,FR,33,114,74,"(528, 204)","(521, 229)",1.39,5.036,-17.986,paused step on forceplate
+71,skrys9_down_12.avi,Gecko,skrys9,329,100,FR,59,121,90,"(528, 200)","(507, 194)",1.42,14.789,4.225,very slow
+72,skrys9_down_14.avi,Gecko,skrys9,256,100,FR,53,94,74,"(530, 199)","(538, 199)",1.36,-5.882,0,
+73,skrys9_down_16.avi,Gecko,skrys9,393,100,HR,137,172,154,"(528, 200)","(540, 175)",1.39,-8.633,17.986,
+74,skrys9_down_18.avi,Gecko,skrys9,236,100,FR,51,85,68,"(529, 198)","(521, 181)",1.41,5.674,12.057,also has HR footfall on forceplate after
+75,skrys9_down_19.avi,Gecko,skrys9,436,100,HR,209,279,244,"(529, 198)","(506, 181)",1.37,16.788,12.409,paused step on forceplate
+76,skrys9_up_01.avi,Gecko,skrys9,253,100,FR,63,141,102,"(526, 204)","(541, 207)",1.41,-10.638,-2.128,also has HR footfall on forceplate after
+77,skrys9_up_02.avi,Gecko,skrys9,234,100,FR,65,98,82,"(528, 204)","(531, 218)",1.37,-2.19,-10.219,also has HR footfall on forceplate after
+78,skrys9_up_04.avi,Gecko,skrys9,316,100,HR,120,176,148,"(528, 202)","(518, 221)",1.39,7.194,-13.669,FR still slightly on forceplate when HR touches
+79,skrys9_up_05.avi,Gecko,skrys9,601,100,FL,216,258,237,"(526, 204)","(497, 181)",1.39,20.863,16.547,very slow
+80,skrys9_up_07.avi,Gecko,skrys9,402,100,FL,120,196,158,"(526, 204)","(532, 229)",1.43,-4.196,-17.483,"also has HR footfall on forceplate after, paused step on forceplate"
+81,skrys9_up_10.avi,Gecko,skrys9,470,100,HL,296,343,320,"(526, 206)","(537, 220)",1.42,-7.746,-9.859,
+82,skrys9_up_11.avi,Gecko,skrys9,288,100,FR,54,115,84,"(528, 199)","(507, 206)",1.35,15.556,-5.185,
+83,skrys9_up_13.avi,Gecko,skrys9,333,100,FR,79,146,112,"(530, 197)","(498, 205)",1.38,23.188,-5.797,
+84,skrys9_up_15.avi,Gecko,skrys9,376,100,HR,225,282,254,"(529, 199)","(500, 213)",1.4,20.714,-10,
+85,skrys9_up_17.avi,Gecko,skrys9,266,100,HL,82,135,108,"(530, 198)","(547, 208)",1.36,-12.5,-7.353,
+86,Swil1_up_08.avi,Gecko,Swil1,167,100,HR,73,98,86,"(534, 191)","(522, 172)",1.32,9.091,14.394,also has FR on forceplate twice but slipping
+87,Swil1_up_09.avi,Gecko,Swil1,324,100,FL,106,139,122,"(533, 190)","(534, 204)",1.35,-0.741,-10.37,also has HL on forceplate after
+88,swil2_up_01.avi,Gecko,swil2,168,100,HL,73,89,81,"(531, 189)","(538, 182)",1.34,-5.224,5.224,
+89,swil9_down_03.avi,Gecko,swil9,97,100,,,,,"(nan, nan)","(nan, nan)",,,,
+90,swil9_down_05.avi,Gecko,swil9,116,100,,,,,"(nan, nan)","(nan, nan)",,,,
+91,swil9_down_07.avi,Gecko,swil9,287,100,HR,208,214,211,"(528, 204)","(507, 208)",1.36,15.441,-2.941,
+92,swil9_up_01.avi,Gecko,swil9,380,100,FL,26,45,36,"(527, 203)","(506, 173)",1.34,15.672,22.388,
+93,swil9_up_02.avi,Gecko,swil9,178,100,HR,80,90,85,"(526, 202)","(549, 182)",1.4,-16.429,14.286,very fast
+94,swil9_up_04.avi,Gecko,swil9,175,100,FR,73,78,76,"(526, 202)","(518, 219)",1.41,5.674,-12.057,very fast
+95,swil9_up_06.avi,Gecko,swil9,146,100,FL,12,29,20,"(526, 202)","(511, 215)",1.38,10.87,-9.42,
+96,swil9_up_08.avi,Gecko,swil9,126,100,FL,16,36,26,"(526, 204)","(502, 227)",1.37,17.518,-16.788,
