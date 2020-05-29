@@ -1,7 +1,5 @@
 import pandas as pd
 import numpy as np
-import seaborn as sn
-import matplotlib.pyplot as plt
 import os
 from pathlib import Path
 import re
@@ -197,7 +195,7 @@ def do_three_factor_calibration(calib_dict):
     w = 50.
     h = 50.
     d = 70.711
-    calib_dict_converted = {"file": [], "family":[], "code":[], "video_frame_count":[], "foot":[],
+    calib_dict_converted = {"file": [], "family":[], "code":[], "video_frame_count":[], "framerate":[], "foot":[],
                             "footfall_begin": [], "footfall_end": [], "open_frame": [],
                             "CoP": [], "footfall_point":[], "conversion_factor":[], "x_calib_mm": [], "y_calib_mm": [],
                             "notes":[]}

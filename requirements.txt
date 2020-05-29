@@ -1,4 +1,4 @@
-matplotlib
 numpy
 pandas
-seaborn
+opencv
+tk
