@@ -87,46 +87,50 @@
 85,scil1_up_08.avi,scil2,404,Gecko,157,193,HL,
 86,scil1_up_11.avi,scil1,256,Gecko,38,84,FR,
 87,scil1_up_11.avi,scil1,256,Gecko,85,125,HR,
-88,scil1_up_12.avi,scil1,641,Gecko,,,,
-89,scil1_up_13.avi,scil1,498,Gecko,,,,
-90,scil1_up_14.avi,scil1,349,Gecko,,,,
-91,scil1_up_17.avi,scil1,413,Gecko,,,,
-92,scil1_up_18.avi,scil1,784,Gecko,,,,
-93,scil2_down_02.avi,scil2,217,Gecko,,,,
-94,scil2_down_04.avi,scil2,195,Gecko,,,,
-95,scil2_down_05.avi,scil2,111,Gecko,,,,
-96,scil2_up_01.avi,scil2,655,Gecko,,,,
-97,scil2_up_03.avi,scil2,878,Gecko,,,,
-98,scil3_down_03.avi,scil3,256,Gecko,,,,
-99,scil3_down_04.avi,scil3,347,Gecko,,,,
-100,scil3_down_06.avi,scil3,488,Gecko,,,,
-101,scil3_down_08.avi,scil3,473,Gecko,,,,
-102,scil3_down_12.avi,scil3,186,Gecko,,,,
-103,scil3_down_15.avi,scil3,426,Gecko,,,,
-104,scil3_up_01.avi,scil3,1027,Gecko,,,,
-105,scil3_up_02.avi,scil3,426,Gecko,,,,
-106,scil3_up_05.avi,scil3,517,Gecko,,,,
-107,scil3_up_07.avi,scil3,333,Gecko,,,,
-108,scil3_up_09.avi,scil3,548,Gecko,,,,
-109,scil3_up_10.avi,scil3,370,Gecko,,,,
-110,scil3_up_11.avi,scil3,285,Gecko,,,,
-111,scil3_up_13.avi,scil3,385,Gecko,,,,
-112,scil3_up_14.avi,scil3,548,Gecko,,,,
-113,seld1_down_03.avi,seld1,1730,Gecko,,,,
-114,seld1_up_01.avi,seld1,962,Gecko,,,,
-115,seld1_up_02.avi,seld1,2154,Gecko,,,,
-116,seld1_up_04.avi,seld1,1231,Gecko,,,,
-117,umill1_down_03.avi,umill1,505,Gecko,,,,
-118,umill1_down_05.avi,umill1,380,Gecko,,,,
-119,umill1_down_06.avi,umill1,622,Gecko,,,,
-120,umill1_down_11.avi,umill1,865,Gecko,,,,
-121,umill1_up_01.avi,umill1,730,Gecko,,,,
-122,umill1_up_02.avi,umill1,658,Gecko,,,,
-123,umill1_up_04.avi,umill1,306,Gecko,,,,
-124,umill1_up_07.avi,umill1,469,Gecko,,,,
-125,umill1_up_08.avi,umill1,365,Gecko,,,,
-126,umill1_up_09.avi,umill1,456,Gecko,,,,
-127,umill1_up_10.avi,umill1,937,Gecko,,,,
-128,umill1_up_12.avi,umill1,437,Gecko,,,,
-129,umill1_up_13.avi,umill1,748,Gecko,,,,
-130,umill2_down_01.avi,umill2,788,Gecko,,,,
+88,scil1_up_12.avi,scil1,641,Gecko,333,384,FR,HR on forceplate when lifting FR
+89,scil1_up_12.avi,scil1,641,Gecko,378,435,HR,
+90,scil1_up_13.avi,scil1,498,Gecko,54,119,FL,
+91,scil1_up_13.avi,scil1,498,Gecko,209,276,HL,
+92,scil1_up_14.avi,scil1,349,Gecko,108,181,HL,
+93,scil1_up_17.avi,scil1,413,Gecko,117,158,FL,FR slightly touches edge of forceplate when lifting FL
+94,scil1_up_18.avi,scil1,784,Gecko,300,390,FR,also has other feet on forceplate but never alone
+95,scil2_down_02.avi,scil2,217,Gecko,68,84,HR,dragging HR a bit 
+96,scil2_down_04.avi,scil2,195,Gecko,62,81,FL,also has other feet on forceplate but never alone and on edge
+97,scil2_down_05.avi,scil2,111,Gecko,17,28,FL,FR and HL on forceplate when lifting FL
+98,scil2_down_05.avi,scil2,111,Gecko,27,35,HL,HR on forceplate when lifting HL
+99,scil2_down_05.avi,scil2,111,Gecko,34,42,HR,dragging HR a bit 
+100,scil2_up_01.avi,scil2,655,Gecko,nan,nan,nan,pausing all the time
+101,scil2_up_03.avi,scil2,878,Gecko,nan,nan,nan,pausing all the time
+102,scil3_down_03.avi,scil3,256,Gecko,53,81,HL,
+103,scil3_down_04.avi,scil3,347,Gecko,45,58,HR,HL on forceplate when placing HR
+104,scil3_down_06.avi,scil3,488,Gecko,nan,nan,nan,pausing all the time
+105,scil3_down_08.avi,scil3,473,Gecko,288,317,HL,
+106,scil3_down_12.avi,scil3,186,Gecko,37,120,HL,outer toe around edge of forceplate
+107,scil3_down_15.avi,scil3,426,Gecko,53,104,FR,FL on forceplate when lifting FR
+108,scil3_up_01.avi,scil3,1027,Gecko,462,626,HL,also has other feet on forceplate but on edge
+109,scil3_up_02.avi,scil3,426,Gecko,289,345,HR,
+110,scil3_up_05.avi,scil3,517,Gecko,nan,nan,nan,pausing all the time
+111,scil3_up_07.avi,scil3,333,Gecko,193,256,HR,on corner of forceplate
+112,scil3_up_09.avi,scil3,548,Gecko,nan,nan,nan,pausing all the time
+113,scil3_up_10.avi,scil3,370,Gecko,48,122,FL,FR and HL on forceplate when lifting FL
+114,scil3_up_11.avi,scil3,285,Gecko,102,199,HL,on edge 
+115,scil3_up_13.avi,scil3,385,Gecko,nan,nan,nan,pausing all the time
+116,scil3_up_14.avi,scil3,548,Gecko,208,268,HL,
+117,seld1_down_03.avi,seld1,1730,Gecko,778,1045,HL,
+118,seld1_up_01.avi,seld1,962,Gecko,,,,
+119,seld1_up_02.avi,seld1,2154,Gecko,,,,
+120,seld1_up_04.avi,seld1,1231,Gecko,,,,
+121,umill1_down_03.avi,umill1,505,Gecko,,,,
+122,umill1_down_05.avi,umill1,380,Gecko,,,,
+123,umill1_down_06.avi,umill1,622,Gecko,,,,
+124,umill1_down_11.avi,umill1,865,Gecko,,,,
+125,umill1_up_01.avi,umill1,730,Gecko,,,,
+126,umill1_up_02.avi,umill1,658,Gecko,,,,
+127,umill1_up_04.avi,umill1,306,Gecko,,,,
+128,umill1_up_07.avi,umill1,469,Gecko,,,,
+129,umill1_up_08.avi,umill1,365,Gecko,,,,
+130,umill1_up_09.avi,umill1,456,Gecko,,,,
+131,umill1_up_10.avi,umill1,937,Gecko,,,,
+132,umill1_up_12.avi,umill1,437,Gecko,,,,
+133,umill1_up_13.avi,umill1,748,Gecko,,,,
+134,umill2_down_01.avi,umill2,788,Gecko,,,,
