@@ -1,5 +1,5 @@
 numpy
 pandas
 opencv
-tk
+tkinter
 ffmpeg

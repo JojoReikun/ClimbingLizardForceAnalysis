@@ -117,20 +117,33 @@
 115,scil3_up_13.avi,scil3,385,Gecko,nan,nan,nan,pausing all the time
 116,scil3_up_14.avi,scil3,548,Gecko,208,268,HL,
 117,seld1_down_03.avi,seld1,1730,Gecko,778,1045,HL,
-118,seld1_up_01.avi,seld1,962,Gecko,,,,
-119,seld1_up_02.avi,seld1,2154,Gecko,,,,
-120,seld1_up_04.avi,seld1,1231,Gecko,,,,
-121,umill1_down_03.avi,umill1,505,Gecko,,,,
-122,umill1_down_05.avi,umill1,380,Gecko,,,,
-123,umill1_down_06.avi,umill1,622,Gecko,,,,
-124,umill1_down_11.avi,umill1,865,Gecko,,,,
-125,umill1_up_01.avi,umill1,730,Gecko,,,,
-126,umill1_up_02.avi,umill1,658,Gecko,,,,
-127,umill1_up_04.avi,umill1,306,Gecko,,,,
-128,umill1_up_07.avi,umill1,469,Gecko,,,,
-129,umill1_up_08.avi,umill1,365,Gecko,,,,
-130,umill1_up_09.avi,umill1,456,Gecko,,,,
-131,umill1_up_10.avi,umill1,937,Gecko,,,,
-132,umill1_up_12.avi,umill1,437,Gecko,,,,
-133,umill1_up_13.avi,umill1,748,Gecko,,,,
-134,umill2_down_01.avi,umill2,788,Gecko,,,,
+118,seld1_up_01.avi,seld1,962,Gecko,307,384,FR,also has other feet on forceplate but never alone
+119,seld1_up_01.avi,seld1,962,Gecko,355,442,FL,also has other feet on forceplate but never alone
+120,seld1_up_01.avi,seld1,962,Gecko,389,457,HR,also has other feet on forceplate but never alone
+121,seld1_up_02.avi,seld1,2154,Gecko,nan,nan,nan,pausing all the time
+122,seld1_up_04.avi,seld1,1231,Gecko,nan,nan,nan,pausing all the time
+123,umill1_down_03.avi,umill1,505,Gecko,149,232,FL,
+124,umill1_down_05.avi,umill1,380,Gecko,72,119,FL,
+125,umill1_down_05.avi,umill1,380,Gecko,171,247,HL,
+126,umill1_down_06.avi,umill1,622,Gecko,186,267,FL,HL on forceplate when lifting FL
+127,umill1_down_06.avi,umill1,622,Gecko,346,473,HL,dragging HL a bit
+128,umill1_down_11.avi,umill1,865,Gecko,527,614,HR,
+129,umill1_up_01.avi,umill1,730,Gecko,38,219,FR,has other feet on forceplate at the same time
+130,umill1_up_01.avi,umill1,730,Gecko,160,292,FL,has other feet on forceplate at the same time
+131,umill1_up_01.avi,umill1,730,Gecko,270,408,HL,has other feet on forceplate at the same time
+132,umill1_up_01.avi,umill1,730,Gecko,350,496,HR,
+133,umill1_up_02.avi,umill1,658,Gecko,nan,nan,nan,pausing all the time
+134,umill1_up_04.avi,umill1,306,Gecko,64,134,FL,
+135,umill1_up_04.avi,umill1,306,Gecko,119,201,HL,
+136,umill1_up_07.avi,umill1,469,Gecko,32,117,FR,has other feet on forceplate at the same time
+137,umill1_up_07.avi,umill1,469,Gecko,84,168,FL,has other feet on forceplate at the same time
+138,umill1_up_07.avi,umill1,469,Gecko,164,234,HL,has other feet on forceplate at the same time
+139,umill1_up_08.avi,umill1,365,Gecko,83,171,FL,
+140,umill1_up_08.avi,umill1,365,Gecko,164,262,HL,
+141,umill1_up_09.avi,umill1,456,Gecko,132,246,FL,HL on forceplate when lifting FL
+142,umill1_up_10.avi,umill1,937,Gecko,178,350,FR,
+143,umill1_up_10.avi,umill1,937,Gecko,571,777,HR,
+144,umill1_up_12.avi,umill1,437,Gecko,83,181,FR,
+145,umill1_up_12.avi,umill1,437,Gecko,157,266,HR,
+146,umill1_up_13.avi,umill1,748,Gecko,nan,nan,nan,pausing all the time
+147,umill2_down_01.avi,umill2,788,Gecko,nan,nan,nan,pausing all the time

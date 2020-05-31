@@ -5,8 +5,8 @@ import os
 convert_videos_to_nv12 = False
 
 # --------------------------------
-step_1 = True
-step_2 = False
+step_1 = False
+step_2 = True
 
 destfolder = current_path = os.getcwd()
 

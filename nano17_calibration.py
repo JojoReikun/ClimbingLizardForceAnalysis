@@ -2,7 +2,7 @@ import cv2
 import os
 
 
-def calibrate_x_y_cop_nano17(open_frame, file, filename, tempdir):
+def calibrate_x_y_cop_nano17(open_frame, file, filename, tempdir, foot):
     refPt_box = []
     refPt_dist = []
 
@@ -35,7 +35,7 @@ def calibrate_x_y_cop_nano17(open_frame, file, filename, tempdir):
             refPt_dist = [(x, y)]
             # draw a point at clicked location
             p2=(refPt_dist[0][0], refPt_dist[0][1])
-            cv2.circle(frame, (refPt_dist[0][0], refPt_dist[0][1]), 3, (255, 0, 0), 3)
+            cv2.circle(frame, (refPt_dist[0][0], refPt_dist[0][1]), 2, (0, 145, 230), 2)
             cv2.imshow("image", frame)
             return p2
 
@@ -48,18 +48,18 @@ def calibrate_x_y_cop_nano17(open_frame, file, filename, tempdir):
 
     # display the current frame and video on frame:
     cv2.putText(frame, 'confirm operations with KEY: c, reset with KEY r, next video with KEY n',
-                (20, 350), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (150, 200, 255), 1)
-    cv2.putText(frame, ('frame: {} of video: {}'.format(open_frame, filename)),
-                (20, 380), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
+                (20, 350), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (222, 120, 0), 1)
+    cv2.putText(frame, ('frame: {} of video: {} -- foot: {}'.format(open_frame, filename, foot)),
+                (20, 370), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (10, 180, 0), 1)
     # clone the image to reset box
     clone = frame.copy()
 
     # display operation 1:
     cv2.putText(frame, '1st) Draw box around the force plate with LButton Mouse',
-                (20, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (150, 200, 255), 1)
+                (20, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (222, 120, 0), 1)
     # display operation 2:
     cv2.putText(frame, '2nd) Click on the foot of lizard which is on force plate with RButton Mouse',
-                (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (150, 200, 255), 1)
+                (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (222, 120, 0), 1)
 
     cv2.imshow("image", frame)
 
@@ -81,7 +81,7 @@ def calibrate_x_y_cop_nano17(open_frame, file, filename, tempdir):
                         (150, 200, 255), 1)
             # display operation 2:
             cv2.putText(frame, '2nd) Click on the foot of lizard which is on force plate with RButton Mouse',
-                        (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (150, 200, 255), 1)
+                        (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (222, 120, 0), 1)
             cv2.imshow("image", frame)
             refPt_box = []
         # if the 'c' key is pressed, break from the loop to confirm

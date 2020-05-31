@@ -102,26 +102,32 @@ def nano17_openCV_as_ImageJ():
     #tempdir = "C:/Users/JojoS/Documents/phd/ClimbingRobot_XGen4/ClimbingLizardsVideos_2020/Gecko01/videos_analysis"
     if len(tempdir) > 0:
         print("You chose %s" % tempdir)
-    # assumes that videos are in video_analysis inside the folder for the Group:
+    # assumes that videos are in video_analysis inside the folder for the Group [-2]:
     foldername = splitall(tempdir)[-2]
     # print("foldername: ", foldername)   # e.g. Dragon03
 
     force_analysis_file = "{}_forceAnalysis.csv".format(foldername)
-    # looks for "*_forceAnalysis.csv" file in tempdir folder:
+    # looks for and reads in "*_forceAnalysis.csv" file in tempdir folder:
     df_force_analysis = pd.read_csv(os.path.join(tempdir, force_analysis_file))
     # check if columns footfall_begin & footfall_end contain entries != NaN
     check_columns = ["footfall_begin", "footfall_end"]
     for col in check_columns:
         if df_force_analysis[col].isnull().values.all():
             print("determine and enter frame number for {} to continue".format(col))
-            #break
+            break
 
-    # filepaths and filenames of videos: needed for navigating dataframe and accessing videos
+    # get row number of csv file (needed to iterate through rows, in case videos are used multiple times:
+    df_force_analysis.rename(columns=lambda x: x.strip(), inplace=True)  # remove whitespaces from column names
+    data_rows_count = df_force_analysis.shape[0]  # number of rows already excluded the header
+
+    # filepaths and filenames of videos: needed for accessing videos with opencv
     filelist = glob(os.path.join(tempdir, '*.avi'))
-    # extract video filenames from filepaths:
-    filenames = []
+    # extract video filenames from filepaths and assort filename to filepath in dictionary:
+    filenames_dict_tmp = {}
     for i in range(len(filelist)):
-        filenames.append(filelist[i].rsplit(os.sep, 1)[1])
+        filenames_dict_tmp[filelist[i]] = (filelist[i].rsplit(os.sep, 1)[1])
+    filenames_dict = dict([(value, key) for key, value in filenames_dict_tmp.items()])  # swap keys and values
+    print("filenames dictionary: ", filenames_dict)
 
     # requires number of frames of video
     # store box_coords, centre point, and distances from center to footfall: x_calib, y_calib
@@ -137,33 +143,34 @@ def nano17_openCV_as_ImageJ():
                   "x_calibs":[],
                   "y_calibs":[],
                   "notes":[]}
-    for filepath, filename in zip(filelist, filenames):
+    #for filepath, filename in zip(filelist, filenames):
+    for j in range(data_rows_count):
+        # get filename and filepath for current row item:
+        filename = df_force_analysis.loc[j, "filename"]
+        filepath = filenames_dict[filename]
+
         # looks for begin and end frame of current file
-        calib_dict["file"].append(filename)
-        index = df_force_analysis[df_force_analysis["filename"] == filename].index[0]
-        beg_frame = df_force_analysis.loc[index, "footfall_begin"]
-        end_frame = df_force_analysis.loc[index, "footfall_end"]
+        #index = df_force_analysis[df_force_analysis["filename"] == filename].index[0]
+        beg_frame = df_force_analysis.loc[j, "footfall_begin"]
+        end_frame = df_force_analysis.loc[j, "footfall_end"]
         if math.isnan(beg_frame) == False and math.isnan(end_frame) == False:
             open_frame = int(round(end_frame - ((end_frame-beg_frame)/2), 0))
         else:
             open_frame = np.nan
         boe = [beg_frame, open_frame, end_frame]
-        family = df_force_analysis.loc[index, "family"]
-        code = df_force_analysis.loc[index, "code"]
-        frame_count = df_force_analysis.loc[index, "videoFrameCount"]
-        calib_dict["family"].append(family)
-        calib_dict["code"].append(code)
-        calib_dict["video_frame_count"].append(frame_count)
-        calib_dict["footfall_frames_boe"].append(boe)
-        calib_dict["notes"].append(df_force_analysis.loc[index, "notes"])
-        calib_dict["foot"].append(df_force_analysis.loc[index, "foot"])
-        print("filename: {}, index: {}, beg_frame: {}, end_frame: {}, open_frame: {}".format(filename, index, beg_frame, end_frame, open_frame))
+        family = df_force_analysis.loc[j, "family"]
+        code = df_force_analysis.loc[j, "code"]
+        frame_count = df_force_analysis.loc[j, "videoFrameCount"]
+
+        foot = df_force_analysis.loc[j, "foot"]
+
+        print("\nfilename: {}, index: {}, beg_frame: {}, end_frame: {}, open_frame: {}".format(filename, j, beg_frame, end_frame, open_frame))
 
         # open frame nr. middle between footfall_begin & footfall_end
         # TODO: https://www.pyimagesearch.com/2015/03/09/capturing-mouse-click-events-with-python-and-opencv/
 
         if math.isnan(open_frame) == False:
-            box_coords, p1, p2, x_calib, y_calib = nano17_calibration.calibrate_x_y_cop_nano17(open_frame, filepath, filename, tempdir)
+            box_coords, p1, p2, x_calib, y_calib = nano17_calibration.calibrate_x_y_cop_nano17(open_frame, filepath, filename, tempdir, foot)
         else:
             box_coords = [(np.nan, np.nan), (np.nan, np.nan)]
             p1 = (np.nan, np.nan)
@@ -171,16 +178,25 @@ def nano17_openCV_as_ImageJ():
             x_calib = np.nan
             y_calib = np.nan
 
+        calib_dict["family"].append(family)
+        calib_dict["code"].append(code)
+        calib_dict["video_frame_count"].append(frame_count)
+        calib_dict["footfall_frames_boe"].append(boe)
+        calib_dict["notes"].append(df_force_analysis.loc[j, "notes"])
+        calib_dict["file"].append(filename)
         calib_dict["box_coords"].append(box_coords)
         calib_dict["center_points"].append(p1)
         calib_dict["footfall_points"].append(p2)
         calib_dict["x_calibs"].append(x_calib)
         calib_dict["y_calibs"].append(y_calib)
+        calib_dict["foot"].append(foot)
         #print("calib_dict: ", calib_dict)
 
-    print("calib_dict complete: ", calib_dict)
+    # print every key-value pair in new line:
+    print("calib dict: ")
+    print("{" + "\n".join("{!r}: {!r},".format(k, v) for k, v in calib_dict.items()) + "}")
 
-    # do 3 factor calibration to convert calib distances in mm
+    # do 3 factor calibration to convert calib distances in mm -> this will lead to open GUI
     calib_dict_converted, df_conv, conversion_factor = do_three_factor_calibration(calib_dict)
 
     # store calibration distances in csv
@@ -190,6 +206,7 @@ def nano17_openCV_as_ImageJ():
 
 
 def do_three_factor_calibration(calib_dict):
+    import math
     # w = 50mm, h = 50mm, d = 70.711 mm
     # needs video resolution
     w = 50.
@@ -204,7 +221,6 @@ def do_three_factor_calibration(calib_dict):
         CoP = calib_dict["center_points"][i]
         footfall_point = calib_dict["footfall_points"][i]
         boe = calib_dict["footfall_frames_boe"][i]
-        #print("boe: ", boe)
         footfall_begin = boe[0]
         open_frame = boe[1]
         footfall_end = boe[2]
@@ -212,14 +228,20 @@ def do_three_factor_calibration(calib_dict):
         box_coords = calib_dict["box_coords"][i]    # e.g. [(552, 238), (690, 383)]
         note = calib_dict["notes"][i]
 
-        #determine the px to mm conversion factor:
-        box_width_px = abs(box_coords[0][0]-box_coords[1][0])
-        box_height_px = abs(box_coords[0][1]-box_coords[1][1])
-        conversion_factor = (box_width_px/w + box_height_px/h)/2.
+        if math.isnan(box_coords[0][0]) == False:
+            #determine the px to mm conversion factor:
+            box_width_px = abs(box_coords[0][0]-box_coords[1][0])
+            box_height_px = abs(box_coords[0][1]-box_coords[1][1])
+            conversion_factor = (box_width_px/w + box_height_px/h)/2.
 
-        # convert calibration values to mm:
-        x_calib_mm = round(calib_dict["x_calibs"][i]/conversion_factor, 3)
-        y_calib_mm = round(calib_dict["y_calibs"][i]/conversion_factor, 3)
+            # convert calibration values to mm:
+            x_calib_mm = round(calib_dict["x_calibs"][i]/conversion_factor, 3)
+            y_calib_mm = round(calib_dict["y_calibs"][i]/conversion_factor, 3)
+
+        else:
+            conversion_factor = np.nan
+            x_calib_mm = np.nan
+            y_calib_mm = np.nan
 
         # append new values to calib_dict_converted:
         calib_dict_converted["file"].append(filename)
@@ -237,9 +259,11 @@ def do_three_factor_calibration(calib_dict):
         calib_dict_converted["y_calib_mm"].append(y_calib_mm)
         calib_dict_converted["notes"].append(note)
 
-    print("calib dict converted: ", calib_dict_converted)
+    # print every key-value pair in new line:
+    print("calib dict converted: ")
+    print("{" + "\n".join("{!r}: {!r},".format(k, v) for k, v in calib_dict_converted.items()) + "}")
     df_conv = pd.DataFrame.from_dict(calib_dict_converted)
-    print(df_conv)
+    #print(df_conv)
 
     return calib_dict_converted, df_conv, conversion_factor
 
