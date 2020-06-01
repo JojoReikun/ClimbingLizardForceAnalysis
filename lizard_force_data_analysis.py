@@ -114,7 +114,7 @@ def nano17_openCV_as_ImageJ():
     for col in check_columns:
         if df_force_analysis[col].isnull().values.all():
             print("determine and enter frame number for {} to continue".format(col))
-            break
+            return
 
     # get row number of csv file (needed to iterate through rows, in case videos are used multiple times:
     df_force_analysis.rename(columns=lambda x: x.strip(), inplace=True)  # remove whitespaces from column names

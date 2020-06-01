@@ -1,17 +1,26 @@
 import lizard_force_data_analysis
 import get_video_infos
 import os
+import choose_step_dialog_prompt
 
 convert_videos_to_nv12 = False
 
 # --------------------------------
-step_1 = True
-step_2 = False
-
 destfolder = current_path = os.getcwd()
 
-
 if __name__ == "__main__":
+    # open choose step prompt:
+    gui = choose_step_dialog_prompt.choose_step_prompt()
+    operation = gui.show()
+    if operation == True:
+        # Button1 = Step1 = will be set operation to True when clicked
+        step_1 = True
+        step_2 = False
+    else:
+        # Button2 = Step2 = will be set operation to False when clicked
+        step_1 = False
+        step_2 = True
+
     # only get video infos:
     if step_1 == True and step_2 == False:
         print("STEP 1\n")

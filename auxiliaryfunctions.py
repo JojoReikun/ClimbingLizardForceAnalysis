@@ -10,7 +10,7 @@ def write_df_to_csv(dst_folder, output_filename, df):
     else:
         prompt = overwrite_dialog_prompt.open_prompt()
         operation = prompt.show(output_filename)
-        print(operation)
+        print("overwrite = ", operation)
         if operation == True:
             df.to_csv(dest_path)
         elif operation == False:
