@@ -227,6 +227,7 @@ def do_three_factor_calibration(calib_dict):
         foot = calib_dict["foot"][i]
         box_coords = calib_dict["box_coords"][i]    # e.g. [(552, 238), (690, 383)]
         note = calib_dict["notes"][i]
+        framerate = np.nan  # empty cell for framerate to fill in later
 
         if math.isnan(box_coords[0][0]) == False:
             #determine the px to mm conversion factor:
@@ -258,6 +259,7 @@ def do_three_factor_calibration(calib_dict):
         calib_dict_converted["x_calib_mm"].append(x_calib_mm)
         calib_dict_converted["y_calib_mm"].append(y_calib_mm)
         calib_dict_converted["notes"].append(note)
+        calib_dict_converted["framerate"].append(framerate)
 
     # print every key-value pair in new line:
     print("calib dict converted: ")
