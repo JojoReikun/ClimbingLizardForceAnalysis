@@ -1,0 +1,21 @@
+,filename,code,videoFrameCount,family,footfall_begin,footfall_end,foot,notes
+0,nam1_down_04.avi,nam1,541,Gecko,259,345,HL,dragging foot
+1,nam1_down_09.avi,nam1,547,Gecko,101,350,FR,paused on forceplate
+2,nam1_down_10.avi,nam1,957,Gecko,nan,nan,nan,
+3,nam1_up_01.avi,nam1,595,Gecko,77,380,FR,veeery slow
+4,nam1_up_02.avi,nam1,727,Gecko,218,545,FR,paused on forceplate and shows tongue then continues
+5,nam1_up_03.avi,nam1,870,Gecko,330,800,HR,veeery slow
+6,nam1_up_05.avi,nam1,829,Gecko,nan,nan,nan,
+7,nam1_up_06.avi,nam1,907,Gecko,126,571,FR,
+8,nam1_up_07.avi,nam1,407,Gecko,52,309,HR,
+9,nam1_up_08.avi,nam1,1049,Gecko,nan,nan,nan,
+10,nshae1_down_01.avi,nshae1,371,Gecko,59,289,HL,"dragging foot, pulls HR over forceplate while attached with HL"
+11,nshae1_down_01.avi,nshae1,371,Gecko,137,192,HR,dragging foot
+12,nshae1_down_02.avi,nshae1,759,Gecko,91,333,FL,HL on forceplate while detaching FL
+13,nshae1_down_03.avi,nshae1,1791,Gecko,698,1701,HL,dragging foot a lot and making sure steps are 100% stable
+14,nshae1_down_04.avi,nshae1,2991,Gecko,574,2842,HL,dragging foot a lot and making sure steps are 100% stable
+15,nshae2_down_01.avi,nshae2,632,Gecko,69,107,FL,
+16,nshae2_down_01.avi,nshae2,632,Gecko,240,474,HL,
+17,nshae2_down_02.avi,nshae2,570,Gecko,39,245,FR,"paused on forceplate, FL on forceplate when detaching FR"
+18,nshae2_down_02.avi,nshae2,570,Gecko,68,302,FL,paused on forceplate
+19,nshae2_down_02.avi,nshae2,570,Gecko,381,473,HR,dragging foot
