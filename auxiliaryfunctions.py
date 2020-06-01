@@ -8,8 +8,9 @@ def write_df_to_csv(dst_folder, output_filename, df):
     if not os.path.isfile(dest_path):
         df.to_csv(dest_path)
     else:
-        operation = overwrite_dialog_prompt.open_prompt.show(output_filename)
-        overwrite_dialog_prompt.open_prompt.finish(operation)
+        prompt = overwrite_dialog_prompt.open_prompt()
+        operation = prompt.show(output_filename)
+        print(operation)
         if operation == True:
             df.to_csv(dest_path)
         elif operation == False:
