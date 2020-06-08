@@ -1,21 +1,21 @@
 ,file,family,code,video_frame_count,framerate,foot,footfall_begin,footfall_end,open_frame,CoP,footfall_point,conversion_factor,x_calib_mm,y_calib_mm,notes
-0,nam1_down_04.avi,Gecko,nam1,541,,HL,259.0,345.0,302.0,"(622, 186)","(641, 208)",2.72,-6.985,-8.088,dragging foot
-1,nam1_down_09.avi,Gecko,nam1,547,,FR,101.0,350.0,226.0,"(622, 178)","(617, 131)",2.59,1.931,18.147,paused on forceplate
-2,nam1_down_10.avi,Gecko,nam1,957,,,,,,"(nan, nan)","(nan, nan)",,,,
-3,nam1_up_01.avi,Gecko,nam1,595,,FR,77.0,380.0,228.0,"(625, 185)","(616, 195)",2.66,3.383,-3.759,veeery slow
-4,nam1_up_02.avi,Gecko,nam1,727,,FR,218.0,545.0,382.0,"(624, 184)","(641, 196)",2.6900000000000004,-6.32,-4.461,paused on forceplate and shows tongue then continues
-5,nam1_up_03.avi,Gecko,nam1,870,,HR,330.0,800.0,565.0,"(624, 186)","(658, 223)",2.67,-12.734,-13.858,veeery slow
-6,nam1_up_05.avi,Gecko,nam1,829,,,,,,"(nan, nan)","(nan, nan)",,,,
-7,nam1_up_06.avi,Gecko,nam1,907,,FR,126.0,571.0,348.0,"(625, 180)","(585, 188)",2.6,15.385,-3.077,
-8,nam1_up_07.avi,Gecko,nam1,407,,HR,52.0,309.0,180.0,"(623, 181)","(654, 219)",2.6,-11.923,-14.615,
-9,nam1_up_08.avi,Gecko,nam1,1049,,,,,,"(nan, nan)","(nan, nan)",,,,
-10,nshae1_down_01.avi,Gecko,nshae1,371,,HL,59.0,289.0,174.0,"(624, 185)","(619, 236)",2.6500000000000004,1.887,-19.245,"dragging foot, pulls HR over forceplate while attached with HL"
-11,nshae1_down_01.avi,Gecko,nshae1,371,,HR,137.0,192.0,164.0,"(622, 186)","(579, 131)",2.6900000000000004,15.985,20.446,dragging foot
-12,nshae1_down_02.avi,Gecko,nshae1,759,,FL,91.0,333.0,212.0,"(622, 186)","(624, 215)",2.7,-0.741,-10.741,HL on forceplate while detaching FL
-13,nshae1_down_03.avi,Gecko,nshae1,1791,,HL,698.0,1701.0,1200.0,"(623, 186)","(669, 171)",2.68,-17.164,5.597,dragging foot a lot and making sure steps are 100% stable
-14,nshae1_down_04.avi,Gecko,nshae1,2991,,HL,574.0,2842.0,1708.0,"(624, 179)","(615, 207)",2.6,3.462,-10.769,dragging foot a lot and making sure steps are 100% stable
-15,nshae2_down_01.avi,Gecko,nshae2,632,,FL,69.0,107.0,88.0,"(631, 161)","(597, 178)",3.1799999999999997,10.692,-5.346,
-16,nshae2_down_01.avi,Gecko,nshae2,632,,HL,240.0,474.0,357.0,"(619, 160)","(602, 168)",2.91,5.842,-2.749,
-17,nshae2_down_02.avi,Gecko,nshae2,570,,FR,39.0,245.0,142.0,"(619, 162)","(670, 165)",2.8899999999999997,-17.647,-1.038,"paused on forceplate, FL on forceplate when detaching FR"
-18,nshae2_down_02.avi,Gecko,nshae2,570,,FL,68.0,302.0,185.0,"(620, 164)","(567, 229)",2.98,17.785,-21.812,paused on forceplate
-19,nshae2_down_02.avi,Gecko,nshae2,570,,HR,381.0,473.0,427.0,"(618, 161)","(636, 173)",2.8899999999999997,-6.228,-4.152,dragging foot
+0,nam1_down_04.avi,Gecko,nam1,541,100,HL,259,345,302,"(622, 186)","(641, 208)",2.72,-6.985,-8.088,dragging foot
+1,nam1_down_09.avi,Gecko,nam1,547,100,FR,101,350,226,"(622, 178)","(617, 131)",2.59,1.931,18.147,paused on forceplate
+2,nam1_down_10.avi,Gecko,nam1,957,100,,,,,"(nan, nan)","(nan, nan)",,,,
+3,nam1_up_01.avi,Gecko,nam1,595,100,FR,77,380,228,"(625, 185)","(616, 195)",2.66,3.383,-3.759,veeery slow
+4,nam1_up_02.avi,Gecko,nam1,727,100,FR,218,545,382,"(624, 184)","(641, 196)",2.69,-6.32,-4.461,paused on forceplate and shows tongue then continues
+5,nam1_up_03.avi,Gecko,nam1,870,100,HR,330,800,565,"(624, 186)","(658, 223)",2.67,-12.734,-13.858,veeery slow
+6,nam1_up_05.avi,Gecko,nam1,829,100,,,,,"(nan, nan)","(nan, nan)",,,,
+7,nam1_up_06.avi,Gecko,nam1,907,200,FR,126,571,348,"(625, 180)","(585, 188)",2.6,15.385,-3.077,
+8,nam1_up_07.avi,Gecko,nam1,407,100,HR,52,309,180,"(623, 181)","(654, 219)",2.6,-11.923,-14.615,
+9,nam1_up_08.avi,Gecko,nam1,1049,100,,,,,"(nan, nan)","(nan, nan)",,,,
+10,nshae1_down_01.avi,Gecko,nshae1,371,100,HL,59,289,174,"(624, 185)","(619, 236)",2.65,1.887,-19.245,"dragging foot, pulls HR over forceplate while attached with HL"
+11,nshae1_down_01.avi,Gecko,nshae1,371,100,HR,137,192,164,"(622, 186)","(579, 131)",2.69,15.985,20.446,dragging foot
+12,nshae1_down_02.avi,Gecko,nshae1,759,100,FL,91,333,212,"(622, 186)","(624, 215)",2.7,-0.741,-10.741,HL on forceplate while detaching FL
+13,nshae1_down_03.avi,Gecko,nshae1,1791,100,HL,698,1701,1200,"(623, 186)","(669, 171)",2.68,-17.164,5.597,dragging foot a lot and making sure steps are 100% stable
+14,nshae1_down_04.avi,Gecko,nshae1,2991,100,HL,574,2842,1708,"(624, 179)","(615, 207)",2.6,3.462,-10.769,dragging foot a lot and making sure steps are 100% stable
+15,nshae2_down_01.avi,Gecko,nshae2,632,100,FL,69,107,88,"(631, 161)","(597, 178)",3.18,10.692,-5.346,
+16,nshae2_down_01.avi,Gecko,nshae2,632,100,HL,240,474,357,"(619, 160)","(602, 168)",2.91,5.842,-2.749,
+17,nshae2_down_02.avi,Gecko,nshae2,570,100,FR,39,245,142,"(619, 162)","(670, 165)",2.89,-17.647,-1.038,"paused on forceplate, FL on forceplate when detaching FR"
+18,nshae2_down_02.avi,Gecko,nshae2,570,100,FL,68,302,185,"(620, 164)","(567, 229)",2.98,17.785,-21.812,paused on forceplate
+19,nshae2_down_02.avi,Gecko,nshae2,570,100,HR,381,473,427,"(618, 161)","(636, 173)",2.89,-6.228,-4.152,dragging foot
