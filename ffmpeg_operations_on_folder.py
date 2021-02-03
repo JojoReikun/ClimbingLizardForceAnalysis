@@ -4,7 +4,8 @@ current_path = os.getcwd()
 
 #################################################
 convert = False
-flipping = True
+reduce = True
+flipping = False
 #################################################
 
 
@@ -67,6 +68,33 @@ def convert_videos_to_ImageJ_format(video_dir, videoformat, outputformat="nv12")
                     #TODO: change to ffmpeg python instead of subprocess
                     subprocess.call(['ffmpeg', '-i', abspath_in,
                                      '-pix_fmt', 'nv12', '-f', 'avi', '-vcodec', 'rawvideo', abspath_out])
+
+
+def reduce_video_filesize(video_dir, crf, videoformat):
+    """
+    reduces the filesize of a video. Vary the crf between 18 (lower) and 24 (higher) quality.
+    :param video_dir:
+    :param crf:
+    :return:
+    """
+
+    import os
+    import subprocess
+
+    dst_dir = os.path.join(video_dir, "reduced_video_files")
+
+    for root, dirs, files in os.walk(video_dir):
+        for f in files:
+            prefix, suffix = os.path.splitext(f)
+            if '.avi' == suffix:
+                abspath_in = os.path.join(root, f)
+                dir_out = root.replace(video_dir, dst_dir)
+                if not os.path.exists(dir_out):
+                    os.makedirs(dir_out)
+                abspath_out = os.path.join(dir_out, '{}.{}'.format(prefix, videoformat))
+                # TODO: change to ffmpeg python instead of subprocess
+                subprocess.call(['ffmpeg', '-i', abspath_in,
+                                '-vcodec', 'libx264', '-crf', crf, abspath_out])
 
 
 def flip_videos(video_dir, hflip=True, vflip=False):
@@ -139,3 +167,5 @@ if convert == True:
     convert_videos_to_ImageJ_format(video_dir, videoformat)
 if flipping == True:
     flip_videos(video_dir)
+if reduce == True:
+    reduce_video_filesize(video_dir, crf='24', videoformat=videoformat)
