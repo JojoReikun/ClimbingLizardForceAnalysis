@@ -4,8 +4,8 @@ current_path = os.getcwd()
 
 #################################################
 convert = False
-reduce = True
-flipping = False
+reduce = False
+flipping = True
 #################################################
 
 
