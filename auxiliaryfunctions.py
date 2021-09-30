@@ -13,10 +13,10 @@ def write_df_to_csv(dst_folder, output_filename, df):
         print("overwrite = ", operation)
         if operation == True:
             df.to_csv(dest_path)
+            return print("file {} saved successfully here: {}".format(output_filename, dst_folder))
+
         elif operation == False:
             print("file {} already exists and was not overwritten!".format(output_filename))
-
-    return print("file {} saved successfully here: {}".format(output_filename, dst_folder))
 
 
 def open_gui_to_select_folder():
@@ -28,7 +28,7 @@ def open_gui_to_select_folder():
     destfolder = current_path = os.getcwd()
 
     tempdir = filedialog.askdirectory(parent=root, initialdir=current_path,
-                                       title='Please select a directory containing lizard videos (e.g.: "Gecko02")')
+                                       title='Please select a directory containing lizard videos (e.g.: "ClimbingLizardVideos_2020/Gecko02/video_analysis")')
     if len(tempdir) > 0:
         print("You chose %s" % tempdir)
     return tempdir

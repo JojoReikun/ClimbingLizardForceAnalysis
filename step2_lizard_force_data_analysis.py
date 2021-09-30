@@ -4,6 +4,24 @@ import os
 from pathlib import Path
 import re
 
+"""
+STEP2:
+Before executing step 2 the user is required to extract valuable footfall frames of the videos and add these to the 
+"Gecko01_forceAnalysis.csv" files of the respective group.
+
+This function is called if Step2 is selected, it enables the user to calibrate px to mm and get the COP and footfall locations.
+A gui will open which asks the user to open a folder following a structure like the following exemplary one:
+--> e.g.: "C:/Users/JojoS/Documents/phd/ClimbingRobot_XGen4/ClimbingLizardVideos_2020/Gecko01/video_analysis"
+This folder contains all Gecko videos (.avi) for the Gecko01 group and the dataframe exported from step1 (e.g.: "Gecko01_forceAnalysis.csv")
+
+If a footfall (begin, end and open frame) exist in the forceAnalysis.csv file, the respective frame for this video
+will be opened in a gui and several things can be drawn. 
+These user entries are then used to perform also a 3 factor calibration (function: do_three_factor_calibration()).
+The results are then saved as: 
+--> e.g. "Gecko01_forceAnalysis_calib.csv"
+"""
+
+
 convert_videos_to_nv12 = False
 
 destfolder = current_path = os.getcwd()
@@ -94,7 +112,7 @@ def convert_videos_to_ImageJ_format(video_dir):
 def nano17_openCV_as_ImageJ():
     from glob import glob
     import os
-    import nano17_calibration
+    import gui_nano17_calibration_opencv
     import auxiliaryfunctions
     import math
 
@@ -143,7 +161,7 @@ def nano17_openCV_as_ImageJ():
                   "x_calibs":[],
                   "y_calibs":[],
                   "notes":[]}
-    #for filepath, filename in zip(filelist, filenames):
+    # for filepath, filename in zip(filelist, filenames):
     for j in range(data_rows_count):
         # get filename and filepath for current row item:
         filename = df_force_analysis.loc[j, "filename"]
@@ -170,7 +188,7 @@ def nano17_openCV_as_ImageJ():
         # TODO: https://www.pyimagesearch.com/2015/03/09/capturing-mouse-click-events-with-python-and-opencv/
 
         if math.isnan(open_frame) == False:
-            box_coords, p1, p2, x_calib, y_calib = nano17_calibration.calibrate_x_y_cop_nano17(open_frame, filepath, filename, tempdir, foot)
+            box_coords, p1, p2, x_calib, y_calib = gui_nano17_calibration_opencv.calibrate_x_y_cop_nano17(open_frame, filepath, filename, tempdir, foot)
         else:
             box_coords = [(np.nan, np.nan), (np.nan, np.nan)]
             p1 = (np.nan, np.nan)

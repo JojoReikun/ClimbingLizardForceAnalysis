@@ -3,6 +3,20 @@ import os
 
 
 def calibrate_x_y_cop_nano17(open_frame, file, filename, tempdir, foot):
+    """
+    This function gets called from the step2_lizard_force_data_analysis.py module, when working in Step2 of the program.
+    Step2 requires the video folder:
+       --> e.g. "C:/Users/JojoS/Documents/phd/ClimbingRobot_XGen4/ClimbingLizardsVideos_2020/Gecko01/videos_analysis"
+    which contains all the raw .avi videos of the geckos and the respective .csv file from step1
+       --> e.g.: Gecko01_forceAnalysis.csv
+    If a proper footfall was detected and is entered in the
+    :param open_frame:
+    :param file:
+    :param filename:
+    :param tempdir:
+    :param foot:
+    :return:
+    """
     refPt_box = []
     refPt_dist = []
 

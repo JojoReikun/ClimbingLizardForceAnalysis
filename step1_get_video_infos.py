@@ -2,6 +2,18 @@ import pandas as pd
 import os
 import re
 
+"""
+STEP1:
+This function is called if Step1 is selected. It is required to run this before executing Step2 for the first time.
+A gui will open which asks the user to open a folder following a structure like the following exemplary one:
+--> e.g.: "C:/Users/JojoS/Documents/phd/ClimbingRobot_XGen4/ClimbingLizardVideos_2020/Gecko01/video_analysis"
+This folder contains all Gecko videos (.avi) for the Gecko01 group.
+
+All files will be read in and some video information will be extracted. A dataframe called:
+--> e.g.: "Gecko01_forceAnalysis.csv" will be saved in the same folder as above.
+"""
+
+
 convert_videos_to_nv12 = False
 
 destfolder = current_path = os.getcwd()
@@ -128,6 +140,8 @@ def get_name_code(filenames, foldername, filelist, video_dir):
 
     # save df as csv to then manually add the frame numbers for the footfall to analyze
     auxiliaryfunctions.write_df_to_csv(video_dir, "{}_forceAnalysis.csv".format(foldername), df)
+
+    print("Before Step2 is executed footfall begin and end frames of good steps will have to be extracted from the videos by the user!!")
 
     # print codenames dict nicely:
     #print("codenames: ")
