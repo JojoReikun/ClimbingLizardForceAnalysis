@@ -9,6 +9,10 @@
 This script helps to automize the force data analysis. The program is divided into two Steps, which can be run 
 independently of each other, though Step 2 requires the output of Step 1 + the manual inclusion of the footfall frames.
 
+The step gui looks like this:
+
+![](images/snapshot_stepgui.PNG)
+
 #### Step1:
 * Run main.py, set Step1=True, Step2=False.
 * open the folder in dialog which contains the videos of the lizard eg. .../Gecko01/videos_analysis
@@ -30,4 +34,9 @@ Note: *Gecko01* will be extarcted for the later filename, hence split[-2]. If al
   * 1st) draw a box around the forceplate by clicking on the first corner and dragging LMouseButton to the last corner. 
 
   * 2nd) Rightclick on the foot on the forceplate. Confirm with "c" or if you misdrew something reset with "r". Click "n" to get to the next video. An image of the drawn box and the footpoint on top of the frame will be saved in the selected folder/calib_footfall_labeled
+
+The calibration gui looks like this:
+
+![](images/skrys3_down_04_labeled.png)
+
 * once all videos are done this will save a new csv: Gecko01_forceAnalysis_calib.csv containing all infos from the first file + the conversion factor, the coordinates of the box, the CoP of the forceplate, the point of the footfall, the conversion factor px to mm etc.

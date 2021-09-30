@@ -56,3 +56,6 @@ if __name__ == "__main__":
             step1_get_video_infos.convert_videos_to_ImageJ_format(video_dir)
         step2_lizard_force_data_analysis.nano17_openCV_as_ImageJ()
 
+    else:
+        exit()
+
