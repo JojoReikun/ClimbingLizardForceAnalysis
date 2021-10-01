@@ -123,30 +123,53 @@ def extract_force_data_for_steps():
 
                 footfall_begin = current_row["footfall_begin"]
                 footfall_end = current_row["footfall_end"]
+                footfall_begin_noBuffer = footfall_begin
+                footfall_end_noBuffer = footfall_end
                 footfall_length = footfall_end - footfall_begin
+                footfall_length_perc = 100* (footfall_length/video_frame_count)
 
-                # set a 10% buffer in video frames to be added to either side of the footfall to make sure entire step is included
-                buffer = np.round(0.1 * footfall_length, 0)
-                footfall_begin = footfall_begin - buffer
-                footfall_end = footfall_end + buffer
+                ### only use the foot falls which are shorter than 15% of the entire video!
+                # This should filter steps where the gecko stops on the forceplate
+                if footfall_length_perc < 50.0:
+                    # set a 30% buffer in video frames to be added to either side of the footfall to make sure entire step is included
+                    buffer = np.round(0.3 * footfall_length, 0)
+                    footfall_begin = footfall_begin - buffer
+                    footfall_end = footfall_end + buffer
 
-                # convert these footfall frames to force data rows
-                forceRow_footfall_begin = convert_videoframe_to_forcerow(video_frame_count, video_frame_rate, force_sampling_rate, trigger, force_sampling_time_s, footfall_begin)
-                forceRow_footfall_end = convert_videoframe_to_forcerow(video_frame_count, video_frame_rate, force_sampling_rate, trigger, force_sampling_time_s, footfall_end)
-                print("forceRow_footfall_begin: ", forceRow_footfall_begin,
-                      "\nforceRow_footfall_end: ", forceRow_footfall_end)
+                    print("footfall_begin: ", footfall_begin,
+                          "\nfootfall_end: ", footfall_end)
 
-                # read in force data from .txt file
-                df_forces = pd.read_csv(os.path.join(force_file_folder, current_force_file),
-                                        delimiter='\t', names=['Fx', 'Fy', 'Fz', 'Tx', 'Ty', 'Tz'])
-                print(df_forces.head())
+                    # convert these footfall frames to force data rows
+                    forceRow_footfall_begin = convert_videoframe_to_forcerow(video_frame_count, video_frame_rate, force_sampling_rate, trigger, force_sampling_time_s, footfall_begin)
+                    forceRow_footfall_end = convert_videoframe_to_forcerow(video_frame_count, video_frame_rate, force_sampling_rate, trigger, force_sampling_time_s, footfall_end)
+                    print("forceRow_footfall_begin: ", forceRow_footfall_begin,
+                          "\nforceRow_footfall_end: ", forceRow_footfall_end)
 
-                # smoothing??
-                do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow_footfall_end, df_forces, current_force_file)
+                    # also convert original begin and end to force data row so these can be plotted as vertical lines:
+                    forceRow_footfall_begin_noBuffer = convert_videoframe_to_forcerow(video_frame_count, video_frame_rate,
+                                                                             force_sampling_rate, trigger,
+                                                                             force_sampling_time_s, footfall_begin_noBuffer)
+                    forceRow_footfall_end_noBuffer = convert_videoframe_to_forcerow(video_frame_count, video_frame_rate,
+                                                                           force_sampling_rate, trigger,
+                                                                           force_sampling_time_s, footfall_end_noBuffer)
 
-                # extract Mins, Means, and Maxs from within the forceRow range
+                    # read in force data from .txt file
+                    df_forces = pd.read_csv(os.path.join(force_file_folder, current_force_file),
+                                            delimiter='\t', names=['Fx', 'Fy', 'Fz', 'Tx', 'Ty', 'Tz'])
+                    #print(df_forces.head())
 
-                # calculate the integral from within the forceRow range
+                    # smoothing??
+                    do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow_footfall_end, df_forces, current_force_file, forceRow_footfall_begin_noBuffer, forceRow_footfall_end_noBuffer)
+
+                    # extract Mins, Means, and Maxs from within the forceRow range
+
+                    # calculate the integral from within the forceRow range
+
+                    # create force vector overlay of normalized forces over lizard videos --> needs angle of force,
+                    # display z force as circle on foot with alpha changing according to normalized Fz
+
+                else:
+                    print("very long step, likely paused on FP, proceed to next...")
 
         else:
             print("next row")
@@ -158,7 +181,7 @@ def convert_videoframe_to_forcerow(video_frame_count, video_frame_rate, force_sa
     return int(forceRow)
 
 
-def do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow_footfall_end, df_forces, current_force_file):
+def do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow_footfall_end, df_forces, current_force_file, forceRow_footfall_begin_noBuffer, forceRow_footfall_end_noBuffer):
     print("df force data shape: ", df_forces.shape)
 
     testplot = True
@@ -168,10 +191,10 @@ def do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow
     Fy_footfall = df_forces.iloc[forceRow_footfall_begin:forceRow_footfall_end, 2]
     Fz_footfall = df_forces.iloc[forceRow_footfall_begin:forceRow_footfall_end, 3]
 
-    print("force data for footfall:\n,"
-          "Fx: ", Fx_footfall,
-          "\nFy: ", Fy_footfall,
-          "\nFz: ", Fz_footfall)
+    #print("force data for footfall:\n,"
+    #      "Fx: ", Fx_footfall,
+    #      "\nFy: ", Fy_footfall,
+    #      "\nFz: ", Fz_footfall)
 
     # Butterworth filter
     b, a = signal.butter(3, 0.1, btype='lowpass', analog=False) # order, cut-off frequ
@@ -193,7 +216,9 @@ def do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow
         sn.lineplot(x_values, Fy_footfall_smoothed, color='darkgreen')
         sn.lineplot(x_values, Fz_footfall, color='lightblue')
         sn.lineplot(x_values, Fz_footfall_smoothed, color='darkblue')
-        plt.hlines(xmin=forceRow_footfall_begin, xmax=forceRow_footfall_end, linewidth=0.8)
+        plt.hlines(xmin=forceRow_footfall_begin, xmax=forceRow_footfall_end, y=0, linewidth=0.8)
+        plt.vlines(ymin=min(Fz_footfall_smoothed), ymax=max(Fz_footfall_smoothed), x=forceRow_footfall_begin_noBuffer)
+        plt.vlines(ymin=min(Fz_footfall_smoothed), ymax=max(Fz_footfall_smoothed), x=forceRow_footfall_end_noBuffer)
 
         plt.title(current_force_file)
 
