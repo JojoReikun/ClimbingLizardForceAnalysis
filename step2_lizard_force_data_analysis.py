@@ -3,6 +3,7 @@ import numpy as np
 import os
 from pathlib import Path
 import re
+import auxiliaryfunctions
 
 """
 STEP2:
@@ -46,7 +47,7 @@ for key in lizardgroups_DLC.keys():
     species_tmp.append(res[0])
 # only keep unique species names in list:
 species = list(set(species_tmp))
-print("species: ", species)
+#print("species: ", species)
 
 lizardgroups_species = {}
 for spec in species:
@@ -55,29 +56,8 @@ for spec in species:
 for key in lizardgroups_species.keys():
     nested_list = lizardgroups_species[key]
     lizardgroups_species[key] = [code for sublist in nested_list for code in sublist]
-print(lizardgroups_species)
+#print(lizardgroups_species)
 
-
-# DEFINING FUNCTIONS:
-def splitall(path):
-    """
-    splits the passed path in all it's components. All components will be returned in list.
-    :param path:
-    :return: list of all components
-    """
-    allparts = []
-    while 1:
-        parts = os.path.split(path)
-        if parts[0] == path:  # sentinel for absolute paths
-            allparts.insert(0, parts[0])
-            break
-        elif parts[1] == path: # sentinel for relative paths
-            allparts.insert(0, parts[1])
-            break
-        else:
-            path = parts[0]
-            allparts.insert(0, parts[1])
-    return allparts
 
 
 def convert_videos_to_ImageJ_format(video_dir):
@@ -116,12 +96,12 @@ def nano17_openCV_as_ImageJ():
     import auxiliaryfunctions
     import math
 
-    tempdir = auxiliaryfunctions.open_gui_to_select_folder()
+    tempdir = auxiliaryfunctions.open_gui_to_select_folder('STEP2: Please select a directory containing lizard videos (e.g.: "ClimbingLizardVideos_2020/Gecko02/video_analysis")')
     #tempdir = "C:/Users/JojoS/Documents/phd/ClimbingRobot_XGen4/ClimbingLizardsVideos_2020/Gecko01/videos_analysis"
     if len(tempdir) > 0:
         print("You chose %s" % tempdir)
     # assumes that videos are in video_analysis inside the folder for the Group [-2]:
-    foldername = splitall(tempdir)[-2]
+    foldername = auxiliaryfunctions.splitall(tempdir)[-2]
     # print("foldername: ", foldername)   # e.g. Dragon03
 
     force_analysis_file = "{}_forceAnalysis.csv".format(foldername)

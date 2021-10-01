@@ -19,7 +19,7 @@ def write_df_to_csv(dst_folder, output_filename, df):
             print("file {} already exists and was not overwritten!".format(output_filename))
 
 
-def open_gui_to_select_folder():
+def open_gui_to_select_folder(prompt_title):
     from tkinter import filedialog, Tk
     import os
     root = Tk()
@@ -28,7 +28,7 @@ def open_gui_to_select_folder():
     destfolder = current_path = os.getcwd()
 
     tempdir = filedialog.askdirectory(parent=root, initialdir=current_path,
-                                       title='Please select a directory containing lizard videos (e.g.: "ClimbingLizardVideos_2020/Gecko02/video_analysis")')
+                                       title=prompt_title)
     if len(tempdir) > 0:
         print("You chose %s" % tempdir)
     return tempdir
@@ -54,3 +54,11 @@ def splitall(path):
             path = parts[0]
             allparts.insert(0, parts[1])
     return allparts
+
+
+def define_lizard_habitats():
+    lizard_habitats = {
+        "arboreal": ["gdub", "gvari", "ocas", "ocog", "ofil", "omon", "seld"],
+        "semi-arboreal": ["skrys"],
+        "terrestrial": ["limac", "lstein", "nam", "umill"]
+    }

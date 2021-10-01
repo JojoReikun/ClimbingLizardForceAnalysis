@@ -1,4 +1,4 @@
-from tkinter import * #imports
+from tkinter import *
 from tkinter import Tk
 import tkinter.font as font
 
@@ -15,7 +15,6 @@ class choose_step_prompt():
         bg_win = 'gray11'
         self.root.configure(bg=bg_win)
 
-        # TODO: somehow exit main loop as well when closing this gui window
         self.root.protocol('WM_DELETE_WINDOW', self.doCloseWindow)
 
         # set font size, family and style for labels
@@ -26,29 +25,42 @@ class choose_step_prompt():
         # create labels and buttons and assign font layout
         label = Label(self.root, text = "Which step would you like to execute?", fg='DarkOliveGreen2', bg=bg_win)
         label['font'] = labelFont
-        true_button = Button(self.root, text = "Step1: video infos", bg='olive drab',
-                                command= lambda: self.finish(True))
-        label2 = Label(self.root, text="Step2 requires the footfall frames!", fg='firebrick1', bg=bg_win)
+        step1_button = Button(self.root, text = "Step1: video infos", bg='olive drab',
+                                command= lambda: self.finish("step1"))
+        label2 = Label(self.root, text="Step2 requires {}_forceAnalysis.csv with footfall frames!", fg='firebrick1', bg=bg_win)
         label2['font'] = label2Font
-        false_button = Button(self.root, text = "Step2: calibration & conversion", bg='olive drab',
-                                 command= lambda: self.finish(False))
-        false_button['font'] = buttonFont
-        true_button['font'] = buttonFont
+        step2_button = Button(self.root, text = "Step2: calibration & conversion", bg='olive drab',
+                                 command= lambda: self.finish("step2"))
+
+        label3 = Label(self.root, text="Step3 requires {}_forceAnalysis_calib.csv from Step2 and force files in 1 folder!",
+                       fg='firebrick1', bg=bg_win)
+        label3['font'] = label2Font
+        step3_button = Button(self.root, text="Step 3: Align forces & videos & extract Max, Min, Means", bg='olive drab',
+                                 command= lambda: self.finish("step3"))
+
+        step1_button['font'] = buttonFont
+        step2_button['font'] = buttonFont
+        step3_button['font'] = buttonFont
 
         # arrange labels and buttons in window
         label.pack(pady=10, padx=10)
-        true_button.pack(fill=X, padx=50, pady=5)
+        step1_button.pack(fill=X, padx=50, pady=5)
         label2.pack(pady=5)
-        false_button.pack(fill=X, padx=50, pady=5)
+        step2_button.pack(fill=X, padx=50, pady=5)
+        label3.pack(pady=5)
+        step3_button.pack(fill=X, padx=50, pady=5)
+
 
         # start the loop, and wait for the dialog to be
         # destroyed. Then, return the value:
         self.root.mainloop()
+
         return self.operation
+
 
     def finish(self, operation):
         '''Automatically get's called when pressing a button (command).
-        Sets the value and close the window.
+        Sets the value (string of step and step number) and closes the window.
         This will cause the show() function to return.
         '''
         self.operation = operation
@@ -56,8 +68,6 @@ class choose_step_prompt():
         self.root.quit()
 
     def doCloseWindow(self):
-        # check if saving
-        # if not:
         self.cancel = True
         self.root.destroy()
         self.root.quit()

@@ -38,7 +38,7 @@ for key in lizardgroups_DLC.keys():
     species_tmp.append(res[0])
 # only keep unique species names in list:
 species = list(set(species_tmp))
-print("species: ", species)
+#print("species: ", species)
 
 lizardgroups_species = {}
 for spec in species:
@@ -47,7 +47,7 @@ for spec in species:
 for key in lizardgroups_species.keys():
     nested_list = lizardgroups_species[key]
     lizardgroups_species[key] = [code for sublist in nested_list for code in sublist]
-print(lizardgroups_species)
+#print(lizardgroups_species)
 
 
 # DEFINING FUNCTIONS:
@@ -58,7 +58,7 @@ def get_list_of_videos(current_path):
     import os
     import auxiliaryfunctions
 
-    tempdir = auxiliaryfunctions.open_gui_to_select_folder()
+    tempdir = auxiliaryfunctions.open_gui_to_select_folder('STEP1: Please select a directory containing lizard videos (e.g.: "ClimbingLizardVideos_2020/Gecko02/video_analysis")')
     #tempdir = "C:/Users/JojoS/Documents/phd/ClimbingRobot_XGen4/ClimbingLizardsVideos_2020/Varanid01/video_analysis"
     if len(tempdir) > 0:
         print("You chose %s" % tempdir)

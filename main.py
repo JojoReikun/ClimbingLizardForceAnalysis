@@ -1,5 +1,6 @@
-import step2_lizard_force_data_analysis
-import step1_get_video_infos
+from step3_alignVideo_with_forceData import extract_force_data_for_steps
+from step2_lizard_force_data_analysis import nano17_openCV_as_ImageJ
+from step1_get_video_infos import get_list_of_videos, get_name_code, convert_videos_to_ImageJ_format
 import os
 import gui_choose_step_dialog_prompt
 
@@ -22,40 +23,39 @@ If any of the result files of these already exists, the user will be asked if th
 """
 
 if __name__ == "__main__":
+    operation = None
     # open choose step prompt:
     gui = gui_choose_step_dialog_prompt.choose_step_prompt()
     operation = gui.show()
-    if operation == True:
-        # Button1 = Step1 = will be set operation to True when clicked
-        step_1 = True
-        step_2 = False
-    else:
-        # Button2 = Step2 = will be set operation to False when clicked
-        step_1 = False
-        step_2 = True
 
-    # only get video infos:
-    if step_1 == True and step_2 == False:
-        print("STEP 1\n")
-        filelist, video_dir, filenames, foldername = step1_get_video_infos.get_list_of_videos(current_path)
-        codenames = step1_get_video_infos.get_name_code(filenames, foldername, filelist, video_dir)
+    print("\noperation selected: ", operation, "\n")
+
+    if operation == "step1":
+        """
+        get the information from the videos and prepare the dataframe for the manual entering of foot falls
+        """
+        print("\n\nSTEP 1\n")
+        filelist, video_dir, filenames, foldername = get_list_of_videos(current_path)
+        codenames = get_name_code(filenames, foldername, filelist, video_dir)
         if convert_videos_to_nv12:
-            step1_get_video_infos.convert_videos_to_ImageJ_format(video_dir)
+            convert_videos_to_ImageJ_format(video_dir)
 
-    # only get nano17 calibration:
-    elif step_2 == True and step_1 == False:
+    elif operation == "step2":
+        """
+        requires the output from step 1. This allows to extract CoP and foot fall locations and calibrates the distances
+        px to mm. 
+        """
         print("\n\nSTEP 2\n")
-        step2_lizard_force_data_analysis.nano17_openCV_as_ImageJ()
+        nano17_openCV_as_ImageJ()
 
-    # for testing:
-    elif step_1 and step_2:
-        print("TESTING")
-        filelist, video_dir, filenames, foldername = step1_get_video_infos.get_list_of_videos(current_path)
-        codenames = step1_get_video_infos.get_name_code(filenames, foldername, filelist, video_dir)
-        if convert_videos_to_nv12:
-            step1_get_video_infos.convert_videos_to_ImageJ_format(video_dir)
-        step2_lizard_force_data_analysis.nano17_openCV_as_ImageJ()
+    elif operation == "step3":
+        """
+        requires the output from step 2 and all the force files with the names as in the output in one folder.
+        This step aligns the force data with the video and extracts Min, Max and Mean values for the respective footfalls.
+        """
+        print("\n\nSTEP 3\n")
+        extract_force_data_for_steps()
 
-    else:
-        exit()
+
+
 
