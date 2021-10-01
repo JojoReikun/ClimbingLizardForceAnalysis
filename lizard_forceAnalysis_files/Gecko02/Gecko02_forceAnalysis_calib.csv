@@ -1,149 +1,132 @@
-,file,family,code,video_frame_count,framerate,foot,footfall_begin,footfall_end,open_frame,CoP,footfall_point,conversion_factor,x_calib_mm,y_calib_mm,notes
-0,gvari1_down_01.avi,Gecko,gvari1,708,200,,,,,"(nan, nan)","(nan, nan)",,,,just sat happily on forceplate
-1,gvari1_down_06.avi,Gecko,gvari1,435,200,FL,91,104,98,"(617, 167)","(590, 141)",2.92,9.247,8.904,also has HL footfall on forceplate after and stopped on forceplate after FL step
-2,gvari1_down_07.avi,Gecko,gvari1,393,200,HL,148,173,160,"(618, 168)","(561, 138)",2.88,19.792,10.417,also has FL footfall on forceplate
-3,gvari1_down_09.avi,Gecko,gvari1,489,200,HL,303,337,320,"(618, 168)","(556, 173)",2.85,21.754,-1.754,also has other feet on forceplate but never alone
-4,gvari1_up_02.avi,Gecko,gvari1,212,200,FR,28,38,33,"(619, 167)","(599, 119)",2.88,6.944,16.667,also has HR footfall on forceplate after
-5,gvari1_up_03.avi,Gecko,gvari1,191,200,HR,59,73,66,"(617, 168)","(667, 205)",2.87,-17.422,-12.892,also has other feet on forceplate but never alone
-6,gvari1_up_04.avi,Gecko,gvari1,966,200,FR,405,492,448,"(620, 168)","(620, 119)",2.87,0,17.073,very slow
-7,gvari1_up_05.avi,Gecko,gvari1,425,200,FR,46,63,54,"(618, 168)","(594, 124)",2.88,8.333,15.278,also has HR footfall on forceplate after
-8,gvari1_up_08.avi,Gecko,gvari1,666,200,FR,233,273,253,"(618, 168)","(663, 115)",2.88,-15.625,18.403,"very slow, has HR on forceplate when lifting FR"
-9,gvari1_up_10.avi,Gecko,gvari1,731,200,,,,,"(nan, nan)","(nan, nan)",,,,always pausing
-10,limac10_up_01.avi,Gecko,limac10,273,100,FL,101,139,120,"(526, 204)","(524, 185)",1.39,1.439,13.669,all feet on forceplate
-11,limac10_up_02.avi,Gecko,limac10,227,100,HR,115,140,128,"(527, 204)","(511, 178)",1.39,11.511,18.705,
-12,limac10_up_03.avi,Gecko,limac10,303,100,HL,136,163,150,"(528, 204)","(543, 186)",1.39,-10.791,12.95,also has other feet on forceplate
-13,limac10_up_04.avi,Gecko,limac10,316,100,HR,97,116,106,"(526, 204)","(534, 202)",1.42,-5.634,1.408,also has FR just on the forceplate
-14,limac10_up_05.avi,Gecko,limac10,289,100,FR,92,122,107,"(528, 203)","(545, 201)",1.4,-12.143,1.429,also has HR footfall on forceplate after
-15,limac10_up_06.avi,Gecko,limac10,209,100,HL,77,94,86,"(527, 204)","(531, 182)",1.38,-2.899,15.942,also has other feet on forceplate
-16,limac10_up_07.avi,Gecko,limac10,235,100,HR,108,122,115,"(526, 204)","(538, 188)",1.43,-8.392,11.189,
-17,limac10_up_08.avi,Gecko,limac10,267,100,FR,61,90,76,"(528, 203)","(519, 225)",1.39,6.475,-15.827,
-18,limac10_up_09.avi,Gecko,limac10,311,100,FR,124,164,144,"(527, 202)","(551, 218)",1.41,-17.021,-11.348,also has HR footfall on forceplate after
-19,limac10_up_10.avi,Gecko,limac10,289,100,FR,75,104,90,"(527, 204)","(506, 204)",1.43,14.685,0,
-20,limac3_up_01.avi,Gecko,limac3,272,100,FR,43,65,54,"(532, 203)","(501, 212)",1.41,21.986,-6.383,has more feet on forceplate after
-21,limac3_up_02.avi,Gecko,limac3,226,100,HL,88,124,106,"(532, 204)","(545, 213)",1.4,-9.286,-6.429,also has FL just on forceplate before
-22,limac3_up_03.avi,Gecko,limac3,536,100,,,,,"(nan, nan)","(nan, nan)",,,,always pausing
-23,limac3_up_04.avi,Gecko,limac3,461,100,HR,276,322,299,"(533, 203)","(505, 224)",1.44,19.444,-14.583,"slow, has HL on forceplate when lifting HR"
-24,limac3_up_05.avi,Gecko,limac3,395,100,,,,,"(nan, nan)","(nan, nan)",,,,always pausing
-25,limac6_up_01.avi,Gecko,limac6,336,100,HR,225,265,245,"(531, 194)","(546, 224)",1.37,-10.949,-21.898,"paused on forceplate, foot on edge"
-26,limac6_up_02.avi,Gecko,limac6,312,100,FL,99,116,108,"(532, 196)","(523, 175)",1.42,6.338,14.789,also has HL footfall on firceplate after
-27,limac6_up_03.avi,Gecko,limac6,250,100,HL,151,157,154,"(532, 195)","(531, 177)",1.41,0.709,12.766,super fast after pausing FL on forceplate
-28,limac6_up_04.avi,Gecko,limac6,241,100,FR,69,77,73,"(533, 196)","(559, 213)",1.42,-18.31,-11.972,
-29,limac6_up_05.avi,Gecko,limac6,143,100,FL,25,45,35,"(532, 195)","(506, 183)",1.41,18.44,8.511,
-30,limac6_up_06.avi,Gecko,limac6,605,100,HR,333,387,360,"(532, 196)","(557, 190)",1.42,-17.606,4.225,slow 
-31,limac6_up_07.avi,Gecko,limac6,581,100,FR,168,197,182,"(533, 196)","(530, 201)",1.42,2.113,-3.521,also has HR footfall on forceplate after
-32,limac6_up_08.avi,Gecko,limac6,651,100,FL,260,299,280,"(534, 196)","(549, 207)",1.38,-10.87,-7.971,also has HL footfall on forceplate after 
-33,limac7_up_01.avi,Gecko,limac7,491,100,,,,,"(nan, nan)","(nan, nan)",,,,paused on forceplate
-34,limac7_up_02.avi,Gecko,limac7,478,100,FL,234,291,262,"(532, 198)","(539, 207)",1.46,-4.795,-6.164,slow
-35,limac7_up_03.avi,Gecko,limac7,245,100,FL,14,58,36,"(532, 197)","(508, 215)",1.39,17.266,-12.95,slow
-36,limac7_up_04.avi,Gecko,limac7,547,100,FL,21,54,38,"(532, 194)","(507, 221)",1.45,17.241,-18.621,
-37,limac7_up_05.avi,Gecko,limac7,479,100,HL,244,287,266,"(534, 193)","(508, 208)",1.35,19.259,-11.111,
-38,limac7_up_06.avi,Gecko,limac7,582,100,HL,413,442,428,"(531, 193)","(542, 190)",1.4,-7.857,2.143,
-39,limac7_up_07.avi,Gecko,limac7,288,100,FL,48,103,76,"(530, 195)","(542, 180)",1.39,-8.633,10.791,also has HL footfall on forceplate after 
-40,limac8_up_01.avi,Gecko,limac8,694,100,HR,332,395,364,"(532, 196)","(533, 171)",1.42,-0.704,17.606,slow
-41,limac8_up_02.avi,Gecko,limac8,152,100,FL,60,79,70,"(534, 196)","(544, 173)",1.45,-6.897,15.862,all feet on forceplate
-42,limac8_up_03.avi,Gecko,limac8,161,100,HL,38,56,47,"(526, 203)","(511, 225)",1.42,10.563,-15.493,also has FL footfall on forceplate before
-43,limac8_up_04.avi,Gecko,limac8,227,100,FL,104,124,114,"(526, 204)","(501, 215)",1.44,17.361,-7.639,
-44,limac8_up_05.avi,Gecko,limac8,254,100,FL,94,111,102,"(528, 203)","(508, 186)",1.45,13.793,11.724,also has HL and HR footfall on forceplate just on the edge
-45,limac8_up_06.avi,Gecko,limac8,289,100,FL,153,173,163,"(526, 202)","(542, 219)",1.38,-11.594,-12.319,also has HL footfall on forceplate after
-46,limac8_up_07.avi,Gecko,limac8,226,100,HR,106,131,118,"(528, 204)","(539, 231)",1.43,-7.692,-18.881,also has other feet on forceplate but never alone
-47,limac8_up_08.avi,Gecko,limac8,249,100,FR,54,69,62,"(526, 202)","(541, 207)",1.42,-10.563,-3.521,also has HR footfall on forceplate after
-48,limac8_up_09.avi,Gecko,limac8,261,100,HL,127,161,144,"(527, 203)","(515, 185)",1.42,8.451,12.676,"also has FL footfall on forceplate before, HR on forceplate when HL lifts"
-49,limac8_up_10.avi,Gecko,limac8,303,100,HR,133,160,146,"(526, 202)","(544, 229)",1.42,-12.676,-19.014,also has other feet on forceplate but never alone
-50,limac9_up_01.avi,Gecko,limac9,2048,100,,,,,"(nan, nan)","(nan, nan)",,,,always pausing
-51,limac9_up_02.avi,Gecko,limac9,700,100,FR,42,77,60,"(532, 202)","(544, 180)",1.43,-8.392,15.385,
-52,limac9_up_03.avi,Gecko,limac9,1385,100,HR,637,1163,900,"(532, 203)","(546, 197)",1.47,-9.524,4.082,paused on forceplate
-53,limac9_up_04.avi,Gecko,limac9,852,100,FR,349,451,400,"(532, 202)","(538, 205)",1.44,-4.167,-2.083,also has HR footfall on forceplate after
-54,limac9_up_05.avi,Gecko,limac9,317,100,,,,,"(nan, nan)","(nan, nan)",,,,paused on forceplate
-55,limac9_up_06.avi,Gecko,limac9,117,100,FL,8,16,12,"(533, 204)","(544, 191)",1.45,-7.586,8.966,super fast 
-56,limac9_up_07.avi,Gecko,limac9,265,100,HR,87,174,130,"(532, 202)","(531, 217)",1.44,0.694,-10.417,paused on forceplate
-57,limac9_up_08.avi,Gecko,limac9,431,100,,,,,"(nan, nan)","(nan, nan)",,,,always pausing
-58,limac9_up_09.avi,Gecko,limac9,325,100,,,,,"(nan, nan)","(nan, nan)",,,, all feet on forceplate but always pausing
-59,lstein7_up_01.avi,Gecko,lstein7,442,,,,,,"(nan, nan)","(nan, nan)",,,,
-60,lstein8_up_01.avi,Gecko,lstein8,260,,FR,62,106,84,"(534, 182)","(528, 203)",1.41,4.255,-14.894,
-61,lstein8_up_02.avi,Gecko,lstein8,194,,,,,,"(nan, nan)","(nan, nan)",,,,
-62,lstein8_up_03.avi,Gecko,lstein8,277,,FL,20,103,62,"(535, 188)","(536, 162)",1.39,-0.719,18.705,paused on forceplate
-63,lstein8_up_04.avi,Gecko,lstein8,251,,FR,72,140,106,"(532, 188)","(536, 219)",1.35,-2.963,-22.963,paused on forceplate
-64,lstein8_up_05.avi,Gecko,lstein8,308,,HL,171,218,194,"(532, 186)","(525, 164)",1.38,5.072,15.942,also got FL footfall on forceplate but paused on forceplate for FL and HL
-65,scil1_down_03.avi,Gecko,scil1,323,100,FR,93,138,116,"(625, 186)","(617, 229)",2.81,2.847,-15.302,
-66,scil1_down_05.avi,Gecko,scil1,364,100,FL,91,129,110,"(624, 186)","(649, 235)",2.8,-8.929,-17.5,got all feet on forceplate - good!
-67,scil1_down_05.avi,Gecko,scil1,364,100,HR,152,214,183,"(624, 186)","(643, 143)",2.82,-6.738,15.248,got all feet on forceplate - good!
-68,scil1_down_07.avi,Gecko,scil1,377,100,FL,116,154,135,"(624, 186)","(573, 180)",2.81,18.149,2.135,
-69,scil1_down_07.avi,Gecko,scil2,377,100,HL,154,203,178,"(624, 186)","(611, 174)",2.81,4.626,4.27,
-70,scil1_down_09.avi,Gecko,scil1,335,100,FL,50,77,64,"(624, 186)","(625, 212)",2.85,-0.351,-9.123,"footfalls overlap, but good"
-71,scil1_down_09.avi,Gecko,scil1,335,100,FR,67,93,80,"(623, 186)","(574, 137)",2.84,17.254,17.254,"footfalls overlap, but good"
-72,scil1_down_09.avi,Gecko,scil1,335,100,HL,73,95,84,"(624, 186)","(666, 224)",2.8,-15,-13.571,"footfalls overlap, but good"
-73,scil1_down_10.avi,Gecko,scil1,415,100,FL,141,186,164,"(623, 186)","(589, 233)",2.83,12.014,-16.608,got all feet on forceplate - good!
-74,scil1_down_10.avi,Gecko,scil1,415,100,FR,116,153,134,"(624, 186)","(651, 155)",2.81,-9.609,11.032,got all feet on forceplate - good!
-75,scil1_down_10.avi,Gecko,scil1,415,100,HL,174,228,201,"(624, 186)","(665, 238)",2.83,-14.488,-18.375,got all feet on forceplate - good!
-76,scil1_down_10.avi,Gecko,scil1,415,100,HR,214,257,236,"(624, 187)","(609, 154)",2.83,5.3,11.661,got all feet on forceplate - good!
-77,scil1_down_15.avi,Gecko,scil1,299,100,HL,146,188,167,"(626, 182)","(636, 140)",2.75,-3.636,15.273,also got FL footfall on forceplate 
-78,scil1_down_16.avi,Gecko,scil1,547,100,FL,104,153,128,"(625, 186)","(603, 179)",2.68,8.209,2.612,also got other feet on forceplate but more towards the edge
-79,scil1_up_01.avi,Gecko,scil1,703,200,HL,456,562,509,"(624, 186)","(636, 202)",2.83,-4.24,-5.654,slow
-80,scil1_up_02.avi,Gecko,scil1,553,200,FR,143,248,196,"(623, 187)","(654, 178)",2.82,-10.993,3.191,
-81,scil1_up_02.avi,Gecko,scil1,553,100,HR,238,315,276,"(624, 186)","(630, 184)",2.8,-2.143,0.714,
-82,scil1_up_04.avi,Gecko,scil1,577,100,HR,196,236,216,"(624, 186)","(649, 199)",2.81,-8.897,-4.626,also got other feet on forceplate
-83,scil1_up_06.avi,Gecko,scil1,452,100,HL,158,198,178,"(624, 187)","(642, 228)",2.78,-6.475,-14.748,also got FL footfall on forceplate 
-84,scil1_up_08.avi,Gecko,scil1,404,100,FL,126,157,142,"(623, 186)","(638, 234)",2.81,-5.338,-17.082,
-85,scil1_up_08.avi,Gecko,scil2,404,100,HL,157,193,175,"(623, 185)","(606, 215)",2.8,6.071,-10.714,
-86,scil1_up_11.avi,Gecko,scil1,256,100,FR,38,84,61,"(626, 186)","(641, 131)",2.82,-5.319,19.504,
-87,scil1_up_11.avi,Gecko,scil1,256,100,HR,85,125,105,"(623, 185)","(622, 133)",2.78,0.36,18.705,
-88,scil1_up_12.avi,Gecko,scil1,641,100,FR,333,384,358,"(624, 185)","(655, 141)",2.85,-10.877,15.439,HR on forceplate when lifting FR
-89,scil1_up_12.avi,Gecko,scil1,641,100,HR,378,435,406,"(624, 186)","(620, 152)",2.83,1.413,12.014,
-90,scil1_up_13.avi,Gecko,scil1,498,100,FL,54,119,86,"(626, 187)","(571, 204)",2.67,20.599,-6.367,
-91,scil1_up_13.avi,Gecko,scil1,498,100,HL,209,276,242,"(625, 186)","(642, 187)",2.63,-6.464,-0.38,
-92,scil1_up_14.avi,Gecko,scil1,349,100,HL,108,181,144,"(626, 186)","(616, 239)",2.66,3.759,-19.925,
-93,scil1_up_17.avi,Gecko,scil1,413,100,FL,117,158,138,"(625, 186)","(581, 201)",2.65,16.604,-5.66,FR slightly touches edge of forceplate when lifting FL
-94,scil1_up_18.avi,Gecko,scil1,784,100,FR,300,390,345,"(626, 186)","(569, 215)",2.65,21.509,-10.943,also has other feet on forceplate but never alone
-95,scil2_down_02.avi,Gecko,scil2,217,100,HR,68,84,76,"(625, 186)","(600, 234)",2.68,9.328,-17.91,dragging HR a bit 
-96,scil2_down_04.avi,Gecko,scil2,195,100,FL,62,81,72,"(624, 186)","(680, 218)",2.66,-21.053,-12.03,also has other feet on forceplate but never alone and on edge
-97,scil2_down_05.avi,Gecko,scil2,111,100,FL,17,28,22,"(624, 186)","(637, 241)",2.67,-4.869,-20.599,FR and HL on forceplate when lifting FL
-98,scil2_down_05.avi,Gecko,scil2,111,100,HL,27,35,31,"(624, 186)","(667, 235)",2.66,-16.165,-18.421,HR on forceplate when lifting HL
-99,scil2_down_05.avi,Gecko,scil2,111,100,HR,34,42,38,"(625, 186)","(577, 146)",2.65,18.113,15.094,dragging HR a bit 
-100,scil2_up_01.avi,Gecko,scil2,655,100,,,,,"(nan, nan)","(nan, nan)",,,,pausing all the time
-101,scil2_up_03.avi,Gecko,scil2,878,100,,,,,"(nan, nan)","(nan, nan)",,,,pausing all the time
-102,scil3_down_03.avi,Gecko,scil3,256,100,HL,53,81,67,"(623, 186)","(619, 195)",2.66,1.504,-3.383,
-103,scil3_down_04.avi,Gecko,scil3,347,100,HR,45,58,52,"(623, 186)","(632, 140)",2.64,-3.409,17.424,HL on forceplate when placing HR
-104,scil3_down_06.avi,Gecko,scil3,488,100,,,,,"(nan, nan)","(nan, nan)",,,,pausing all the time
-105,scil3_down_08.avi,Gecko,scil3,473,100,HL,288,317,302,"(624, 186)","(650, 132)",2.64,-9.848,20.455,
-106,scil3_down_12.avi,Gecko,scil3,186,100,HL,37,120,78,"(624, 182)","(566, 141)",2.62,22.137,15.649,outer toe around edge of forceplate
-107,scil3_down_15.avi,Gecko,scil3,426,100,FR,53,104,78,"(624, 182)","(666, 143)",2.6,-16.154,15,FL on forceplate when lifting FR
-108,scil3_up_01.avi,Gecko,scil3,1027,200,HL,462,626,544,"(624, 185)","(656, 181)",2.64,-12.121,1.515,also has other feet on forceplate but on edge
-109,scil3_up_02.avi,Gecko,scil3,426,100,HR,289,345,317,"(624, 186)","(605, 134)",2.65,7.17,19.623,
-110,scil3_up_05.avi,Gecko,scil3,517,100,,,,,"(nan, nan)","(nan, nan)",,,,pausing all the time
-111,scil3_up_07.avi,Gecko,scil3,333,100,HR,193,256,224,"(623, 185)","(673, 133)",2.68,-18.657,19.403,on corner of forceplate
-112,scil3_up_09.avi,Gecko,scil3,548,100,,,,,"(nan, nan)","(nan, nan)",,,,pausing all the time
-113,scil3_up_10.avi,Gecko,scil3,370,100,FL,48,122,85,"(624, 182)","(608, 135)",2.58,6.202,18.217,FR and HL on forceplate when lifting FL
-114,scil3_up_11.avi,Gecko,scil3,285,100,HL,102,199,150,"(623, 180)","(657, 238)",2.55,-13.333,-22.745,on edge 
-115,scil3_up_13.avi,Gecko,scil3,385,100,,,,,"(nan, nan)","(nan, nan)",,,,pausing all the time
-116,scil3_up_14.avi,Gecko,scil3,548,100,HL,208,268,238,"(624, 182)","(668, 162)",2.56,-17.188,7.812,
-117,seld1_down_03.avi,Gecko,seld1,1730,100,HL,778,1045,912,"(602, 218)","(635, 156)",4.11,-8.029,15.085,
-118,seld1_up_01.avi,Gecko,seld1,962,200,FR,307,384,346,"(603, 220)","(573, 232)",4.09,7.335,-2.934,also has other feet on forceplate but never alone
-119,seld1_up_01.avi,Gecko,seld1,962,200,FL,355,442,398,"(602, 220)","(627, 193)",4.12,-6.068,6.553,also has other feet on forceplate but never alone
-120,seld1_up_01.avi,Gecko,seld1,962,200,HR,389,457,423,"(601, 219)","(538, 230)",4.1,15.366,-2.683,also has other feet on forceplate but never alone
-121,seld1_up_02.avi,Gecko,seld1,2154,100,,,,,"(nan, nan)","(nan, nan)",,,,pausing all the time
-122,seld1_up_04.avi,Gecko,seld1,1231,100,,,,,"(nan, nan)","(nan, nan)",,,,pausing all the time
-123,umill1_down_03.avi,Gecko,umill1,505,100,FL,149,232,190,"(624, 189)","(623, 180)",2.83,0.353,3.18,
-124,umill1_down_05.avi,Gecko,umill1,380,100,FL,72,119,96,"(624, 190)","(607, 133)",2.82,6.028,20.213,
-125,umill1_down_05.avi,Gecko,umill1,380,100,HL,171,247,209,"(626, 190)","(567, 139)",2.8,21.071,18.214,
-126,umill1_down_06.avi,Gecko,umill1,622,100,FL,186,267,226,"(624, 192)","(601, 155)",2.78,8.273,13.309,HL on forceplate when lifting FL
-127,umill1_down_06.avi,Gecko,umill1,622,100,HL,346,473,410,"(624, 189)","(559, 137)",2.81,23.132,18.505,dragging HL a bit
-128,umill1_down_11.avi,Gecko,umill1,865,200,HR,527,614,570,"(624, 186)","(655, 141)",2.68,-11.567,16.791,
-129,umill1_up_01.avi,Gecko,umill1,730,100,FR,38,219,128,"(625, 190)","(570, 166)",2.83,19.435,8.481,has other feet on forceplate at the same time
-130,umill1_up_01.avi,Gecko,umill1,730,100,FL,160,292,226,"(625, 190)","(655, 150)",2.8,-10.714,14.286,has other feet on forceplate at the same time
-131,umill1_up_01.avi,Gecko,umill1,730,100,HL,270,408,339,"(624, 190)","(643, 147)",2.85,-6.667,15.088,has other feet on forceplate at the same time
-132,umill1_up_01.avi,Gecko,umill1,730,100,HR,350,496,423,"(622, 190)","(663, 243)",2.81,-14.591,-18.861,
-133,umill1_up_02.avi,Gecko,umill1,658,100,,,,,"(nan, nan)","(nan, nan)",,,,pausing all the time
-134,umill1_up_04.avi,Gecko,umill1,306,100,FL,64,134,99,"(624, 190)","(626, 218)",2.81,-0.712,-9.964,
-135,umill1_up_04.avi,Gecko,umill1,306,100,HL,119,201,160,"(624, 190)","(597, 213)",2.83,9.541,-8.127,
-136,umill1_up_07.avi,Gecko,umill1,469,100,FR,32,117,74,"(623, 190)","(586, 253)",2.82,13.121,-22.34,has other feet on forceplate at the same time
-137,umill1_up_07.avi,Gecko,umill1,469,100,FL,84,168,126,"(624, 190)","(640, 185)",2.8,-5.714,1.786,has other feet on forceplate at the same time
-138,umill1_up_07.avi,Gecko,umill1,469,100,HL,164,234,199,"(624, 190)","(619, 180)",2.8,1.786,3.571,has other feet on forceplate at the same time
-139,umill1_up_08.avi,Gecko,umill1,365,100,FL,83,171,127,"(624, 190)","(669, 225)",2.81,-16.014,-12.456,
-140,umill1_up_08.avi,Gecko,umill1,365,100,HL,164,262,213,"(624, 190)","(630, 226)",2.82,-2.128,-12.766,
-141,umill1_up_09.avi,Gecko,umill1,456,100,FL,132,246,189,"(625, 190)","(640, 220)",2.82,-5.319,-10.638,HL on forceplate when lifting FL
-142,umill1_up_10.avi,Gecko,umill1,937,200,FR,178,350,264,"(626, 186)","(564, 169)",2.63,23.574,6.464,
-143,umill1_up_10.avi,Gecko,umill1,937,100,HR,571,777,674,"(624, 186)","(663, 147)",2.67,-14.607,14.607,
-144,umill1_up_12.avi,Gecko,umill1,437,100,FR,83,181,132,"(625, 186)","(594, 161)",2.64,11.742,9.47,
-145,umill1_up_12.avi,Gecko,umill1,437,100,HR,157,266,212,"(626, 188)","(586, 168)",2.64,15.152,7.576,
-146,umill1_up_13.avi,Gecko,umill1,748,100,,,,,"(nan, nan)","(nan, nan)",,,,pausing all the time
-147,umill2_down_01.avi,Gecko,umill2,788,200,,,,,"(nan, nan)","(nan, nan)",,,,pausing all the time
+,file,force_file,family,code,video_frame_count,framerate,foot,footfall_begin,footfall_end,open_frame,CoP,footfall_point,conversion_factor,x_calib_mm,y_calib_mm,notes
+0,gvari1_down_01.avi,gvari1_down_01.txt,Gecko,gvari1,708,200,,,,,"(nan, nan)","(nan, nan)",,,,just sat happily on forceplate
+1,gvari1_down_06.avi,gvari1_down_06.txt,Gecko,gvari1,435,200,FL,91,104,98,"(618, 168)","(592, 140)",2.88,9.028,9.722,also has HL footfall on forceplate after and stopped on forceplate after FL step
+2,gvari1_down_07.avi,gvari1_down_07.txt,Gecko,gvari1,393,200,HL,148,173,160,"(618, 168)","(568, 136)",2.89,17.301,11.073,also has FL footfall on forceplate
+3,gvari1_down_09.avi,gvari1_down_09.txt,Gecko,gvari1,489,200,HL,303,337,320,"(618, 168)","(558, 175)",2.86,20.979,-2.448,also has other feet on forceplate but never alone
+4,gvari1_up_02.avi,gvari1_up_02.txt,Gecko,gvari1,212,200,FR,28,38,33,"(618, 168)","(597, 118)",2.82,7.447,17.73,also has HR footfall on forceplate after
+5,gvari1_up_03.avi,gvari1_up_03.txt,Gecko,gvari1,191,200,HR,59,73,66,"(618, 170)","(665, 207)",2.84,-16.549,-13.028,also has other feet on forceplate but never alone
+6,gvari1_up_04.avi,gvari1_up_04.txt,Gecko,gvari1,966,200,FR,405,492,448,"(618, 168)","(620, 119)",2.81,-0.712,17.438,very slow
+7,gvari1_up_05.avi,gvari1_up_05.txt,Gecko,gvari1,425,200,FR,46,63,54,"(619, 168)","(587, 120)",2.82,11.348,17.021,also has HR footfall on forceplate after
+8,gvari1_up_08.avi,gvari1_up_08.txt,Gecko,gvari1,666,200,FR,233,273,253,"(618, 170)","(661, 111)",2.83,-15.194,20.848,"very slow, has HR on forceplate when lifting FR"
+9,gvari1_up_10.avi,gvari1_up_10.txt,Gecko,gvari1,731,200,,,,,"(nan, nan)","(nan, nan)",,,,always pausing
+10,limac10_up_01.avi,limac10_up_01.txt,Gecko,limac10,273,100,FL,101,139,120,"(526, 203)","(525, 183)",1.39,0.719,14.388,all feet on forceplate
+11,limac10_up_02.avi,limac10_up_02.txt,Gecko,limac10,227,100,HR,115,140,128,"(527, 204)","(509, 178)",1.37,13.139,18.978,
+12,limac10_up_03.avi,limac10_up_03.txt,Gecko,limac10,303,100,HL,136,163,150,"(526, 204)","(544, 183)",1.36,-13.235,15.441,also has other feet on forceplate
+13,limac10_up_04.avi,limac10_up_04.txt,Gecko,limac10,316,100,HR,97,116,106,"(527, 204)","(535, 202)",1.42,-5.634,1.408,also has FR just on the forceplate
+14,limac10_up_05.avi,limac10_up_05.txt,Gecko,limac10,289,100,FR,92,122,107,"(527, 205)","(545, 202)",1.4,-12.857,2.143,also has HR footfall on forceplate after
+15,limac10_up_06.avi,limac10_up_06.txt,Gecko,limac10,209,100,HL,77,94,86,"(527, 204)","(531, 182)",1.35,-2.963,16.296,also has other feet on forceplate
+16,limac10_up_07.avi,limac10_up_07.txt,Gecko,limac10,235,100,HR,108,122,115,"(527, 204)","(542, 188)",1.38,-10.87,11.594,
+17,limac10_up_08.avi,limac10_up_08.txt,Gecko,limac10,267,100,FR,61,90,76,"(528, 204)","(520, 225)",1.39,5.755,-15.108,
+18,limac10_up_09.avi,limac10_up_09.txt,Gecko,limac10,311,100,FR,124,164,144,"(528, 204)","(553, 217)",1.38,-18.116,-9.42,also has HR footfall on forceplate after
+19,limac10_up_10.avi,limac10_up_10.txt,Gecko,limac10,289,100,FR,75,104,90,"(526, 206)","(507, 207)",1.4,13.571,-0.714,
+20,limac3_up_01.avi,limac3_up_01.txt,Gecko,limac3,272,100,FR,43,65,54,"(532, 204)","(502, 214)",1.39,21.583,-7.194,has more feet on forceplate after
+21,limac3_up_02.avi,limac3_up_02.txt,Gecko,limac3,226,100,HL,88,124,106,"(531, 204)","(547, 214)",1.38,-11.594,-7.246,also has FL just on forceplate before
+22,limac3_up_03.avi,limac3_up_03.txt,Gecko,limac3,536,100,,,,,"(nan, nan)","(nan, nan)",,,,always pausing
+23,limac3_up_04.avi,limac3_up_04.txt,Gecko,limac3,461,100,HR,276,322,299,"(534, 203)","(504, 218)",1.39,21.583,-10.791,"slow, has HL on forceplate when lifting HR"
+24,limac3_up_05.avi,limac3_up_05.txt,Gecko,limac3,395,100,,,,,"(nan, nan)","(nan, nan)",,,,always pausing
+25,limac6_up_01.avi,limac6_up_01.txt,Gecko,limac6,336,100,HR,225,265,245,"(530, 197)","(511, 172)",1.43,13.287,17.483,"paused on forceplate, foot on edge"
+26,limac6_up_02.avi,limac6_up_02.txt,Gecko,limac6,312,100,FL,99,116,108,"(532, 196)","(523, 174)",1.4,6.429,15.714,also has HL footfall on firceplate after
+27,limac6_up_03.avi,limac6_up_03.txt,Gecko,limac6,250,100,HL,151,157,154,"(532, 196)","(529, 179)",1.38,2.174,12.319,super fast after pausing FL on forceplate
+28,limac6_up_04.avi,limac6_up_04.txt,Gecko,limac6,241,100,FR,69,77,73,"(532, 197)","(560, 211)",1.33,-21.053,-10.526,
+29,limac6_up_05.avi,limac6_up_05.txt,Gecko,limac6,143,100,FL,25,45,35,"(534, 196)","(505, 186)",1.39,20.863,7.194,
+30,limac6_up_06.avi,limac6_up_06.txt,Gecko,limac6,605,250,HR,333,387,360,"(533, 196)","(558, 191)",1.43,-17.483,3.497,slow 
+31,limac6_up_07.avi,limac6_up_07.txt,Gecko,limac6,581,250,FR,168,197,182,"(533, 196)","(525, 202)",1.36,5.882,-4.412,also has HR footfall on forceplate after
+32,limac6_up_08.avi,limac6_up_08.txt,Gecko,limac6,651,250,FL,260,299,280,"(534, 194)","(549, 203)",1.35,-11.111,-6.667,also has HL footfall on forceplate after 
+33,limac7_up_01.avi,limac7_up_01.txt,Gecko,limac7,491,100,,,,,"(nan, nan)","(nan, nan)",,,,paused on forceplate
+34,limac7_up_02.avi,limac7_up_02.txt,Gecko,limac7,478,100,FL,234,291,262,"(533, 196)","(540, 208)",1.41,-4.965,-8.511,slow
+35,limac7_up_03.avi,limac7_up_03.txt,Gecko,limac7,245,100,FL,14,58,36,"(534, 198)","(504, 217)",1.42,21.127,-13.38,slow
+36,limac7_up_04.avi,limac7_up_04.txt,Gecko,limac7,547,100,FL,21,54,38,"(533, 196)","(507, 223)",1.43,18.182,-18.881,
+37,limac7_up_05.avi,limac7_up_05.txt,Gecko,limac7,479,100,HL,244,287,266,"(532, 195)","(510, 207)",1.39,15.827,-8.633,
+38,limac7_up_06.avi,limac7_up_06.txt,Gecko,limac7,582,100,HL,413,442,428,"(532, 196)","(536, 188)",1.39,-2.878,5.755,
+39,limac7_up_07.avi,limac7_up_07.txt,Gecko,limac7,288,100,FL,48,103,76,"(534, 196)","(541, 182)",1.36,-5.147,10.294,also has HL footfall on forceplate after 
+40,limac8_up_01.avi,limac8_up_01.txt,Gecko,limac8,694,100,HR,332,395,364,"(534, 196)","(530, 169)",1.41,2.837,19.149,slow
+41,limac8_up_02.avi,limac8_up_02.txt,Gecko,limac8,152,100,FL,60,79,70,"(533, 196)","(543, 173)",1.43,-6.993,16.084,all feet on forceplate
+42,limac8_up_03.avi,limac8_up_03.txt,Gecko,limac8,161,100,HL,38,56,47,"(528, 204)","(510, 225)",1.39,12.95,-15.108,also has FL footfall on forceplate before
+43,limac8_up_04.avi,limac8_up_04.txt,Gecko,limac8,227,100,FL,104,124,114,"(527, 203)","(500, 213)",1.38,19.565,-7.246,
+44,limac8_up_05.avi,limac8_up_05.txt,Gecko,limac8,254,100,FL,94,111,102,"(528, 204)","(508, 186)",1.38,14.493,13.043,also has HL and HR footfall on forceplate just on the edge
+45,limac8_up_06.avi,limac8_up_06.txt,Gecko,limac8,289,100,FL,153,173,163,"(527, 206)","(542, 219)",1.43,-10.49,-9.091,also has HL footfall on forceplate after
+46,limac8_up_07.avi,limac8_up_07.txt,Gecko,limac8,226,100,HR,106,131,118,"(528, 205)","(536, 230)",1.37,-5.839,-18.248,also has other feet on forceplate but never alone
+47,limac8_up_08.avi,limac8_up_08.txt,Gecko,limac8,249,100,FR,54,69,62,"(528, 203)","(541, 205)",1.4,-9.286,-1.429,also has HR footfall on forceplate after
+48,limac8_up_09.avi,limac8_up_09.txt,Gecko,limac8,261,100,HL,127,161,144,"(527, 205)","(514, 186)",1.38,9.42,13.768,"also has FL footfall on forceplate before, HR on forceplate when HL lifts"
+49,limac8_up_10.avi,limac8_up_10.txt,Gecko,limac8,303,100,HR,133,160,146,"(526, 202)","(547, 229)",1.38,-15.217,-19.565,also has other feet on forceplate but never alone
+50,limac9_up_01.avi,limac9_up_01.txt,Gecko,limac9,2048,250,,,,,"(nan, nan)","(nan, nan)",,,,always pausing
+51,limac9_up_02.avi,limac9_up_02.txt,Gecko,limac9,700,250,FR,42,77,60,"(532, 204)","(545, 178)",1.39,-9.353,18.705,
+52,limac9_up_03.avi,limac9_up_03.txt,Gecko,limac9,1385,250,HR,637,1163,900,"(533, 204)","(548, 198)",1.45,-10.345,4.138,paused on forceplate
+53,limac9_up_04.avi,limac9_up_04.txt,Gecko,limac9,852,250,FR,349,451,400,"(532, 204)","(539, 205)",1.43,-4.895,-0.699,also has HR footfall on forceplate after
+54,limac9_up_05.avi,limac9_up_05.txt,Gecko,limac9,317,100,,,,,"(nan, nan)","(nan, nan)",,,,paused on forceplate
+55,limac9_up_06.avi,limac9_up_06.txt,Gecko,limac9,117,100,FL,8,16,12,"(532, 204)","(543, 191)",1.45,-7.586,8.966,super fast 
+56,limac9_up_07.avi,limac9_up_07.txt,Gecko,limac9,265,100,HR,87,174,130,"(532, 202)","(530, 218)",1.44,1.389,-11.111,paused on forceplate
+57,limac9_up_08.avi,limac9_up_08.txt,Gecko,limac9,431,100,,,,,"(nan, nan)","(nan, nan)",,,,always pausing
+58,limac9_up_09.avi,limac9_up_09.txt,Gecko,limac9,325,100,,,,,"(nan, nan)","(nan, nan)",,,, all feet on forceplate but always pausing
+59,lstein7_up_01.avi,lstein7_up_01.txt,Gecko,lstein7,442,100,,,,,"(nan, nan)","(nan, nan)",,,,
+60,lstein8_up_01.avi,lstein8_up_01.txt,Gecko,lstein8,260,100,FR,62,106,84,"(534, 183)","(528, 207)",1.42,4.225,-16.901,
+61,lstein8_up_02.avi,lstein8_up_02.txt,Gecko,lstein8,194,100,,,,,"(nan, nan)","(nan, nan)",,,,
+62,lstein8_up_03.avi,lstein8_up_03.txt,Gecko,lstein8,277,100,FL,20,103,62,"(534, 190)","(535, 162)",1.42,-0.704,19.718,paused on forceplate
+63,lstein8_up_04.avi,lstein8_up_04.txt,Gecko,lstein8,251,100,FR,72,140,106,"(534, 188)","(513, 216)",1.44,14.583,-19.444,paused on forceplate
+64,lstein8_up_05.avi,lstein8_up_05.txt,Gecko,lstein8,308,100,HL,171,218,194,"(535, 188)","(523, 162)",1.42,8.451,18.31,also got FL footfall on forceplate but paused on forceplate for FL and HL
+65,scil1_down_03.avi,scil1_down_03.txt,Gecko,scil1,323,100,FR,93,138,116,"(625, 188)","(616, 230)",2.81,3.203,-14.947,
+66,scil1_down_05.avi,scil1_down_05.txt,Gecko,scil1,364,100,FL,91,129,110,"(624, 187)","(648, 236)",2.81,-8.541,-17.438,got all feet on forceplate - good!
+67,scil1_down_05.avi,scil1_down_05.txt,Gecko,scil1,364,100,HR,152,214,183,"(624, 187)","(641, 144)",2.77,-6.137,15.523,got all feet on forceplate - good!
+68,scil1_down_07.avi,scil1_down_07.txt,Gecko,scil1,377,100,FL,116,154,135,"(624, 188)","(572, 181)",2.77,18.773,2.527,
+69,scil1_down_07.avi,scil1_down_07.txt,Gecko,scil2,377,100,HL,154,203,178,"(624, 188)","(609, 174)",2.8,5.357,5,
+70,scil1_down_09.avi,scil1_down_09.txt,Gecko,scil1,335,100,FL,50,77,64,"(624, 188)","(624, 208)",2.79,0,-7.168,"footfalls overlap, but good"
+71,scil1_down_09.avi,scil1_down_09.txt,Gecko,scil1,335,100,FR,67,93,80,"(622, 188)","(576, 142)",2.83,16.254,16.254,"footfalls overlap, but good"
+72,scil1_down_09.avi,scil1_down_09.txt,Gecko,scil1,335,100,HL,73,95,84,"(625, 187)","(670, 222)",2.8,-16.071,-12.5,"footfalls overlap, but good"
+73,scil1_down_10.avi,scil1_down_10.txt,Gecko,scil1,415,100,FL,141,186,164,"(624, 188)","(589, 234)",2.79,12.545,-16.487,got all feet on forceplate - good!
+74,scil1_down_10.avi,scil1_down_10.txt,Gecko,scil1,415,100,FR,116,153,134,"(624, 187)","(651, 153)",2.77,-9.747,12.274,got all feet on forceplate - good!
+75,scil1_down_10.avi,scil1_down_10.txt,Gecko,scil1,415,100,HL,174,228,201,"(624, 186)","(664, 237)",2.78,-14.388,-18.345,got all feet on forceplate - good!
+76,scil1_down_10.avi,scil1_down_10.txt,Gecko,scil1,415,100,HR,214,257,236,"(624, 188)","(606, 157)",2.77,6.498,11.191,got all feet on forceplate - good!
+77,scil1_down_15.avi,scil1_down_15.txt,Gecko,scil1,299,100,HL,146,188,167,"(626, 184)","(637, 141)",2.67,-4.12,16.105,also got FL footfall on forceplate 
+78,scil1_down_16.avi,scil1_down_16.txt,Gecko,scil1,547,100,FL,104,153,128,"(624, 187)","(603, 181)",2.64,7.955,2.273,also got other feet on forceplate but more towards the edge
+79,scil1_up_01.avi,scil1_up_01.txt,Gecko,scil1,703,200,HL,456,562,509,"(626, 186)","(638, 202)",2.85,-4.211,-5.614,slow
+80,scil1_up_02.avi,scil1_up_02.txt,Gecko,scil1,553,200,FR,143,248,196,"(624, 187)","(655, 180)",2.77,-11.191,2.527,
+81,scil1_up_02.avi,scil1_up_02.txt,Gecko,scil1,553,200,HR,238,315,276,"(624, 188)","(628, 182)",2.78,-1.439,2.158,
+82,scil1_up_04.avi,scil1_up_04.txt,Gecko,scil1,577,100,HR,196,236,216,"(624, 188)","(647, 198)",2.8,-8.214,-3.571,also got other feet on forceplate
+83,scil1_up_06.avi,scil1_up_06.txt,Gecko,scil1,452,100,HL,158,198,178,"(626, 188)","(641, 230)",2.77,-5.415,-15.162,also got FL footfall on forceplate 
+84,scil1_up_08.avi,scil1_up_08.txt,Gecko,scil1,404,100,FL,126,157,142,"(625, 188)","(636, 236)",2.79,-3.943,-17.204,
+85,scil1_up_08.avi,scil1_up_08.txt,Gecko,scil2,404,100,HL,157,193,175,"(626, 186)","(605, 216)",2.79,7.527,-10.753,
+86,scil1_up_11.avi,scil1_up_11.txt,Gecko,scil1,256,100,FR,38,84,61,"(623, 184)","(640, 132)",2.88,-5.903,18.056,
+87,scil1_up_11.avi,scil1_up_11.txt,Gecko,scil1,256,100,HR,85,125,105,"(624, 187)","(623, 133)",2.78,0.36,19.424,
+88,scil1_up_12.avi,scil1_up_12.txt,Gecko,scil1,641,100,,,,,"(nan, nan)","(nan, nan)",,,,
+89,scil1_up_13.avi,scil1_up_13.txt,Gecko,scil1,498,100,,,,,"(nan, nan)","(nan, nan)",,,,
+90,scil1_up_14.avi,scil1_up_14.txt,Gecko,scil1,349,100,,,,,"(nan, nan)","(nan, nan)",,,,
+91,scil1_up_17.avi,scil1_up_17.txt,Gecko,scil1,413,100,,,,,"(nan, nan)","(nan, nan)",,,,
+92,scil1_up_18.avi,scil1_up_18.txt,Gecko,scil1,784,100,,,,,"(nan, nan)","(nan, nan)",,,,
+93,scil2_down_02.avi,scil2_down_02.txt,Gecko,scil2,217,100,,,,,"(nan, nan)","(nan, nan)",,,,
+94,scil2_down_04.avi,scil2_down_04.txt,Gecko,scil2,195,100,,,,,"(nan, nan)","(nan, nan)",,,,
+95,scil2_down_05.avi,scil2_down_05.txt,Gecko,scil2,111,100,,,,,"(nan, nan)","(nan, nan)",,,,
+96,scil2_up_01.avi,scil2_up_01.txt,Gecko,scil2,655,100,,,,,"(nan, nan)","(nan, nan)",,,,
+97,scil2_up_03.avi,scil2_up_03.txt,Gecko,scil2,878,100,,,,,"(nan, nan)","(nan, nan)",,,,
+98,scil3_down_03.avi,scil3_down_03.txt,Gecko,scil3,256,100,,,,,"(nan, nan)","(nan, nan)",,,,
+99,scil3_down_04.avi,scil3_down_04.txt,Gecko,scil3,347,100,,,,,"(nan, nan)","(nan, nan)",,,,
+100,scil3_down_06.avi,scil3_down_06.txt,Gecko,scil3,488,100,,,,,"(nan, nan)","(nan, nan)",,,,
+101,scil3_down_08.avi,scil3_down_08.txt,Gecko,scil3,473,100,,,,,"(nan, nan)","(nan, nan)",,,,
+102,scil3_down_12.avi,scil3_down_12.txt,Gecko,scil3,186,100,,,,,"(nan, nan)","(nan, nan)",,,,
+103,scil3_down_15.avi,scil3_down_15.txt,Gecko,scil3,426,100,,,,,"(nan, nan)","(nan, nan)",,,,
+104,scil3_up_01.avi,scil3_up_01.txt,Gecko,scil3,1027,200,,,,,"(nan, nan)","(nan, nan)",,,,
+105,scil3_up_02.avi,scil3_up_02.txt,Gecko,scil3,426,100,,,,,"(nan, nan)","(nan, nan)",,,,
+106,scil3_up_05.avi,scil3_up_05.txt,Gecko,scil3,517,100,,,,,"(nan, nan)","(nan, nan)",,,,
+107,scil3_up_07.avi,scil3_up_07.txt,Gecko,scil3,333,100,,,,,"(nan, nan)","(nan, nan)",,,,
+108,scil3_up_09.avi,scil3_up_09.txt,Gecko,scil3,548,100,,,,,"(nan, nan)","(nan, nan)",,,,
+109,scil3_up_10.avi,scil3_up_10.txt,Gecko,scil3,370,100,,,,,"(nan, nan)","(nan, nan)",,,,
+110,scil3_up_11.avi,scil3_up_11.txt,Gecko,scil3,285,100,,,,,"(nan, nan)","(nan, nan)",,,,
+111,scil3_up_13.avi,scil3_up_13.txt,Gecko,scil3,385,100,,,,,"(nan, nan)","(nan, nan)",,,,
+112,scil3_up_14.avi,scil3_up_14.txt,Gecko,scil3,548,100,,,,,"(nan, nan)","(nan, nan)",,,,
+113,seld1_down_03.avi,seld1_down_03.txt,Gecko,seld1,1730,200,,,,,"(nan, nan)","(nan, nan)",,,,
+114,seld1_up_01.avi,seld1_up_01.txt,Gecko,seld1,962,200,,,,,"(nan, nan)","(nan, nan)",,,,
+115,seld1_up_02.avi,seld1_up_02.txt,Gecko,seld1,2154,200,,,,,"(nan, nan)","(nan, nan)",,,,
+116,seld1_up_04.avi,seld1_up_04.txt,Gecko,seld1,1231,200,,,,,"(nan, nan)","(nan, nan)",,,,
+117,umill1_down_03.avi,umill1_down_03.txt,Gecko,umill1,505,100,,,,,"(nan, nan)","(nan, nan)",,,,
+118,umill1_down_05.avi,umill1_down_05.txt,Gecko,umill1,380,100,,,,,"(nan, nan)","(nan, nan)",,,,
+119,umill1_down_06.avi,umill1_down_06.txt,Gecko,umill1,622,100,,,,,"(nan, nan)","(nan, nan)",,,,
+120,umill1_down_11.avi,umill1_down_11.txt,Gecko,umill1,865,100,,,,,"(nan, nan)","(nan, nan)",,,,
+121,umill1_up_01.avi,umill1_up_01.txt,Gecko,umill1,730,100,,,,,"(nan, nan)","(nan, nan)",,,,
+122,umill1_up_02.avi,umill1_up_02.txt,Gecko,umill1,658,100,,,,,"(nan, nan)","(nan, nan)",,,,
+123,umill1_up_04.avi,umill1_up_04.txt,Gecko,umill1,306,100,,,,,"(nan, nan)","(nan, nan)",,,,
+124,umill1_up_07.avi,umill1_up_07.txt,Gecko,umill1,469,100,,,,,"(nan, nan)","(nan, nan)",,,,
+125,umill1_up_08.avi,umill1_up_08.txt,Gecko,umill1,365,100,,,,,"(nan, nan)","(nan, nan)",,,,
+126,umill1_up_09.avi,umill1_up_09.txt,Gecko,umill1,456,100,,,,,"(nan, nan)","(nan, nan)",,,,
+127,umill1_up_10.avi,umill1_up_10.txt,Gecko,umill1,937,100,,,,,"(nan, nan)","(nan, nan)",,,,
+128,umill1_up_12.avi,umill1_up_12.txt,Gecko,umill1,437,100,,,,,"(nan, nan)","(nan, nan)",,,,
+129,umill1_up_13.avi,umill1_up_13.txt,Gecko,umill1,748,100,,,,,"(nan, nan)","(nan, nan)",,,,
+130,umill2_down_01.avi,umill2_down_01.txt,Gecko,umill2,788,100,,,,,"(nan, nan)","(nan, nan)",,,,
