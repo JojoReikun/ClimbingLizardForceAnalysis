@@ -13,7 +13,7 @@ def write_df_to_csv(dst_folder, output_filename, df):
         print("overwrite = ", operation)
         if operation == True:
             df.to_csv(dest_path)
-            return print("file {} saved successfully here: {}".format(output_filename, dst_folder))
+            print("file {} saved successfully here: {}".format(output_filename, dst_folder))
 
         elif operation == False:
             print("file {} already exists and was not overwritten!".format(output_filename))
