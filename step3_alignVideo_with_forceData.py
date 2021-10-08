@@ -183,7 +183,7 @@ def extract_force_data_for_steps():
                         # read in force data from .txt file
                         df_forces = pd.read_csv(os.path.join(force_file_folder, current_force_file),
                                                 delimiter='\t', names=['Fx', 'Fy', 'Fz', 'Tx', 'Ty', 'Tz'])
-                        #print(df_forces.head())
+                        print(df_forces.head())
 
                         #### smoothing and extraction of Mins, Means, Maxs, and integrals
                         dict_forces_summary = do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow_footfall_end, df_forces, current_force_file, forceRow_footfall_begin_noBuffer, forceRow_footfall_end_noBuffer)
@@ -247,12 +247,16 @@ def do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow
     """
     #print("df force data shape: ", df_forces.shape)
 
+    x_col = 0
+    y_col = 1
+    z_col = 2
+
     testplot = False
 
     #### get the bsaeline offset for the three forces:
-    Fx_baselineOffset = np.nanmean(df_forces.iloc[5000:10000, 1])
-    Fy_baselineOffset = np.nanmean(df_forces.iloc[5000:10000, 2])
-    Fz_baselineOffset = np.nanmean(df_forces.iloc[5000:10000, 3])
+    Fx_baselineOffset = np.nanmean(df_forces.iloc[5000:10000, x_col])
+    Fy_baselineOffset = np.nanmean(df_forces.iloc[5000:10000, y_col])
+    Fz_baselineOffset = np.nanmean(df_forces.iloc[5000:10000, z_col])
 
     print("force data baselines:,"
           "\nFx offset: ", Fx_baselineOffset,
@@ -261,14 +265,14 @@ def do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow
 
     #### extract original footfall and footfall with buffer range from force data:
     # with buffer
-    Fx_footfall = df_forces.iloc[forceRow_footfall_begin:forceRow_footfall_end, 1]
-    Fy_footfall = df_forces.iloc[forceRow_footfall_begin:forceRow_footfall_end, 2]
-    Fz_footfall = df_forces.iloc[forceRow_footfall_begin:forceRow_footfall_end, 3]
+    Fx_footfall = df_forces.iloc[forceRow_footfall_begin:forceRow_footfall_end, x_col]
+    Fy_footfall = df_forces.iloc[forceRow_footfall_begin:forceRow_footfall_end, y_col]
+    Fz_footfall = df_forces.iloc[forceRow_footfall_begin:forceRow_footfall_end, z_col]
 
     # original
-    Fx_footfall_noBuffer = df_forces.iloc[forceRow_footfall_begin_noBuffer:forceRow_footfall_end_noBuffer, 1]
-    Fy_footfall_noBuffer = df_forces.iloc[forceRow_footfall_begin_noBuffer:forceRow_footfall_end_noBuffer, 2]
-    Fz_footfall_noBuffer = df_forces.iloc[forceRow_footfall_begin_noBuffer:forceRow_footfall_end_noBuffer, 3]
+    Fx_footfall_noBuffer = df_forces.iloc[forceRow_footfall_begin_noBuffer:forceRow_footfall_end_noBuffer, x_col]
+    Fy_footfall_noBuffer = df_forces.iloc[forceRow_footfall_begin_noBuffer:forceRow_footfall_end_noBuffer, y_col]
+    Fz_footfall_noBuffer = df_forces.iloc[forceRow_footfall_begin_noBuffer:forceRow_footfall_end_noBuffer, z_col]
 
     #print("Fx footfall before baselining: \n", Fx_footfall[1:5])
     #### baseline the extracted force data arrays:
