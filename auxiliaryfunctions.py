@@ -13,10 +13,10 @@ def write_df_to_csv(dst_folder, output_filename, df):
         print("overwrite = ", operation)
         if operation == True:
             df.to_csv(dest_path)
-            print("file {} saved successfully here: {}".format(output_filename, dst_folder))
+            print("\n\nfile {} saved successfully here: {}".format(output_filename, dst_folder))
 
         elif operation == False:
-            print("file {} already exists and was not overwritten!".format(output_filename))
+            print("\n\nfile {} already exists and was not overwritten!".format(output_filename))
 
 
 def open_gui_to_select_folder(prompt_title):
