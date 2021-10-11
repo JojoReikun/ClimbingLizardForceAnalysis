@@ -37,6 +37,7 @@ import scipy.integrate as integrate
 import matplotlib.pyplot as plt
 import seaborn as sn
 import math
+import errno
 
 import auxiliaryfunctions
 
@@ -89,6 +90,7 @@ def extract_force_data_for_steps():
 
         current_video_file = current_row["file"]
         current_force_file = current_row["force_file"]
+        foot_on_forceplate = current_row["foot"]
         print("File: ", current_video_file)
 
         ### check if there is a valid footfall entered:
@@ -186,7 +188,9 @@ def extract_force_data_for_steps():
                         print(df_forces.head())
 
                         #### smoothing and extraction of Mins, Means, Maxs, and integrals
-                        dict_forces_summary = do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow_footfall_end, df_forces, current_force_file, forceRow_footfall_begin_noBuffer, forceRow_footfall_end_noBuffer)
+                        dict_forces_summary = do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow_footfall_end, df_forces, current_force_file,
+                                                                                         forceRow_footfall_begin_noBuffer, forceRow_footfall_end_noBuffer,
+                                                                                         foot_on_forceplate, tempdir)
 
                         # writing the dict_forces_summary to the df_forceAnalysis_calib:
                         print("filling in extracted force data...")
@@ -233,7 +237,8 @@ def convert_videoframe_to_forcerow(video_frame_count, video_frame_rate, force_sa
     return int(forceRow)
 
 
-def do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow_footfall_end, df_forces, current_force_file, forceRow_footfall_begin_noBuffer, forceRow_footfall_end_noBuffer):
+def do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow_footfall_end, df_forces, current_force_file,
+                                               forceRow_footfall_begin_noBuffer, forceRow_footfall_end_noBuffer, foot_on_forceplate, tempdir):
     """
     This function handles plotting of raw and smoothed force data for the footfall as well as the extraction of Min, Mean and Max values.
     It returns a dictionary with these extracted values for the current footfall.
@@ -251,7 +256,8 @@ def do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow
     y_col = 1
     z_col = 2
 
-    testplot = False
+    testplot = True
+    save_figures = True
 
     #### get the bsaeline offset for the three forces:
     Fx_baselineOffset = np.nanmean(df_forces.iloc[5000:10000, x_col])
@@ -301,19 +307,33 @@ def do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow
     if testplot == True:
         print("plotting...")
         #### let's do a testplot:
-        sn.lineplot(x_values, Fx_footfall, color='grey')
-        sn.lineplot(x_values, Fx_footfall_smoothed, color='black')
-        sn.lineplot(x_values, Fy_footfall, color='lightgreen')
-        sn.lineplot(x_values, Fy_footfall_smoothed, color='darkgreen')
-        sn.lineplot(x_values, Fz_footfall, color='lightblue')
-        sn.lineplot(x_values, Fz_footfall_smoothed, color='darkblue')
+        sn.lineplot(x_values, Fx_footfall, color='grey', label="Fx raw")
+        sn.lineplot(x_values, Fx_footfall_smoothed, color='black', label="Fx smoothed")
+        sn.lineplot(x_values, Fy_footfall, color='lightgreen', label="Fy raw")
+        sn.lineplot(x_values, Fy_footfall_smoothed, color='darkgreen', label="Fy smoothed")
+        sn.lineplot(x_values, Fz_footfall, color='lightblue', label="Fz raw")
+        sn.lineplot(x_values, Fz_footfall_smoothed, color='darkblue', label="Fy smoothed")
         plt.hlines(xmin=forceRow_footfall_begin, xmax=forceRow_footfall_end, y=0, linewidth=0.8)
         plt.vlines(ymin=min(Fz_footfall_smoothed), ymax=max(Fz_footfall_smoothed), x=forceRow_footfall_begin_noBuffer)
         plt.vlines(ymin=min(Fz_footfall_smoothed), ymax=max(Fz_footfall_smoothed), x=forceRow_footfall_end_noBuffer)
 
-        plt.title(current_force_file)
+        plt.title(current_force_file + " - " + foot_on_forceplate)
+        plt.legend()
+        plt.xlabel('force frames')
+        plt.ylabel('Force in N')
 
-        plt.show()
+        # save figures:
+        if save_figures == True:
+            try:
+                os.makedirs(os.path.join(tempdir, "force_plots"))
+                print(f"folder for saving the plots created: {tempdir}")
+            except OSError as e:
+                if e.errno != errno.EEXIST:
+                    raise
+            plt.savefig(os.path.join(tempdir, "force_plots", f"{current_force_file} - {foot_on_forceplate}.jpg"))
+            plt.close()
+        else:
+            plt.show()
 
     ### Extract mins, mean, max and integral from the smoothed force data between original range (noBuffer)
     # create an empty dataframe to store:
