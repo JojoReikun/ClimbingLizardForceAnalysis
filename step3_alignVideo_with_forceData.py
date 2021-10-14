@@ -165,45 +165,48 @@ def extract_force_data_for_steps():
                     buffer = np.round(0.3 * footfall_length, 0)
                     footfall_begin = footfall_begin - buffer
                     footfall_end = footfall_end + buffer
+                    footfall_length = footfall_end - footfall_begin
 
-                    #print("footfall_begin: ", footfall_begin,
-                    #      "\nfootfall_end: ", footfall_end)
+                    if footfall_begin > 0 and footfall_end > 0 and footfall_length > 5:
 
-                    # convert these footfall frames to force data rows
-                    forceRow_footfall_begin = convert_videoframe_to_forcerow(video_frame_count, video_frame_rate, force_sampling_rate, trigger, force_sampling_time_s, footfall_begin)
-                    forceRow_footfall_end = convert_videoframe_to_forcerow(video_frame_count, video_frame_rate, force_sampling_rate, trigger, force_sampling_time_s, footfall_end)
-                    #print("forceRow_footfall_begin: ", forceRow_footfall_begin,
-                    #      "\nforceRow_footfall_end: ", forceRow_footfall_end)
+                        #print("footfall_begin: ", footfall_begin,
+                        #      "\nfootfall_end: ", footfall_end)
 
-                    # check if any of the returned force rows is nan, if so don't proceed:
-                    checklist = [math.isnan(forceRow_footfall_begin_noBuffer), math.isnan(forceRow_footfall_end_noBuffer),
-                                math.isnan(forceRow_footfall_begin), math.isnan(forceRow_footfall_end)]
+                        # convert these footfall frames to force data rows
+                        forceRow_footfall_begin = convert_videoframe_to_forcerow(video_frame_count, video_frame_rate, force_sampling_rate, trigger, force_sampling_time_s, footfall_begin)
+                        forceRow_footfall_end = convert_videoframe_to_forcerow(video_frame_count, video_frame_rate, force_sampling_rate, trigger, force_sampling_time_s, footfall_end)
+                        print("forceRow_footfall_begin: ", forceRow_footfall_begin,
+                              "\nforceRow_footfall_end: ", forceRow_footfall_end)
 
-                    print("checklist: ", checklist)
+                        # check if any of the returned force rows is nan, if so don't proceed:
+                        checklist = [math.isnan(forceRow_footfall_begin_noBuffer), math.isnan(forceRow_footfall_end_noBuffer),
+                                    math.isnan(forceRow_footfall_begin), math.isnan(forceRow_footfall_end)]
 
-                    if all(checklist) == False:
-                        # read in force data from .txt file
-                        df_forces = pd.read_csv(os.path.join(force_file_folder, current_force_file),
-                                                delimiter='\t', names=['Fx', 'Fy', 'Fz', 'Tx', 'Ty', 'Tz'])
-                        print(df_forces.head())
+                        print("checklist: ", checklist)
 
-                        #### smoothing and extraction of Mins, Means, Maxs, and integrals
-                        dict_forces_summary = do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow_footfall_end, df_forces, current_force_file,
-                                                                                         forceRow_footfall_begin_noBuffer, forceRow_footfall_end_noBuffer,
-                                                                                         foot_on_forceplate, tempdir)
+                        if all(checklist) == False:
+                            # read in force data from .txt file
+                            df_forces = pd.read_csv(os.path.join(force_file_folder, current_force_file),
+                                                    delimiter='\t', names=['Fx', 'Fy', 'Fz', 'Tx', 'Ty', 'Tz'])
+                            print(df_forces.head())
 
-                        # writing the dict_forces_summary to the df_forceAnalysis_calib:
-                        print("filling in extracted force data...")
-                        index_current_force_file = df_force_analysis_calib.index[df_force_analysis_calib["force_file"] == current_force_file].tolist()[0]
-                        for force_element, force_value in dict_forces_summary.items():
-                            #print("force_element: ", force_element,
-                            #      "force_value: ", force_value)
-                            df_force_analysis_calib_forces.loc[index_current_force_file, force_element] = force_value
+                            #### smoothing and extraction of Mins, Means, Maxs, and integrals
+                            dict_forces_summary = do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow_footfall_end, df_forces, current_force_file,
+                                                                                             forceRow_footfall_begin_noBuffer, forceRow_footfall_end_noBuffer,
+                                                                                             foot_on_forceplate, tempdir)
 
-                        #print("\nfilled in force data: \n", df_force_analysis_calib_forces.head(20))
+                            # writing the dict_forces_summary to the df_forceAnalysis_calib:
+                            print("filling in extracted force data...")
+                            index_current_force_file = df_force_analysis_calib.index[df_force_analysis_calib["force_file"] == current_force_file].tolist()[0]
+                            for force_element, force_value in dict_forces_summary.items():
+                                #print("force_element: ", force_element,
+                                #      "force_value: ", force_value)
+                                df_force_analysis_calib_forces.loc[index_current_force_file, force_element] = force_value
 
-                        # create force vector overlay of normalized forces over lizard videos --> needs angle of force,
-                        # display z force as circle on foot with alpha changing according to normalized Fz
+                            #print("\nfilled in force data: \n", df_force_analysis_calib_forces.head(20))
+
+                            # create force vector overlay of normalized forces over lizard videos --> needs angle of force,
+                            # display z force as circle on foot with alpha changing according to normalized Fz
 
                 else:
                     print("very long step, likely paused on FP, proceed to next...")
@@ -256,8 +259,8 @@ def do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow
     y_col = 1
     z_col = 2
 
-    testplot = True
-    save_figures = True
+    testplot = False
+    save_figures = False
 
     #### get the bsaeline offset for the three forces:
     Fx_baselineOffset = np.nanmean(df_forces.iloc[5000:10000, x_col])
@@ -298,11 +301,21 @@ def do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow
 
     # lowpass filter for foot motion
     print("smoothing force data...")
+    print("length of vectors:"
+          f"\n Fx: {len(Fx_footfall)},"
+          f"\n Fy: {len(Fy_footfall)},"
+          f"\n Fz: {len(Fz_footfall)}")
     Fx_footfall_smoothed = signal.filtfilt(b, a, Fx_footfall)
     Fy_footfall_smoothed = signal.filtfilt(b, a, Fy_footfall)
     Fz_footfall_smoothed = signal.filtfilt(b, a, Fz_footfall)
 
     x_values = range(forceRow_footfall_begin, forceRow_footfall_end)
+
+    print(f"forceRow_begin: {forceRow_footfall_begin},\n"
+          f"forceRow_end: {forceRow_footfall_end}")
+
+    print(f"length of Fx: {len(Fx_footfall)},\n"
+          f"length of x values: {len(x_values)}")
 
     if testplot == True:
         print("plotting...")
@@ -312,7 +325,7 @@ def do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow
         sn.lineplot(x_values, Fy_footfall, color='lightgreen', label="Fy raw")
         sn.lineplot(x_values, Fy_footfall_smoothed, color='darkgreen', label="Fy smoothed")
         sn.lineplot(x_values, Fz_footfall, color='lightblue', label="Fz raw")
-        sn.lineplot(x_values, Fz_footfall_smoothed, color='darkblue', label="Fy smoothed")
+        sn.lineplot(x_values, Fz_footfall_smoothed, color='darkblue', label="Fz smoothed")
         plt.hlines(xmin=forceRow_footfall_begin, xmax=forceRow_footfall_end, y=0, linewidth=0.8)
         plt.vlines(ymin=min(Fz_footfall_smoothed), ymax=max(Fz_footfall_smoothed), x=forceRow_footfall_begin_noBuffer)
         plt.vlines(ymin=min(Fz_footfall_smoothed), ymax=max(Fz_footfall_smoothed), x=forceRow_footfall_end_noBuffer)
