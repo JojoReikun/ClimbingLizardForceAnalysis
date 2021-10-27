@@ -1,6 +1,7 @@
 def write_df_to_csv(dst_folder, output_filename, df):
     import os
     import overwrite_dialog_prompt
+    import math
 
     dest_path = os.path.join(dst_folder, output_filename)
     if not os.path.exists(dst_folder):
@@ -62,3 +63,25 @@ def define_lizard_habitats():
         "semi-arboreal": ["skrys"],
         "terrestrial": ["limac", "lstein", "nam", "umill"]
     }
+
+
+def convert_videoframe_to_forcerow(video_frame_count, video_frame_rate, force_sampling_rate, trigger, force_sampling_time_s, video_frame):
+    """
+    !!! If this function only returns nan values, this is likely due to missing frame rates in the data !!!
+    Add these and try again.
+    :param video_frame_count:
+    :param video_frame_rate:
+    :param force_sampling_rate:
+    :param trigger:
+    :param force_sampling_time_s:
+    :param video_frame:
+    :return:
+    """
+    forceRow = (trigger*force_sampling_time_s) - ( (video_frame_count-video_frame) * (force_sampling_rate/video_frame_rate) )
+
+    if math.isnan(forceRow):
+        print("This function returning nan values is likely due to missing frame rates in *_forceAnalysis_calib.csv!!!\n"
+              "Exit")
+        exit()
+
+    return int(forceRow)

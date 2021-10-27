@@ -27,6 +27,7 @@ TODO:
 
 #### IMPORTS:
 import warnings
+
 warnings.simplefilter(action='ignore', category=FutureWarning)
 import os
 from glob import glob
@@ -73,6 +74,7 @@ def read_in_data():
 
 
 def extract_force_data_for_steps():
+    # TODO: if there are multiple steps for 1 video it doesn't get the data!!! FIX
     # read in the dataframe from step2, containing footfalls and filenames etc.
     df_force_analysis_calib, data_rows_count, force_files, force_file_folder, foldername, tempdir = read_in_data()
 
@@ -85,8 +87,8 @@ def extract_force_data_for_steps():
     # iterate through the rows to handle lizard step by step
     for row in range(data_rows_count):
         # extract current row:
-        current_row = df_force_analysis_calib.loc[row, ]
-        print("\n\n Progress: \n", row+1, "/", data_rows_count)
+        current_row = df_force_analysis_calib.loc[row,]
+        print("\n\n Progress: \n", row + 1, "/", data_rows_count)
 
         current_video_file = current_row["file"]
         current_force_file = current_row["force_file"]
@@ -111,7 +113,6 @@ def extract_force_data_for_steps():
             footfall_exists = True
             print("footfall_exists, proceed...")
 
-
         print("current force file: ", current_force_file)
 
         if footfall_exists:
@@ -122,7 +123,6 @@ def extract_force_data_for_steps():
             else:
                 force_file_exists = False
                 print("force file for: {} doesn't exist!".format(current_force_file))
-
 
             if force_file_exists:
                 #### Now we can align the data and extract the values :)
@@ -138,27 +138,30 @@ def extract_force_data_for_steps():
                 footfall_begin_noBuffer = footfall_begin
                 footfall_end_noBuffer = footfall_end
                 footfall_length = footfall_end - footfall_begin
-                footfall_length_perc = 100* (footfall_length/video_frame_count)
+                footfall_length_perc = 100 * (footfall_length / video_frame_count)
 
                 ### only use the foot falls which are shorter than 15% of the entire video!
                 # This should filter steps where the gecko stops on the forceplate
                 if footfall_length_perc < 50.0:
 
-                    #print("footfall_begin original: ", footfall_begin_noBuffer,
+                    # print("footfall_begin original: ", footfall_begin_noBuffer,
                     #      "\nfootfall_end original: ", footfall_end_noBuffer)
 
                     # convert original begin and end to force data row so these can be plotted as vertical lines:
-                    forceRow_footfall_begin_noBuffer = convert_videoframe_to_forcerow(video_frame_count,
-                                                                                      video_frame_rate,
-                                                                                      force_sampling_rate, trigger,
-                                                                                      force_sampling_time_s,
-                                                                                      footfall_begin_noBuffer)
-                    forceRow_footfall_end_noBuffer = convert_videoframe_to_forcerow(video_frame_count, video_frame_rate,
-                                                                                    force_sampling_rate, trigger,
-                                                                                    force_sampling_time_s,
-                                                                                    footfall_end_noBuffer)
+                    forceRow_footfall_begin_noBuffer = auxiliaryfunctions.convert_videoframe_to_forcerow(
+                        video_frame_count,
+                        video_frame_rate,
+                        force_sampling_rate, trigger,
+                        force_sampling_time_s,
+                        footfall_begin_noBuffer)
+                    forceRow_footfall_end_noBuffer = auxiliaryfunctions.convert_videoframe_to_forcerow(
+                        video_frame_count,
+                        video_frame_rate,
+                        force_sampling_rate, trigger,
+                        force_sampling_time_s,
+                        footfall_end_noBuffer)
 
-                    #print("forceRow_begin original: ", forceRow_footfall_begin_noBuffer,
+                    # print("forceRow_begin original: ", forceRow_footfall_begin_noBuffer,
                     #      "\nforceRow_end original: ", forceRow_footfall_end_noBuffer)
 
                     # set a 30% buffer in video frames to be added to either side of the footfall to make sure entire step is included
@@ -169,18 +172,29 @@ def extract_force_data_for_steps():
 
                     if footfall_begin > 0 and footfall_end > 0 and footfall_length > 5:
 
-                        #print("footfall_begin: ", footfall_begin,
+                        # print("footfall_begin: ", footfall_begin,
                         #      "\nfootfall_end: ", footfall_end)
 
                         # convert these footfall frames to force data rows
-                        forceRow_footfall_begin = convert_videoframe_to_forcerow(video_frame_count, video_frame_rate, force_sampling_rate, trigger, force_sampling_time_s, footfall_begin)
-                        forceRow_footfall_end = convert_videoframe_to_forcerow(video_frame_count, video_frame_rate, force_sampling_rate, trigger, force_sampling_time_s, footfall_end)
+                        forceRow_footfall_begin = auxiliaryfunctions.convert_videoframe_to_forcerow(video_frame_count,
+                                                                                                    video_frame_rate,
+                                                                                                    force_sampling_rate,
+                                                                                                    trigger,
+                                                                                                    force_sampling_time_s,
+                                                                                                    footfall_begin)
+                        forceRow_footfall_end = auxiliaryfunctions.convert_videoframe_to_forcerow(video_frame_count,
+                                                                                                  video_frame_rate,
+                                                                                                  force_sampling_rate,
+                                                                                                  trigger,
+                                                                                                  force_sampling_time_s,
+                                                                                                  footfall_end)
                         print("forceRow_footfall_begin: ", forceRow_footfall_begin,
                               "\nforceRow_footfall_end: ", forceRow_footfall_end)
 
                         # check if any of the returned force rows is nan, if so don't proceed:
-                        checklist = [math.isnan(forceRow_footfall_begin_noBuffer), math.isnan(forceRow_footfall_end_noBuffer),
-                                    math.isnan(forceRow_footfall_begin), math.isnan(forceRow_footfall_end)]
+                        checklist = [math.isnan(forceRow_footfall_begin_noBuffer),
+                                     math.isnan(forceRow_footfall_end_noBuffer),
+                                     math.isnan(forceRow_footfall_begin), math.isnan(forceRow_footfall_end)]
 
                         print("checklist: ", checklist)
 
@@ -191,19 +205,26 @@ def extract_force_data_for_steps():
                             print(df_forces.head())
 
                             #### smoothing and extraction of Mins, Means, Maxs, and integrals
-                            dict_forces_summary = do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow_footfall_end, df_forces, current_force_file,
-                                                                                             forceRow_footfall_begin_noBuffer, forceRow_footfall_end_noBuffer,
-                                                                                             foot_on_forceplate, tempdir)
+                            dict_forces_summary = do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin,
+                                                                                             forceRow_footfall_end,
+                                                                                             df_forces,
+                                                                                             current_force_file,
+                                                                                             forceRow_footfall_begin_noBuffer,
+                                                                                             forceRow_footfall_end_noBuffer,
+                                                                                             foot_on_forceplate,
+                                                                                             tempdir)
 
                             # writing the dict_forces_summary to the df_forceAnalysis_calib:
                             print("filling in extracted force data...")
-                            index_current_force_file = df_force_analysis_calib.index[df_force_analysis_calib["force_file"] == current_force_file].tolist()[0]
+                            index_current_force_file = df_force_analysis_calib.index[
+                                df_force_analysis_calib["force_file"] == current_force_file].tolist()[0]
                             for force_element, force_value in dict_forces_summary.items():
-                                #print("force_element: ", force_element,
+                                # print("force_element: ", force_element,
                                 #      "force_value: ", force_value)
-                                df_force_analysis_calib_forces.loc[index_current_force_file, force_element] = force_value
+                                df_force_analysis_calib_forces.loc[
+                                    index_current_force_file, force_element] = force_value
 
-                            #print("\nfilled in force data: \n", df_force_analysis_calib_forces.head(20))
+                            # print("\nfilled in force data: \n", df_force_analysis_calib_forces.head(20))
 
                             # create force vector overlay of normalized forces over lizard videos --> needs angle of force,
                             # display z force as circle on foot with alpha changing according to normalized Fz
@@ -215,33 +236,14 @@ def extract_force_data_for_steps():
             print("next row")
 
     # save df_force_analysis_calib_forces as csv
-    auxiliaryfunctions.write_df_to_csv(tempdir, "{}_forceAnalysis_calib_forces.csv".format(foldername), df_force_analysis_calib_forces)
+    auxiliaryfunctions.write_df_to_csv(tempdir, "{}_forceAnalysis_calib_forces.csv".format(foldername),
+                                       df_force_analysis_calib_forces)
 
 
-def convert_videoframe_to_forcerow(video_frame_count, video_frame_rate, force_sampling_rate, trigger, force_sampling_time_s, video_frame):
-    """
-    !!! If this function only returns nan values, this is likely due to missing frame rates in the data !!!
-    Add these and try again.
-    :param video_frame_count:
-    :param video_frame_rate:
-    :param force_sampling_rate:
-    :param trigger:
-    :param force_sampling_time_s:
-    :param video_frame:
-    :return:
-    """
-    forceRow = (trigger*force_sampling_time_s) - ( (video_frame_count-video_frame) * (force_sampling_rate/video_frame_rate) )
-
-    if math.isnan(forceRow):
-        print("This function returning nan values is likely due to missing frame rates in *_forceAnalysis_calib.csv!!!\n"
-              "Exit")
-        exit()
-
-    return int(forceRow)
-
-
-def do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow_footfall_end, df_forces, current_force_file,
-                                               forceRow_footfall_begin_noBuffer, forceRow_footfall_end_noBuffer, foot_on_forceplate, tempdir):
+def do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow_footfall_end, df_forces,
+                                               current_force_file,
+                                               forceRow_footfall_begin_noBuffer, forceRow_footfall_end_noBuffer,
+                                               foot_on_forceplate, tempdir):
     """
     This function handles plotting of raw and smoothed force data for the footfall as well as the extraction of Min, Mean and Max values.
     It returns a dictionary with these extracted values for the current footfall.
@@ -253,7 +255,7 @@ def do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow
     :param forceRow_footfall_end_noBuffer: force row equivalent to original footfall end frame of video
     :return: dictionary containing Min, Mean and Max for Fx, Fy, Fz
     """
-    #print("df force data shape: ", df_forces.shape)
+    # print("df force data shape: ", df_forces.shape)
 
     x_col = 0
     y_col = 1
@@ -283,7 +285,7 @@ def do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow
     Fy_footfall_noBuffer = df_forces.iloc[forceRow_footfall_begin_noBuffer:forceRow_footfall_end_noBuffer, y_col]
     Fz_footfall_noBuffer = df_forces.iloc[forceRow_footfall_begin_noBuffer:forceRow_footfall_end_noBuffer, z_col]
 
-    #print("Fx footfall before baselining: \n", Fx_footfall[1:5])
+    # print("Fx footfall before baselining: \n", Fx_footfall[1:5])
     #### baseline the extracted force data arrays:
     Fx_footfall = baseline_forces(Fx_footfall, Fx_baselineOffset)
     Fy_footfall = baseline_forces(Fy_footfall, Fy_baselineOffset)
@@ -293,11 +295,11 @@ def do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow
     Fy_footfall_noBuffer = baseline_forces(Fy_footfall_noBuffer, Fy_baselineOffset)
     Fz_footfall_noBuffer = baseline_forces(Fz_footfall_noBuffer, Fz_baselineOffset)
 
-    #print("Fx footfall after baselining: \n", Fx_footfall[1:5])
+    # print("Fx footfall after baselining: \n", Fx_footfall[1:5])
 
     #### smooth force data:
     # Butterworth filter
-    b, a = signal.butter(3, 0.1, btype='lowpass', analog=False) # order, cut-off frequency
+    b, a = signal.butter(3, 0.1, btype='lowpass', analog=False)  # order, cut-off frequency
 
     # lowpass filter for foot motion
     print("smoothing force data...")
@@ -353,7 +355,7 @@ def do_all_the_force_data_extraction_and_stuff(forceRow_footfall_begin, forceRow
     # MeanX, MeanY, MeanZ, IntegralX, IntegralY, IntegralZ, MinX, MinY, MinZ, MaxX, MaxY, MaxZ
     # for now leave integrals as the issue exists that force curves cross 0 within footfall...
     dict_keys = ["MeanX", "MeanY", "MeanZ", "MinX", "MinY", "MinZ", "MaxX", "MaxY", "MaxZ"]
-    dict_forces_summary = {new_key: [] for new_key in dict_keys}    # initializes empty dict with above keys
+    dict_forces_summary = {new_key: [] for new_key in dict_keys}  # initializes empty dict with above keys
     dict_forces_summary["MeanX"] = round(np.nanmean(Fx_footfall_noBuffer), 3)
     dict_forces_summary["MeanY"] = round(np.nanmean(Fy_footfall_noBuffer), 3)
     dict_forces_summary["MeanZ"] = round(np.nanmean(Fz_footfall_noBuffer), 3)
@@ -380,6 +382,3 @@ def baseline_forces(force_array, force_base):
     force_array_baselined = [round(x - force_base, 5) for x in force_array]
 
     return force_array_baselined
-
-
-
