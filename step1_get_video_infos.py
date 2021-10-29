@@ -30,7 +30,8 @@ lizardgroups_DLC = {"Gecko01": ["gdub", "skrys", "swil"],
                     "Skink02": ["ecun"],
                     "Skink03": ["edep"],
                     "Varanid01": ["vgoul"],
-                    "Varanid02": ["vbari", "vcaud", "vstorr"]}
+                    "Varanid02": ["vbari", "vcaud", "vstorr"],
+                    "Hfren": ["hfren"]}
 species_tmp = []
 temp = re.compile("([a-zA-Z]+)")
 for key in lizardgroups_DLC.keys():
@@ -119,10 +120,15 @@ def get_name_code(filenames, foldername, filelist, video_dir):
     # footfall_begin, footfall_end & foot are columns for later manually add frame numbers and foot: [FL, FR, HR, or HL]
     df = pd.DataFrame(columns=["filename", "code", "videoFrameCount", "family", "footfall_begin", "footfall_end", "foot", "notes"])
 
+   # print("filenames: ", filenames)
+
     for file, i in zip(filenames, range(len(filelist))):
         filename = file.rsplit(".", 1)[0]
+        #print("filename: ", filename)
         temp = re.compile("([a-zA-Z]+)([0-9]+)")
+        #print("temp: ", temp)
         res = temp.match(filename).groups()
+        #print("result: ", res)
         individual = str(res[0] + res[1])
         individual_spec = res[0]
         codenames[file] = individual
