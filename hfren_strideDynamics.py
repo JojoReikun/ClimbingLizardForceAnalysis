@@ -151,6 +151,8 @@ def hfren_strideDynamics():
             #arr_ref --> shape(average_force_stride)
             arr_ref_length = average_force_stride_length
             for array, array_name in zip([np.array(Fx_stride), np.array(Fy_stride), np.array(Fz_stride)], ["Fx", "Fy", "Fz"]):
+                print(f"\n ----- current force axis: {array_name} -----\n")
+
                 # compress array
                 array_interp = interp.interp1d(np.arange(array.size), array)
                 array_new = array_interp(np.linspace(0, array.size - 1, arr_ref_length))
@@ -194,5 +196,142 @@ def hfren_strideDynamics():
     for arr3 in res_dict_Fz[direction][individual][foot]:
         ax3.plot(np.linspace(xmin1, xmax1, arr3.size), arr3)
     plt.show()
+
+    # average all strides for each foot to get average force profile and standard deviation:
+    avg_dict_Fx = {'up': {
+        'hfren11': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}},
+        'hfren13': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}},
+        'hfren14': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}},
+        'hfren16': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}},
+        'hfren17': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}},
+        'hfren18': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}}
+    },
+        'down': {
+        'hfren11': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}},
+        'hfren13': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}},
+        'hfren14': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}},
+        'hfren16': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}},
+        'hfren17': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}},
+        'hfren18': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}}
+        }}
+
+    avg_dict_Fy = {'up': {
+        'hfren11': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []},
+                    'HL': {'average': [], 'sd': []}},
+        'hfren13': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []},
+                    'HL': {'average': [], 'sd': []}},
+        'hfren14': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []},
+                    'HL': {'average': [], 'sd': []}},
+        'hfren16': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []},
+                    'HL': {'average': [], 'sd': []}},
+        'hfren17': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []},
+                    'HL': {'average': [], 'sd': []}},
+        'hfren18': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []},
+                    'HL': {'average': [], 'sd': []}}
+    },
+        'down': {
+            'hfren11': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []},
+                        'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}},
+            'hfren13': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []},
+                        'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}},
+            'hfren14': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []},
+                        'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}},
+            'hfren16': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []},
+                        'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}},
+            'hfren17': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []},
+                        'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}},
+            'hfren18': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []},
+                        'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}}
+        }}
+
+    avg_dict_Fz = {'up': {
+        'hfren11': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []},
+                    'HL': {'average': [], 'sd': []}},
+        'hfren13': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []},
+                    'HL': {'average': [], 'sd': []}},
+        'hfren14': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []},
+                    'HL': {'average': [], 'sd': []}},
+        'hfren16': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []},
+                    'HL': {'average': [], 'sd': []}},
+        'hfren17': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []},
+                    'HL': {'average': [], 'sd': []}},
+        'hfren18': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []}, 'HR': {'average': [], 'sd': []},
+                    'HL': {'average': [], 'sd': []}}
+    },
+        'down': {
+            'hfren11': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []},
+                        'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}},
+            'hfren13': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []},
+                        'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}},
+            'hfren14': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []},
+                        'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}},
+            'hfren16': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []},
+                        'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}},
+            'hfren17': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []},
+                        'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}},
+            'hfren18': {'FR': {'average': [], 'sd': []}, 'FL': {'average': [], 'sd': []},
+                        'HR': {'average': [], 'sd': []}, 'HL': {'average': [], 'sd': []}}
+        }}
+
+
+    #print(res_dict_Fx[direction][individual][foot])
+
+    for res_dict, avg_dict in zip([res_dict_Fx, res_dict_Fy, res_dict_Fz], [avg_dict_Fx, avg_dict_Fy, avg_dict_Fz]):
+        for direction in res_dict.keys():
+            for individual in res_dict[direction].keys():
+                for foot in res_dict[direction][individual].keys():
+                    for i in range(average_force_stride_length):
+                        list_of_values_i = []
+                        #print("length of res_dict_Fx[direction][individual][foot]: ", len(res_dict[direction][individual][foot]))
+                        for n in range(len(res_dict[direction][individual][foot])):
+                            # get the i-th value of each stride n and add it to the list
+                            list_of_values_i.append(res_dict[direction][individual][foot][n][i])
+
+                        #print("list of values i: ", list_of_values_i)
+                        avg_dict[direction][individual][foot]["average"].append(np.nanmean(list_of_values_i))
+                        avg_dict[direction][individual][foot]["sd"].append(np.std(list_of_values_i))
+    # print("avg_dict_Fx: ", avg_dict_Fx)
+
+
+    # plot resultant average force profile:
+    directions = ['up', 'down']
+    individuals = ['hfren11', 'hfren13', 'hfren14', 'hfren16', 'hfren17', 'hfren18']
+    feet = ['FR', 'FL', 'HR', 'HL']
+
+    for direction in directions:
+        for individual in individuals:
+            for foot in feet:
+                fig, (ax1, ax2, ax3) = plt.subplots(nrows=3)
+                ax1.plot(np.linspace(xmin1, xmax1, average_force_stride_length),
+                         avg_dict_Fx[direction][individual][foot]["average"], lw=2)
+                ax1.fill_between(np.linspace(xmin1, xmax1, average_force_stride_length),
+                                 np.subtract(avg_dict_Fx[direction][individual][foot]["average"],
+                                             avg_dict_Fx[direction][individual][foot]["sd"]),
+                                 np.add(avg_dict_Fx[direction][individual][foot]["average"],
+                                        avg_dict_Fx[direction][individual][foot]["sd"]),
+                                 facecolor='gray', alpha=0.5)
+                ax2.plot(np.linspace(xmin1, xmax1, average_force_stride_length),
+                         avg_dict_Fy[direction][individual][foot]["average"], lw=2)
+                ax2.fill_between(np.linspace(xmin1, xmax1, average_force_stride_length),
+                                 np.subtract(avg_dict_Fy[direction][individual][foot]["average"],
+                                             avg_dict_Fy[direction][individual][foot]["sd"]),
+                                 np.add(avg_dict_Fy[direction][individual][foot]["average"],
+                                        avg_dict_Fy[direction][individual][foot]["sd"]),
+                                 facecolor='gray', alpha=0.5)
+                ax3.plot(np.linspace(xmin1, xmax1, average_force_stride_length),
+                         avg_dict_Fz[direction][individual][foot]["average"], lw=2)
+                ax3.fill_between(np.linspace(xmin1, xmax1, average_force_stride_length),
+                                 np.subtract(avg_dict_Fz[direction][individual][foot]["average"],
+                                             avg_dict_Fz[direction][individual][foot]["sd"]),
+                                 np.add(avg_dict_Fz[direction][individual][foot]["average"],
+                                        avg_dict_Fz[direction][individual][foot]["sd"]),
+                                 facecolor='gray', alpha=0.5)
+                fig.suptitle(f"{direction} - {individual} - {foot}")
+
+                # save plots:
+                save_dir = r'D:\Jojo\PhD\ClimbingRobot\ClimbingLizardForceAnalysis\forceData_hfren\correctedForces\average_force_profiles'
+                plt.savefig(os.path.join(save_dir, f"averageForces_{direction}_{individual}_{foot}.jpg"))
+                plt.close()
+                #plt.show()
 
     return
