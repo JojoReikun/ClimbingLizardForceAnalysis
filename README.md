@@ -26,6 +26,7 @@ The step gui looks like this:
 **Now you need to add the frame numbers for the footfall and the foot (FL, FR, HR or HL) to this 
 csv file. Take notes in the notes column if wanted, they will be transferred to final file. 
 Save the file and close.**
+
 ---
 
 ### Step2:
@@ -56,6 +57,9 @@ Requires: folder with all force data .txt files which are names in the same way 
 
 All force data files for the geckos are stored in folder: forceData_geckos
 
+---
+**hfren specific
+---
 
 ### Step4: hfren average force profiles for stride dynamics analysis
 !!This step requires a few pre-arranged files!!
