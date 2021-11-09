@@ -216,8 +216,7 @@ def extract_force_data_for_steps():
 
                             # writing the dict_forces_summary to the df_forceAnalysis_calib:
                             print("filling in extracted force data...")
-                            index_current_force_file = df_force_analysis_calib.index[
-                                df_force_analysis_calib["force_file"] == current_force_file].tolist()[0]
+                            index_current_force_file = df_force_analysis_calib.index[df_force_analysis_calib["force_file"] == current_force_file].tolist()[0]
                             for force_element, force_value in dict_forces_summary.items():
                                 # print("force_element: ", force_element,
                                 #      "force_value: ", force_value)

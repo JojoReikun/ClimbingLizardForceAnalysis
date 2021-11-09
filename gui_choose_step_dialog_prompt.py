@@ -38,9 +38,18 @@ class choose_step_prompt():
         step3_button = Button(self.root, text="Step 3: Align forces & videos & extract Max, Min, Means", bg='olive drab',
                                  command= lambda: self.finish("step3"))
 
+        label4 = Label(self.root,
+                       text="Stride Dynamics for hfren geckos, requires force output (matlab), corrected forces, DLC results and morphometrics!",
+                       fg='firebrick1', bg=bg_win)
+        label4['font'] = label2Font
+        step4_button = Button(self.root, text="Step 4: Generate mean force profiles",
+                              bg='olive drab',
+                              command=lambda: self.finish("step4"))
+
         step1_button['font'] = buttonFont
         step2_button['font'] = buttonFont
         step3_button['font'] = buttonFont
+        step4_button['font'] = buttonFont
 
         # arrange labels and buttons in window
         label.pack(pady=10, padx=10)
@@ -49,6 +58,8 @@ class choose_step_prompt():
         step2_button.pack(fill=X, padx=50, pady=5)
         label3.pack(pady=5)
         step3_button.pack(fill=X, padx=50, pady=5)
+        label4.pack(pady=5)
+        step4_button.pack(fill=X, padx=50, pady=5)
 
 
         # start the loop, and wait for the dialog to be
