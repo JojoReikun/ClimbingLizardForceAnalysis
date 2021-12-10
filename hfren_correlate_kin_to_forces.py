@@ -180,8 +180,14 @@ for foot in ["FR", "FL", "HR", "HL"]:
         axs[2,0].title.set_text(f'{force} - toe_spreading_F')
         axs[2,1].scatter(x, force_kin_dict[foot]["kinematics"]["toe_spreading_H"])
         axs[2,1].title.set_text(f'{force} - toe_spreading_H')
+        fig.tight_layout(pad=1)
         fig.suptitle(f"{foot}")
 
-        plt.show()
+        # save plots:
+        save_dir = r'D:\Jojo\PhD\ClimbingRobot\ClimbingLizardForceAnalysis\kin_force_corr'
+        plt.savefig(os.path.join(save_dir, f"kin_force_{foot}_{force}.jpg"))
+        plt.close()
+
+        #plt.show()
 
 # TODO: UPLOAD ALL THIS TO GITHUB AND PULL ONTO LAPTOP!
