@@ -160,6 +160,7 @@ for i in range(hfren_forces.shape[0]):
         hfren_kin_match_foot = hfren_kin_match.index[hfren_kin_match["foot"] == foot_kin_to_match].tolist()
         print("indices of kin rows which match the force foot: ", hfren_kin_match_foot)
 
+##### UP
         if direction_force == "up":
 
             # now average the kinematic data for these steps:
@@ -209,6 +210,7 @@ for i in range(hfren_forces.shape[0]):
             force_kin_dict_up[foot_force]["kinematics"]["toe_spreading_F"].append(round(toes_F_average_up[0], 2))
             force_kin_dict_up[foot_force]["kinematics"]["toe_spreading_H"].append(round(toes_H_average_up[0], 2))
 
+##### DOWN
         elif direction_force == "down":
             # now average the kinematic data for these steps:
             wrist_F_list_down = []
