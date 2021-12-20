@@ -335,7 +335,7 @@ def hfren_strideDynamics():
                 plt.close()
                 #plt.show()
 
-                #TODO: save dictionaries of avg_Fx, avg_Fy, and avg_Fz as csv files
+                # save dictionaries of avg_Fx, avg_Fy, and avg_Fz as csv files
                 # as avg_forces_{direction}_{individual}_{foot}.csv with frame, Fx, Fy, Fz
 
                 frame = range(len(avg_dict_Fx[direction][individual][foot]["average"]))

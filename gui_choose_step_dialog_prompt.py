@@ -46,10 +46,19 @@ class choose_step_prompt():
                               bg='olive drab',
                               command=lambda: self.finish("step4"))
 
+        label5 = Label(self.root,
+                       text="toppling moments require average force profiles, added dynamic lenghts to DOKA data, bodymasses",
+                       fg='firebrick1', bg=bg_win)
+        label5['font'] = label2Font
+        step5_button = Button(self.root, text="Step 5: Calculate hfren toppling moments",
+                              bg='olive drab',
+                              command=lambda: self.finish("step5"))
+
         step1_button['font'] = buttonFont
         step2_button['font'] = buttonFont
         step3_button['font'] = buttonFont
         step4_button['font'] = buttonFont
+        step5_button['font'] = buttonFont
 
         # arrange labels and buttons in window
         label.pack(pady=10, padx=10)
@@ -60,7 +69,8 @@ class choose_step_prompt():
         step3_button.pack(fill=X, padx=50, pady=5)
         label4.pack(pady=5)
         step4_button.pack(fill=X, padx=50, pady=5)
-
+        label5.pack(pady=5)
+        step5_button.pack(fill=X, padx=50, pady=5)
 
         # start the loop, and wait for the dialog to be
         # destroyed. Then, return the value:

@@ -2,6 +2,7 @@ from step3_alignVideo_with_forceData import extract_force_data_for_steps
 from step2_lizard_force_data_analysis import nano17_openCV_as_ImageJ
 from step1_get_video_infos import get_list_of_videos, get_name_code, convert_videos_to_ImageJ_format
 from hfren_strideDynamics import hfren_strideDynamics
+from hfren_climbing_moments import hfren_climbing_moments
 import os
 import gui_choose_step_dialog_prompt
 
@@ -64,6 +65,12 @@ if __name__ == "__main__":
         print("\n\nSTEP 4\n")
         hfren_strideDynamics()
 
+    elif operation == "step5":
+        """ 
+        This goes into hfren_climbing_moments.py and calculates the toppling moments of the hfren lizards
+        """
+        print("\n\nSTEP 5\n")
+        hfren_climbing_moments()
 
 
 
