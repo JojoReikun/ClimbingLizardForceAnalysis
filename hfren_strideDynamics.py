@@ -28,6 +28,7 @@ import matplotlib.pyplot as plt
 
 
 ### Set up:
+# lab workstation:
 force_sync_file_path = r'D:\Jojo\PhD\ClimbingRobot\ClimbingLizardForceAnalysis\forceData_hfren\correctedForces\Gecko_forces_sync_output.csv'
 filename_match_path = r'D:\Jojo\PhD\ClimbingRobot\ClimbingLizardForceAnalysis\hfren_filename_matching_chart.csv'
 
@@ -333,5 +334,22 @@ def hfren_strideDynamics():
                 plt.savefig(os.path.join(save_dir, f"averageForces_{direction}_{individual}_{foot}.jpg"))
                 plt.close()
                 #plt.show()
+
+                #TODO: save dictionaries of avg_Fx, avg_Fy, and avg_Fz as csv files
+                # as avg_forces_{direction}_{individual}_{foot}.csv with frame, Fx, Fy, Fz
+
+                frame = range(avg_dict_Fx[direction][individual][foot]["average"])
+                Fx = avg_dict_Fx[direction][individual][foot]["average"]
+                Fy = avg_dict_Fy[direction][individual][foot]["average"]
+                Fz = avg_dict_Fz[direction][individual][foot]["average"]
+                save_dict = {"frame": frame,
+                             "avg_Fx": Fx,
+                             "avg_Fy": Fy,
+                             "avg_Fz": Fz}
+                df = pd.DataFrame.from_dict(save_dict)
+
+                print(f"save dict for {direction}_{individual}_{foot}: ", save_dict)
+                #df.to_csv(r'avg_force_{direction}_{individual}_{foot}.csv', index=False, header=True)
+
 
     return
