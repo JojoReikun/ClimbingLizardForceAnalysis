@@ -338,7 +338,7 @@ def hfren_strideDynamics():
                 #TODO: save dictionaries of avg_Fx, avg_Fy, and avg_Fz as csv files
                 # as avg_forces_{direction}_{individual}_{foot}.csv with frame, Fx, Fy, Fz
 
-                frame = range(avg_dict_Fx[direction][individual][foot]["average"])
+                frame = range(len(avg_dict_Fx[direction][individual][foot]["average"]))
                 Fx = avg_dict_Fx[direction][individual][foot]["average"]
                 Fy = avg_dict_Fy[direction][individual][foot]["average"]
                 Fz = avg_dict_Fz[direction][individual][foot]["average"]
@@ -349,7 +349,7 @@ def hfren_strideDynamics():
                 df = pd.DataFrame.from_dict(save_dict)
 
                 print(f"save dict for {direction}_{individual}_{foot}: ", save_dict)
-                #df.to_csv(r'avg_force_{direction}_{individual}_{foot}.csv', index=False, header=True)
+                df.to_csv(os.path.join(save_dir, r'avg_force_{}_{}_{}.csv'.format(direction, individual, foot)), index=False, header=True)
 
 
     return
