@@ -34,6 +34,9 @@ h = 0.004  # m
 g = 9.81   # m/s^2
 
 
+# pd.set_option('display.max_columns', None)
+
+
 def loop_encode(i):
     # get utf-8 encoded version of the string
     cell_value = 'stance000{}'.format(i).encode()
@@ -53,6 +56,8 @@ def calc_toppling_moment(g, h, forceZ_FR_i, forceZ_FL_i, forceZ_HR_i, forceZ_HL_
 
     m = bodymasses_dict[individual]/1000    # to get mass in kg
     moment = h * m * g + Fn_z_i * length
+
+    #print("\n >>>>>>>> in function moment: ", moment, "\n")
 
     return moment
 
@@ -75,7 +80,6 @@ def hfren_climbing_moments():
 
         filename = doka_file.rsplit(os.sep, 1)[1]
         print("\n------> current file: ", filename)
-        print(kin_data.head())
         individual = filename.split("_", 1)[0]
         direction = filename.split("_", 2)[1]
         print("individual: ", individual, "direction: ", direction)
@@ -91,10 +95,10 @@ def hfren_climbing_moments():
         force_profile_HL = pd.read_csv(os.path.join(force_file_folder, f"avg_force_{direction}_{individual}_HL.csv"))
 
         # only z axis forces (normal forces) are needed for topplling moments:
-        force_profile_FR["avg_Fz"]
-        force_profile_FL["avg_Fz"]
-        force_profile_HR["avg_Fz"]
-        force_profile_HL["avg_Fz"]
+        force_profile_FR = force_profile_FR["avg_Fz"]
+        force_profile_FL = force_profile_FL["avg_Fz"]
+        force_profile_HR = force_profile_HR["avg_Fz"]
+        force_profile_HL = force_profile_HL["avg_Fz"]
 
         force_array_length = len(force_profile_FR)
 
@@ -103,9 +107,15 @@ def hfren_climbing_moments():
             for i in range(1, max_step_count):
                 stance_moments = []
                 stance_counter = loop_encode(i)
-                kin_data_stance_section = kin_data[kin_data[col] == stance_counter]
+                kin_data_stance_section_indices = kin_data.index[kin_data[col] == str(stance_counter)].tolist()
+                print("\n kin_data_stance_section_indices: ", kin_data_stance_section_indices, "\n")
+                kin_data_stance_section = pd.DataFrame(kin_data[kin_data[col] == str(stance_counter)])
                 # TODO: FIX! kin_data_stance_section is always empty...
-                print("kin_data_stance_section: ", kin_data_stance_section)
+                #print("kin_data_stance_section: ", kin_data_stance_section, type(kin_data_stance_section))
+                # print the indices of the kin_data section which are later called by i loop
+                kin_data_stance_section_top = kin_data_stance_section.head()
+                stance_indices = list(kin_data_stance_section_top.index.values)
+                print(stance_indices)
 
                 print(f"col: {col}, foot: {foot}, stance counter: {stance_counter}")
 
@@ -116,24 +126,32 @@ def hfren_climbing_moments():
                 else:
                     df_stance_section_indices = list(kin_data_stance_section.index.values)  # list of stance indices
                     stance_length = len(df_stance_section_indices)
-                    print("stance_length: ", stance_length)
+                    #print("stance_length: ", stance_length)
 
                     ####### CALCULATE THE TOPPLING MOMENTS:
                     # depending on the stancelength, that many equally spread data points of the force data will be used
                     force_array_interval = round(force_array_length / stance_length) - 1
+                    #print("force array interval: ", force_array_interval)
+                    #print("force_profile_FR: ", force_profile_FR)
                     force_profile_FR_points = [force_profile_FR[n*force_array_interval] for n in range(stance_length)]
                     force_profile_FL_points = [force_profile_FL[n*force_array_interval] for n in range(stance_length)]
                     force_profile_HR_points = [force_profile_HR[n*force_array_interval] for n in range(stance_length)]
                     force_profile_HL_points = [force_profile_HL[n*force_array_interval] for n in range(stance_length)]
 
-                    for i in range(stance_length):
-                        toppling_moment = calc_toppling_moment(g, h, force_profile_FR_points[i], force_profile_FL_points[i],
-                                             force_profile_HR_points[i], force_profile_HL_points[i],
-                                             kin_data_stance_section["dyn_footpair_height_FL"][i],
-                                             kin_data_stance_section["dyn_footpair_height_FR"][i], individual, foot)
+                    print("force_profile_FR_points: ", force_profile_FR_points)
+
+                    for j, i in enumerate(stance_indices): # i = from 1 ; j = actual indices
+                        print(f"length of frame i ({i}): ", kin_data_stance_section.loc[i, "dyn_footpair_height_FL"])
+                        toppling_moment = calc_toppling_moment(g, h, force_profile_FR_points[j],
+                                                               force_profile_FL_points[j],
+                                                               force_profile_HR_points[j], force_profile_HL_points[j],
+                                                               kin_data_stance_section.loc[i, "dyn_footpair_height_FL"],
+                                                               kin_data_stance_section.loc[i, "dyn_footpair_height_FR"],
+                                                               individual, foot)
 
                         stance_moments.append(toppling_moment)
 
+                    # TODO: Moments are all nan!! Check why
                     print(f" moments: {stance_moments}")
 
     return
