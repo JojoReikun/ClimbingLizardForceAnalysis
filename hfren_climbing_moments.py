@@ -8,13 +8,14 @@ Because we only have one foot at a time for forces BUT for dynamic analysis we w
 hind foot at the same time, average force curve profiles for one individual for each foot were calculated.
 (in hfren_strideDynamics.py)
 
-TODO: export average force profiles as data arrays to be accessible to this module.
-
 For the calculations the following things are needed:
 - Forces for the stride (average force profiles)
 - Length between the fore and hind foot attached (add to DOKA)
 - height of the BCOM compared to wall
 - mass of lizards
+
+Because the average force profile of a stride for a foot has a lot more frames than the kinematic stride data,
+an interval selection of points of the force data is performed depending on stride length.
 """
 
 #### IMPORTS:
@@ -22,6 +23,8 @@ from glob import glob
 import pandas as pd
 import numpy as np
 import os
+import matplotlib.pyplot as plt
+import seaborn as sb
 
 bodymasses_dict = {"hfren11": 2.75,
                    "hfren13": 3.25,
@@ -35,6 +38,20 @@ g = 9.81   # m/s^2
 
 
 # pd.set_option('display.max_columns', None)
+
+
+moments_dict = {"up" : {"hfren11": [],
+                        "hfren13": [],
+                        "hfren14": [],
+                        "hfren16": [],
+                        "hfren17": [],
+                        "hfren18": []},
+                "down" : {"hfren11": [],
+                        "hfren13": [],
+                        "hfren14": [],
+                        "hfren16": [],
+                        "hfren17": [],
+                        "hfren18": []}}
 
 
 def loop_encode(i):
@@ -57,7 +74,11 @@ def calc_toppling_moment(g, h, forceZ_FR_i, forceZ_FL_i, forceZ_HR_i, forceZ_HL_
     m = bodymasses_dict[individual]/1000    # to get mass in kg
     moment = h * m * g + Fn_z_i * length
 
-    #print("\n >>>>>>>> in function moment: ", moment, "\n")
+    # print("____")
+    # print(f"individual: {individual}")
+    # print("h * m * g + Fn_z_i * length: ", f"{h} * {m} * {g} + {Fn_z_i} * {length}")
+    # print("\n >>>>>>>> in function moment: ", moment, "\n")
+    # print("____")
 
     return moment
 
@@ -151,7 +172,23 @@ def hfren_climbing_moments():
 
                         stance_moments.append(toppling_moment)
 
-                    # TODO: Moments are all nan!! Check why
+                        moments_dict[direction][individual].append(toppling_moment)
+
+
                     print(f" moments: {stance_moments}")
+
+    print("\n DONE! \n >>>>>>>>>>>>>> moments_dict: \n", moments_dict)
+
+    ### PLOTTING:
+    for direction in moments_dict.keys():
+        for individual in moments_dict[direction].keys():
+            moments_dict[direction][individual] = np.nanmean(moments_dict[direction][individual])
+            #moments_dict[direction][individual]["sd"] = np.nanstd(moments_dict[direction][individual])
+
+    pd.DataFrame(moments_dict).plot(kind='bar')
+    plt.ylabel("toppling moment")
+    plt.xlabel("individual")
+
+    plt.show()
 
     return
