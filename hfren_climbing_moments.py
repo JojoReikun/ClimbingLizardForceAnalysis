@@ -16,6 +16,9 @@ For the calculations the following things are needed:
 
 Because the average force profile of a stride for a foot has a lot more frames than the kinematic stride data,
 an interval selection of points of the force data is performed depending on stride length.
+
+The moment for climbing head-up act around the hind feet, hence Fzn is from the fore feet, whereas for climbing head-down
+this is the other way around: The moment acts around the fore feet, hence Fzn is from the hind feet.
 """
 
 #### IMPORTS:
@@ -61,14 +64,20 @@ def loop_encode(i):
     return cell_value
 
 
-def calc_toppling_moment(g, h, forceZ_FR_i, forceZ_FL_i, forceZ_HR_i, forceZ_HL_i, length_FL_i, length_FR_i, individual, foot):
+def calc_toppling_moment(g, h, forceZ_FR_i, forceZ_FL_i, forceZ_HR_i, forceZ_HL_i, length_FL_i, length_FR_i, individual, foot, direction):
     # calculates the toppling moment around the hindfoot, assuming only a 2D view of the scene
     # and assuming the tail is not a contact point on the wall.
     if foot == "FL":
-        Fn_z_i = forceZ_FL_i
+        if direction == "up":
+            Fn_z_i = forceZ_FL_i
+        elif direction == "down":
+            Fn_z_i = forceZ_HR_i
         length = length_FL_i
     elif foot == "FR":
-        Fn_z_i = forceZ_FR_i
+        if direction == "up":
+            Fn_z_i = forceZ_FR_i
+        elif direction == "down":
+            Fn_z_i = forceZ_HL_i
         length = length_FR_i
 
     m = bodymasses_dict[individual]/1000    # to get mass in kg
@@ -168,7 +177,7 @@ def hfren_climbing_moments():
                                                                force_profile_HR_points[j], force_profile_HL_points[j],
                                                                kin_data_stance_section.loc[i, "dyn_footpair_height_FL"],
                                                                kin_data_stance_section.loc[i, "dyn_footpair_height_FR"],
-                                                               individual, foot)
+                                                               individual, foot, direction)
 
                         stance_moments.append(toppling_moment)
 
