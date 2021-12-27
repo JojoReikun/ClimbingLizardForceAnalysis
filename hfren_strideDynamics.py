@@ -302,21 +302,29 @@ def hfren_strideDynamics():
 
     # smooth average force profiles
     if smooth_forces == True:
+        print("smoothing... ")
+        wl = 51
         for direction in directions:
             for individual in individuals:
                 for foot in feet:
                     x = np.linspace(xmin1, xmax1, average_force_stride_length)
-                    b, a = signal.butter(3, 0.1, btype='lowpass', analog=False)
+                    b, a = signal.butter(3, 0.03, btype='lowpass', analog=False)
                     # lowpass filter for foot motion
-                    avg_dict_Fx[direction][individual][foot]["average_smoothed"] = signal.filtfilt(b, a, avg_dict_Fx[direction][
-                        individual][foot]["average"])
-                    avg_dict_Fy[direction][individual][foot]["average_smoothed"] = signal.filtfilt(b, a, avg_dict_Fy[
-                        direction][
-                        individual][foot]["average"])
-                    avg_dict_Fz[direction][individual][foot]["average_smoothed"] = signal.filtfilt(b, a, avg_dict_Fz[
-                        direction][
-                        individual][foot]["average"])
+                    # avg_dict_Fx[direction][individual][foot]["average_smoothed"] = signal.filtfilt(b, a, avg_dict_Fx[direction][
+                    #     individual][foot]["average"])
+                    # avg_dict_Fy[direction][individual][foot]["average_smoothed"] = signal.filtfilt(b, a, avg_dict_Fx[direction][
+                    #     individual][foot]["average"])
+                    # avg_dict_Fz[direction][individual][foot]["average_smoothed"] = signal.filtfilt(b, a, avg_dict_Fx[direction][
+                    #     individual][foot]["average"])
 
+                    avg_dict_Fx[direction][individual][foot]["average_smoothed"] = signal.savgol_filter(avg_dict_Fx[
+                        direction][individual][foot]["average"], wl, 3)
+                    avg_dict_Fy[direction][individual][foot]["average_smoothed"] = signal.savgol_filter(avg_dict_Fx[
+                        direction][individual][foot]["average"], wl, 3)
+                    avg_dict_Fz[direction][individual][foot]["average_smoothed"] = signal.savgol_filter(avg_dict_Fx[
+                        direction][individual][foot]["average"], wl, 3)
+
+    print("plotting...")
     for direction in directions:
         for individual in individuals:
             for foot in feet:
@@ -359,9 +367,9 @@ def hfren_strideDynamics():
 
                 # save plots:
                 save_dir = r'D:\Jojo\PhD\ClimbingRobot\ClimbingLizardForceAnalysis\forceData_hfren\correctedForces\average_force_profiles'
-                plt.savefig(os.path.join(save_dir, f"averageForces_{direction}_{individual}_{foot}.jpg"))
-                plt.close()
-                #plt.show()
+                #plt.savefig(os.path.join(save_dir, f"averageForces_{direction}_{individual}_{foot}.jpg"))
+                #plt.close()
+                plt.show()
 
                 # save dictionaries of avg_Fx, avg_Fy, and avg_Fz as csv files
                 # as avg_forces_{direction}_{individual}_{foot}.csv with frame, Fx, Fy, Fz
