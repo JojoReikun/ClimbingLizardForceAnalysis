@@ -36,6 +36,13 @@ bodymasses_dict = {"hfren11": 2.75,
                    "hfren17": 2.30,
                    "hfren18": 3.53}     # grams
 
+SVL_dict = {"hfren11": 426,
+                   "hfren13": 419,
+                   "hfren14": 463,
+                   "hfren16": 463,
+                   "hfren17": 364,
+                   "hfren18": 424}     # mm
+
 h = 0.004  # m
 g = 9.81   # m/s^2
 
@@ -55,6 +62,8 @@ moments_dict = {"up" : {"hfren11": [],
                         "hfren16": [],
                         "hfren17": [],
                         "hfren18": []}}
+
+lengths_dict = {"up": [], "down": []}
 
 
 def loop_encode(i):
@@ -140,14 +149,13 @@ def hfren_climbing_moments():
                 kin_data_stance_section_indices = kin_data.index[kin_data[col] == str(stance_counter)].tolist()
                 print("\n kin_data_stance_section_indices: ", kin_data_stance_section_indices, "\n")
                 kin_data_stance_section = pd.DataFrame(kin_data[kin_data[col] == str(stance_counter)])
-                # TODO: FIX! kin_data_stance_section is always empty...
+
                 #print("kin_data_stance_section: ", kin_data_stance_section, type(kin_data_stance_section))
                 # print the indices of the kin_data section which are later called by i loop
-                kin_data_stance_section_top = kin_data_stance_section.head()
-                stance_indices = list(kin_data_stance_section_top.index.values)
-                print(stance_indices)
+                #kin_data_stance_section_top = kin_data_stance_section.head()
+                stance_indices = list(kin_data_stance_section.index.values)
 
-                print(f"col: {col}, foot: {foot}, stance counter: {stance_counter}")
+                print(f"col: {col}, foot: {foot}, stance counter: {stance_counter}, stance length: {len(kin_data_stance_section_indices)}")
 
                 if len(kin_data_stance_section) == 0:   # could change this to a filter for stance sections > 5 too
                     print("stance section is length 0... break")
@@ -161,7 +169,7 @@ def hfren_climbing_moments():
                     ####### CALCULATE THE TOPPLING MOMENTS:
                     # depending on the stancelength, that many equally spread data points of the force data will be used
                     force_array_interval = round(force_array_length / stance_length) - 1
-                    #print("force array interval: ", force_array_interval)
+                    print("force array interval: ", force_array_interval)
                     #print("force_profile_FR: ", force_profile_FR)
                     force_profile_FR_points = [force_profile_FR[n*force_array_interval] for n in range(stance_length)]
                     force_profile_FL_points = [force_profile_FL[n*force_array_interval] for n in range(stance_length)]
@@ -172,6 +180,9 @@ def hfren_climbing_moments():
 
                     for j, i in enumerate(stance_indices): # i = from 1 ; j = actual indices
                         print(f"length of frame i ({i}): ", kin_data_stance_section.loc[i, "dyn_footpair_height_FL"])
+                        # TODO: convert length from px to mm
+                        # TODO: normalize force data with body weight
+                        # TODO: normalize length data with SVL
                         toppling_moment = calc_toppling_moment(g, h, force_profile_FR_points[j],
                                                                force_profile_FL_points[j],
                                                                force_profile_HR_points[j], force_profile_HL_points[j],
@@ -184,7 +195,7 @@ def hfren_climbing_moments():
                         moments_dict[direction][individual].append(toppling_moment)
 
 
-                    print(f" moments: {stance_moments}")
+                    print(f">>>>> moments: {stance_moments}\n")
 
     print("\n DONE! \n >>>>>>>>>>>>>> moments_dict: \n", moments_dict)
 

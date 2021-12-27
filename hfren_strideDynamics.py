@@ -308,14 +308,12 @@ def hfren_strideDynamics():
                     x = np.linspace(xmin1, xmax1, average_force_stride_length)
                     b, a = signal.butter(3, 0.1, btype='lowpass', analog=False)
                     # lowpass filter for foot motion
-                    avg_dict_Fx[direction][individual][foot]["average_smoothed"] = signal.filtfilt(b, a, avg_dict_Fx[direction][
-                        individual][foot]["average"])
+                    avg_dict_Fx[direction][individual][foot]["average_smoothed"] = signal.filtfilt(b, a, avg_dict_Fx[
+                        direction][individual][foot]["average"])
                     avg_dict_Fy[direction][individual][foot]["average_smoothed"] = signal.filtfilt(b, a, avg_dict_Fy[
-                        direction][
-                        individual][foot]["average"])
+                        direction][individual][foot]["average"])
                     avg_dict_Fz[direction][individual][foot]["average_smoothed"] = signal.filtfilt(b, a, avg_dict_Fz[
-                        direction][
-                        individual][foot]["average"])
+                        direction][individual][foot]["average"])
 
     for direction in directions:
         for individual in individuals:
