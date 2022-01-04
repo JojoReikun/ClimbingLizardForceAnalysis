@@ -25,6 +25,7 @@ this is the other way around: The moment acts around the fore feet, hence Fzn is
 from glob import glob
 import pandas as pd
 import numpy as np
+import scipy.interpolate as interp
 import os
 import matplotlib.pyplot as plt
 import seaborn as sb
@@ -43,8 +44,15 @@ SVL_dict = {"hfren11": 426,
                    "hfren17": 364,
                    "hfren18": 424}     # mm
 
-h = 0.004  # m
+conv_factor_dict = {"hfren11": 0.6,
+                   "hfren13": 0.67,
+                   "hfren14": 0.67,
+                   "hfren16": 0.6,
+                   "hfren17": 0.6,
+                   "hfren18": 0.58}     # px/mm
+
 g = 9.81   # m/s^2
+h = 0
 
 
 # pd.set_option('display.max_columns', None)
@@ -89,16 +97,44 @@ def calc_toppling_moment(g, h, forceZ_FR_i, forceZ_FL_i, forceZ_HR_i, forceZ_HL_
             Fn_z_i = forceZ_HL_i
         length = length_FR_i
 
+    # convert length from px to mm:
+    length = length/conv_factor_dict[individual]
+    # convert mm to m:
+    length = length/1000
+
     m = bodymasses_dict[individual]/1000    # to get mass in kg
+
+    # # use SVL divided by 100 for each Gecko [mm]:
+    # h = SVL_dict[individual]/100
+    # # convert mm to m:
+    # h = h/1000
+
+    # use value from Autumn et al. (2006) paper --> 2cm off the ground
+    h = 0.02    # in m
+
+    # # estimate h assuming a static equilibrium
+    # h = estimate_static_equ_h(Fn_z_i, length, m, g)
+
     moment = h * m * g + Fn_z_i * length
 
-    # print("____")
-    # print(f"individual: {individual}")
-    # print("h * m * g + Fn_z_i * length: ", f"{h} * {m} * {g} + {Fn_z_i} * {length}")
-    # print("\n >>>>>>>> in function moment: ", moment, "\n")
-    # print("____")
+    print("____")
+    print(f"individual: {individual}")
+    print("h * m * g + Fn_z_i * length: ", f"{h} * {m} * {g} + {Fn_z_i} * {length}")
+    print("\n >>>>>>>> in function moment: ", moment, "\n")
+    print("____")
 
     return moment
+
+
+def estimate_static_equ_h(Fn_z_i, length, m, g):
+    """
+    for static equilibrium of the toppling moment, we can assume it to be zero. Therefore, for a case with two contact points beeing the feet,
+    h can be calculated as: h = -(Fnf * L1)/m*g (for up) or using Fnh for down.
+    :return:
+    """
+    h = -1.0 * (Fn_z_i * length) / (m * g)
+    return h
+
 
 
 def hfren_climbing_moments():
@@ -112,6 +148,10 @@ def hfren_climbing_moments():
 
     # go through DLC result files of lizards to iterate through all strides
     for doka_file in doka_files_list:
+        # make two empty lists for storing all step_moments for this individual
+        stance_moments_FR = []
+        stance_moments_FL = []
+
         # read in the DOKA data
         kin_data = pd.read_csv(doka_file)
         kin_data.rename(columns=lambda x: x.strip(), inplace=True)  # remove whitespaces from column names
@@ -128,10 +168,10 @@ def hfren_climbing_moments():
         max_step_count = 1000
 
         # find matching averaged foot force profiles for individual:
-        force_profile_FR = pd.read_csv(os.path.join(force_file_folder, f"avg_force_{direction}_{individual}_FR.csv"))
-        force_profile_FL = pd.read_csv(os.path.join(force_file_folder, f"avg_force_{direction}_{individual}_FL.csv"))
-        force_profile_HR = pd.read_csv(os.path.join(force_file_folder, f"avg_force_{direction}_{individual}_HR.csv"))
-        force_profile_HL = pd.read_csv(os.path.join(force_file_folder, f"avg_force_{direction}_{individual}_HL.csv"))
+        force_profile_FR = pd.read_csv(os.path.join(force_file_folder, f"avg_force_{direction}_{individual}_FR_smoothed.csv"))
+        force_profile_FL = pd.read_csv(os.path.join(force_file_folder, f"avg_force_{direction}_{individual}_FL_smoothed.csv"))
+        force_profile_HR = pd.read_csv(os.path.join(force_file_folder, f"avg_force_{direction}_{individual}_HR_smoothed.csv"))
+        force_profile_HL = pd.read_csv(os.path.join(force_file_folder, f"avg_force_{direction}_{individual}_HL_smoothed.csv"))
 
         # only z axis forces (normal forces) are needed for topplling moments:
         force_profile_FR = force_profile_FR["avg_Fz"]
@@ -178,37 +218,87 @@ def hfren_climbing_moments():
 
                     print("force_profile_FR_points: ", force_profile_FR_points)
 
-                    for j, i in enumerate(stance_indices): # i = from 1 ; j = actual indices
-                        print(f"length of frame i ({i}): ", kin_data_stance_section.loc[i, "dyn_footpair_height_FL"])
-                        # TODO: convert length from px to mm
-                        # TODO: normalize force data with body weight
-                        # TODO: normalize length data with SVL
+                    for j, k in enumerate(stance_indices): # k = from 1 ; j = actual indices
+                        #print(f"length of frame i ({i}): ", kin_data_stance_section.loc[i, "dyn_footpair_height_FL"])
+
                         toppling_moment = calc_toppling_moment(g, h, force_profile_FR_points[j],
                                                                force_profile_FL_points[j],
                                                                force_profile_HR_points[j], force_profile_HL_points[j],
-                                                               kin_data_stance_section.loc[i, "dyn_footpair_height_FL"],
-                                                               kin_data_stance_section.loc[i, "dyn_footpair_height_FR"],
+                                                               kin_data_stance_section.loc[k, "dyn_footpair_height_FL"],
+                                                               kin_data_stance_section.loc[k, "dyn_footpair_height_FR"],
                                                                individual, foot, direction)
-
                         stance_moments.append(toppling_moment)
 
                         moments_dict[direction][individual].append(toppling_moment)
 
+                        # add length for current frame to length_dict to plot difference up vs down:
+                        if foot =="FR":
+                            lengths_dict[direction].append(kin_data_stance_section.loc[k, "dyn_footpair_height_FR"],)
+                            if direction == "up":
+                                lengths_dict["down"].append(np.nan)
+                            else:
+                                lengths_dict["up"].append(np.nan)
+                        else:
+                            lengths_dict[direction].append(kin_data_stance_section.loc[k, "dyn_footpair_height_FL"],)
+                            if direction == "up":
+                                lengths_dict["down"].append(np.nan)
+                            else:
+                                lengths_dict["up"].append(np.nan)
 
                     print(f">>>>> moments: {stance_moments}\n")
+
+                    if foot == "FR":
+                        stance_moments_FR.append(stance_moments)
+                    elif foot == "FL":
+                        stance_moments_FL.append(stance_moments)
+
+        ### plot moments in current stance
+        # compress array
+        print("length of moments: ", len(stance_moments_FR), "stance moments FR: ", stance_moments_FR)
+        stance_moments_FR = [stance for stance in stance_moments_FR if not np.isnan(stance[0])]
+        stance_moments_FR = [stance for stance in stance_moments_FR if len(stance)>3]
+        print("length: ", len(stance_moments_FR), "stance moments FR after length filter: ", stance_moments_FR)
+        stance_lengths_FR = [len(stance) for stance in stance_moments_FR]
+        stance_moments_FR_new = []
+        for stance in stance_moments_FR:
+            stance = np.array(stance)
+            stance_moments_FR_interp = interp.interp1d(np.arange(np.array(stance).size), stance)
+            stance_moments_FR_new.append(stance_moments_FR_interp(np.linspace(0, stance.size - 1, int(np.nanmean(stance_lengths_FR)))))
+
+        print("stance_moments_FR: ", stance_moments_FR_new)
+
+        if len(stance_moments_FR) > 0:
+            x = np.linspace(1, int(np.nanmean(stance_lengths_FR)) + 1, num=int(np.nanmean(stance_lengths_FR)))
+            plot_filename = f"FR-{filename}"
+            for stance in stance_moments_FR_new:
+                plt.plot(x, stance)
+                plt.scatter(x, y=stance)
+            plt.hlines(y=0, xmin=1, xmax=int(np.nanmean(stance_lengths_FR)) + 1)
+            plt.title(plot_filename)
+            plt.ylabel("frame wise toppling moment")
+            plt.xlabel("frame of stance phase")
+            plt.savefig(r'C:\Users\JojoS\Documents\phd\ClimbingRobot_XGen4\ClimbingLizardForceAnalysis_2020\forceData_hfren\correctedForces\dynamic_toppling_moments\{}.png'.format(plot_filename), dpi=100)
+            plt.close()
+            #plt.show()
+
 
     print("\n DONE! \n >>>>>>>>>>>>>> moments_dict: \n", moments_dict)
 
     ### PLOTTING:
+    print("lengths lengths: ", len(lengths_dict["up"]), len(lengths_dict["down"]))
+    pd.DataFrame(lengths_dict).plot(kind='density')
+    plt.xlabel('length (in px) betw. fore and hind foot')
+
     for direction in moments_dict.keys():
         for individual in moments_dict[direction].keys():
             moments_dict[direction][individual] = np.nanmean(moments_dict[direction][individual])
             #moments_dict[direction][individual]["sd"] = np.nanstd(moments_dict[direction][individual])
 
-    pd.DataFrame(moments_dict).plot(kind='bar')
-    plt.ylabel("toppling moment")
+    pd.DataFrame(moments_dict).plot(kind='bar', figsize=(12, 7))
+    plt.ylabel("stance means toppling moment")
     plt.xlabel("individual")
-
+    #plt.savefig(r'C:\Users\JojoS\Documents\phd\ClimbingRobot_XGen4\ClimbingLizardForceAnalysis_2020\forceData_hfren\correctedForces\toppling_moments.pdf', dpi=300)
+    #plt.close()
     plt.show()
 
     return
