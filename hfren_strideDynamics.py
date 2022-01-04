@@ -310,25 +310,17 @@ def hfren_strideDynamics():
                     x = np.linspace(xmin1, xmax1, average_force_stride_length)
                     b, a = signal.butter(3, 0.03, btype='lowpass', analog=False)
                     # lowpass filter for foot motion
-                    # avg_dict_Fx[direction][individual][foot]["average_smoothed"] = signal.filtfilt(b, a, avg_dict_Fx[direction][
-                    #     individual][foot]["average"])
-                    # avg_dict_Fy[direction][individual][foot]["average_smoothed"] = signal.filtfilt(b, a, avg_dict_Fx[direction][
-                    #     individual][foot]["average"])
-                    # avg_dict_Fz[direction][individual][foot]["average_smoothed"] = signal.filtfilt(b, a, avg_dict_Fx[direction][
-                    #     individual][foot]["average"])
-
-                    avg_dict_Fx[direction][individual][foot]["average_smoothed"] = signal.savgol_filter(avg_dict_Fx[
-                        direction][individual][foot]["average"], wl, 3)
-                    avg_dict_Fy[direction][individual][foot]["average_smoothed"] = signal.savgol_filter(avg_dict_Fx[
-                        direction][individual][foot]["average"], wl, 3)
-                    avg_dict_Fz[direction][individual][foot]["average_smoothed"] = signal.savgol_filter(avg_dict_Fx[
-                        direction][individual][foot]["average"], wl, 3)
+                    avg_dict_Fx[direction][individual][foot]["average_smoothed"] = signal.filtfilt(b, a, avg_dict_Fx[direction][
+                        individual][foot]["average"])
+                    avg_dict_Fy[direction][individual][foot]["average_smoothed"] = signal.filtfilt(b, a, avg_dict_Fy[direction][
+                        individual][foot]["average"])
+                    avg_dict_Fz[direction][individual][foot]["average_smoothed"] = signal.filtfilt(b, a, avg_dict_Fz[direction][
+                        individual][foot]["average"])
 
     print("plotting...")
     for direction in directions:
         for individual in individuals:
             for foot in feet:
-                # TODO: If smooth true, add smoothed line to plot as well!
                 fig, (ax1, ax2, ax3) = plt.subplots(nrows=3)
                 ax1.plot(np.linspace(xmin1, xmax1, average_force_stride_length),
                          avg_dict_Fx[direction][individual][foot]["average"], lw=2)
@@ -367,14 +359,29 @@ def hfren_strideDynamics():
 
                 # save plots:
                 save_dir = r'D:\Jojo\PhD\ClimbingRobot\ClimbingLizardForceAnalysis\forceData_hfren\correctedForces\average_force_profiles'
-                #plt.savefig(os.path.join(save_dir, f"averageForces_{direction}_{individual}_{foot}.jpg"))
-                #plt.close()
+                if smooth_forces == True:
+                    plt.savefig(os.path.join(save_dir, f"averageForces_{direction}_{individual}_{foot}_smoothed.jpg"))
+                else:
+                    plt.savefig(os.path.join(save_dir, f"averageForces_{direction}_{individual}_{foot}.jpg"))
+                plt.close()
                 plt.show()
 
                 # save dictionaries of avg_Fx, avg_Fy, and avg_Fz as csv files
                 # as avg_forces_{direction}_{individual}_{foot}.csv with frame, Fx, Fy, Fz
                 if smooth_forces == True:
-                    # TODO: export smooth forces
+                    frame = range(len(avg_dict_Fx[direction][individual][foot]["average"]))
+                    Fx = avg_dict_Fx[direction][individual][foot]["average_smoothed"]
+                    Fy = avg_dict_Fy[direction][individual][foot]["average_smoothed"]
+                    Fz = avg_dict_Fz[direction][individual][foot]["average_smoothed"]
+                    save_dict = {"frame": frame,
+                                 "avg_Fx": Fx,
+                                 "avg_Fy": Fy,
+                                 "avg_Fz": Fz}
+                    df = pd.DataFrame.from_dict(save_dict)
+
+                    print(f"save dict for {direction}_{individual}_{foot}: ", save_dict)
+                    df.to_csv(os.path.join(save_dir, r'avg_force_{}_{}_{}_smoothed.csv'.format(direction, individual, foot)),
+                              index=False, header=True)
                     pass
                 else:
                     frame = range(len(avg_dict_Fx[direction][individual][foot]["average"]))
