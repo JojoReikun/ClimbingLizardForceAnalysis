@@ -41,7 +41,7 @@ length = 10
 framerate = 250
 Cfact = sample_rate/framerate
 
-interpolation_plots = False
+interpolation_plots = True
 smooth_forces = True
 
 
@@ -168,7 +168,7 @@ def hfren_strideDynamics():
                     fig, ax1 = plt.subplots(ncols=1)
                     ax1.plot(np.linspace(xmin, xmax, array.size), array, 'bo-',
                              np.linspace(xmin, xmax, array_new.size), array_new, 'rs')
-                    ax1.set_title("red-interpolated")
+                    ax1.set_title(f"red-interp-{arr_ref_length} __ blue-orig-{len(array)}")
                     plt.show()
 
                 #################################################

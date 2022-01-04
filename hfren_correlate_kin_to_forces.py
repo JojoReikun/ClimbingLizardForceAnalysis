@@ -40,7 +40,8 @@ force_kin_dict_up = {"FR": {"forces": {"Fx": [],
                                 "Fy": [],
                                 "Fz": [],
                                 "Fxy": [],
-                                "dir_Fxy": []},
+                                "dir_Fxy": [],
+                                "individual": []},
                          "kinematics": {"wrist_F": [],
                                          "wrist_H": [],
                                          "CROM_F": [],
@@ -56,7 +57,8 @@ force_kin_dict_up = {"FR": {"forces": {"Fx": [],
                                 "Fy": [],
                                 "Fz": [],
                                 "Fxy": [],
-                                "dir_Fxy": []},
+                                "dir_Fxy": [],
+                                "individual": []},
                          "kinematics": {"wrist_F": [],
                                          "wrist_H": [],
                                          "CROM_F": [],
@@ -72,7 +74,8 @@ force_kin_dict_up = {"FR": {"forces": {"Fx": [],
                                 "Fy": [],
                                 "Fz": [],
                                 "Fxy": [],
-                                "dir_Fxy": []},
+                                "dir_Fxy": [],
+                                "individual": []},
                          "kinematics": {"wrist_F": [],
                                          "wrist_H": [],
                                          "CROM_F": [],
@@ -88,7 +91,8 @@ force_kin_dict_up = {"FR": {"forces": {"Fx": [],
                                 "Fy": [],
                                 "Fz": [],
                                 "Fxy": [],
-                                "dir_Fxy": []},
+                                "dir_Fxy": [],
+                                "individual": []},
                          "kinematics": {"wrist_F": [],
                                          "wrist_H": [],
                                          "CROM_F": [],
@@ -105,7 +109,8 @@ force_kin_dict_down = {"FR": {"forces": {"Fx": [],
                                 "Fy": [],
                                 "Fz": [],
                                 "Fxy": [],
-                                "dir_Fxy": []},
+                                "dir_Fxy": [],
+                                "individual": []},
                          "kinematics": {"wrist_F": [],
                                          "wrist_H": [],
                                          "CROM_F": [],
@@ -121,7 +126,8 @@ force_kin_dict_down = {"FR": {"forces": {"Fx": [],
                                 "Fy": [],
                                 "Fz": [],
                                 "Fxy": [],
-                                "dir_Fxy": []},
+                                "dir_Fxy": [],
+                                "individual": []},
                          "kinematics": {"wrist_F": [],
                                          "wrist_H": [],
                                          "CROM_F": [],
@@ -137,7 +143,8 @@ force_kin_dict_down = {"FR": {"forces": {"Fx": [],
                                 "Fy": [],
                                 "Fz": [],
                                 "Fxy": [],
-                                "dir_Fxy": []},
+                                "dir_Fxy": [],
+                                "individual": []},
                          "kinematics": {"wrist_F": [],
                                          "wrist_H": [],
                                          "CROM_F": [],
@@ -153,7 +160,8 @@ force_kin_dict_down = {"FR": {"forces": {"Fx": [],
                                 "Fy": [],
                                 "Fz": [],
                                 "Fxy": [],
-                                "dir_Fxy": []},
+                                "dir_Fxy": [],
+                                "individual": []},
                          "kinematics": {"wrist_F": [],
                                          "wrist_H": [],
                                          "CROM_F": [],
@@ -233,6 +241,7 @@ for i in range(hfren_forces.shape[0]):
             force_kin_dict_up[foot_force]["forces"]["Fz"].append(round(hfren_forces.loc[i, "MeanZ_rel"]/(0.001*bodymasses_dict[force_individual]), 8))
             force_kin_dict_up[foot_force]["forces"]["Fxy"].append(round(hfren_forces.loc[i, "MeanXY_rel"]/(0.001*bodymasses_dict[force_individual]), 8))
             force_kin_dict_up[foot_force]["forces"]["dir_Fxy"].append(round(hfren_forces.loc[i, "dirMeanXY_rel"], 8))
+            force_kin_dict_up[foot_force]["forces"]["individual"].append(force_individual)
 
             force_kin_dict_up[foot_force]["kinematics"]["wrist_F"].append(round(hfren_kin.loc[matching_step, "midwrist_F"], 2))
             force_kin_dict_up[foot_force]["kinematics"]["wrist_H"].append(round(hfren_kin.loc[matching_step, "midwrist_H"], 2))
@@ -253,6 +262,7 @@ for i in range(hfren_forces.shape[0]):
             force_kin_dict_down[foot_force]["forces"]["Fz"].append(round(hfren_forces.loc[i, "MeanZ_rel"]/(0.001*bodymasses_dict[force_individual]), 8))
             force_kin_dict_down[foot_force]["forces"]["Fxy"].append(round(hfren_forces.loc[i, "MeanXY_rel"]/(0.001*bodymasses_dict[force_individual]), 8))
             force_kin_dict_down[foot_force]["forces"]["dir_Fxy"].append(round(hfren_forces.loc[i, "dirMeanXY_rel"], 8))
+            force_kin_dict_down[foot_force]["forces"]["individual"].append(force_individual)
 
             force_kin_dict_down[foot_force]["kinematics"]["wrist_F"].append(round(hfren_kin.loc[matching_step, "midwrist_F"], 2))
             force_kin_dict_down[foot_force]["kinematics"]["wrist_H"].append(round(hfren_kin.loc[matching_step, "midwrist_H"], 2))
@@ -277,9 +287,9 @@ save_dir = r'D:\Jojo\PhD\ClimbingRobot\ClimbingLizardForceAnalysis\kin_force_cor
 sn.set_theme(style="ticks", font="Times New Roman", font_scale=2)
 
 # choose what to plot:
-force = "Fz"
-kin = "toe_spreading_H" # for up
-kin2= "toe_spreading_H" # for down
+force = "Fy"
+kin = "diag" # for up
+kin2= "diag" # for down
 feet=["FR", "FL", "HR", "HL"]
 
 # merge forces and kins for FR and FL | HR and HL into combined lists:
@@ -289,30 +299,51 @@ if kin != kin2:
     fore_kin = force_kin_dict_up["FL"]["kinematics"][kin] + force_kin_dict_up["FR"]["kinematics"][kin]
     hind_forces = force_kin_dict_down["HR"]["forces"][force] + force_kin_dict_down["HL"]["forces"][force]
     hind_kin = force_kin_dict_down["HR"]["kinematics"][kin2] + force_kin_dict_down["HL"]["kinematics"][kin2]
+    individuals_up = force_kin_dict_up["FL"]["forces"]["individual"] + force_kin_dict_up["FR"]["forces"]["individual"]
+    individuals_down = force_kin_dict_down["HL"]["forces"]["individual"] + force_kin_dict_down["HR"]["forces"]["individual"]
 elif kin == kin2 and "F" in kin:
     # only fore feet but different directions --> change of F between direction
     fore_forces = force_kin_dict_up["FL"]["forces"][force] + force_kin_dict_up["FR"]["forces"][force]
     fore_kin = force_kin_dict_up["FL"]["kinematics"][kin] + force_kin_dict_up["FR"]["kinematics"][kin]
     hind_forces = force_kin_dict_down["FR"]["forces"][force] + force_kin_dict_down["FL"]["forces"][force]
     hind_kin = force_kin_dict_down["FR"]["kinematics"][kin2] + force_kin_dict_down["FL"]["kinematics"][kin2]
+    individuals_up = force_kin_dict_up["FL"]["forces"]["individual"] + force_kin_dict_up["FR"]["forces"]["individual"]
+    individuals_down = force_kin_dict_down["FL"]["forces"]["individual"] + force_kin_dict_down["FR"]["forces"]["individual"]
 elif kin == kin2 and "H" in kin:
     # only hind feet but different directions --> change of H between direction
     fore_forces = force_kin_dict_up["HL"]["forces"][force] + force_kin_dict_up["HR"]["forces"][force]
     fore_kin = force_kin_dict_up["HL"]["kinematics"][kin] + force_kin_dict_up["HR"]["kinematics"][kin]
     hind_forces = force_kin_dict_down["HR"]["forces"][force] + force_kin_dict_down["HL"]["forces"][force]
     hind_kin = force_kin_dict_down["HR"]["kinematics"][kin2] + force_kin_dict_down["HL"]["kinematics"][kin2]
+    individuals_up = force_kin_dict_up["HL"]["forces"]["individual"] + force_kin_dict_up["HR"]["forces"]["individual"]
+    individuals_down = force_kin_dict_down["HL"]["forces"]["individual"] + force_kin_dict_down["HR"]["forces"]["individual"]
 else:
     # the kinematic variable is not split by fore and hind
     # for both direction all feet can be merged into a list only split by direction
+    fore_forces = []
+    fore_kin = []
+    hind_forces = []
+    hind_kin = []
+    individuals_up = []
+    individuals_down = []
     for foot in feet:
-        fore_forces = force_kin_dict_up[foot]["forces"][force] + force_kin_dict_up[foot]["forces"][force]
-        fore_kin = force_kin_dict_up[foot]["kinematics"][kin] + force_kin_dict_up[foot]["kinematics"][kin]
-        hind_forces = force_kin_dict_down[foot]["forces"][force] + force_kin_dict_down[foot]["forces"][force]
-        hind_kin = force_kin_dict_down[foot]["kinematics"][kin2] + force_kin_dict_down[foot]["kinematics"][kin2]
+        fore_forces.append(force_kin_dict_up[foot]["forces"][force])
+        fore_kin.append(force_kin_dict_up[foot]["kinematics"][kin])
+        hind_forces.append(force_kin_dict_down[foot]["forces"][force])
+        hind_kin.append(force_kin_dict_down[foot]["kinematics"][kin2])
+        individuals_up.append(force_kin_dict_up[foot]["forces"]["individual"])
+        individuals_down.append(force_kin_dict_down["HL"]["forces"]["individual"])
+    # flatten the lists:
+    fore_forces = [item for sublist in fore_forces for item in sublist]
+    fore_kin = [item for sublist in fore_kin for item in sublist]
+    hind_forces = [item for sublist in hind_forces for item in sublist]
+    hind_kin = [item for sublist in hind_kin for item in sublist]
+    individuals_up = [item for sublist in individuals_up for item in sublist]
+    individuals_down = [item for sublist in individuals_down for item in sublist]
 
 # save the dataset for this figure:
-save_df = pd.DataFrame(list(zip(fore_forces, hind_forces, fore_kin, hind_kin)),
-                       columns=["fore_forces_normalized", "hind_forces_normalized", "fore_kin", "hind_kin"])
+save_df = pd.DataFrame(list(zip(fore_forces, hind_forces, fore_kin, hind_kin, individuals_up, individuals_down)),
+                       columns=["up_forces_normalized", "down_forces_normalized", "up_kin", "down_kin", "individuals_up", "individuals_down"])
 print(save_df.head())
 save_df.to_csv(os.path.join(save_dir, f"CorrKinForce_{force}-up{kin}-down{kin2}.csv"))
 
