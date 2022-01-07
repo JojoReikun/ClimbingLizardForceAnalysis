@@ -82,8 +82,12 @@ def loop_encode(i):
 
 
 def calc_toppling_moment(g, h, forceZ_FR_i, forceZ_FL_i, forceZ_HR_i, forceZ_HL_i, length_FL_i, length_FR_i, individual, foot, direction):
-    # calculates the toppling moment around the hindfoot, assuming only a 2D view of the scene
-    # and assuming the tail is not a contact point on the wall.
+    """
+    calculates the net toppling moment around the hindfoot, assuming only a 2D view of the scene
+    and assuming the tail is not a contact point on the wall.
+    Stabilizing Moment and Overturning moment are also calculated separately as in Autumn et al (2006):
+    "Dynamics of geckos running vertically" - fig 7
+    """
     if foot == "FL":
         if direction == "up":
             Fn_z_i = forceZ_FL_i
@@ -115,15 +119,17 @@ def calc_toppling_moment(g, h, forceZ_FR_i, forceZ_FL_i, forceZ_HR_i, forceZ_HL_
     # # estimate h assuming a static equilibrium
     # h = estimate_static_equ_h(Fn_z_i, length, m, g)
 
-    moment = h * m * g + Fn_z_i * length
+    moment = h * m * g - Fn_z_i * length    # - because the force vector goes into the wall, in note book it's GRF
+    stab_moment = -1.0 * Fn_z_i * length
+    over_moment = h * m * g
 
-    print("____")
-    print(f"individual: {individual}")
-    print("h * m * g + Fn_z_i * length: ", f"{h} * {m} * {g} + {Fn_z_i} * {length}")
-    print("\n >>>>>>>> in function moment: ", moment, "\n")
-    print("____")
+    # print("____")
+    # print(f"individual: {individual}")
+    # print("h * m * g + Fn_z_i * length: ", f"{h} * {m} * {g} + {Fn_z_i} * {length}")
+    # print("\n >>>>>>>> in function moment: ", moment, "\n")
+    # print("____")
 
-    return moment
+    return moment, stab_moment, over_moment
 
 
 def estimate_static_equ_h(Fn_z_i, length, m, g):
@@ -151,6 +157,10 @@ def hfren_climbing_moments():
         # make two empty lists for storing all step_moments for this individual
         stance_moments_FR = []
         stance_moments_FL = []
+        stance_stab_moments_FR = []
+        stance_stab_moments_FL = []
+        stance_over_moments_FR = []
+        stance_over_moments_FL = []
 
         # read in the DOKA data
         kin_data = pd.read_csv(doka_file)
@@ -185,6 +195,8 @@ def hfren_climbing_moments():
             col = col.strip('')
             for i in range(1, max_step_count):
                 stance_moments = []
+                stance_stab_moments = []
+                stance_over_moments = []
                 stance_counter = loop_encode(i)
                 kin_data_stance_section_indices = kin_data.index[kin_data[col] == str(stance_counter)].tolist()
                 print("\n kin_data_stance_section_indices: ", kin_data_stance_section_indices, "\n")
@@ -221,13 +233,15 @@ def hfren_climbing_moments():
                     for j, k in enumerate(stance_indices): # k = from 1 ; j = actual indices
                         #print(f"length of frame i ({i}): ", kin_data_stance_section.loc[i, "dyn_footpair_height_FL"])
 
-                        toppling_moment = calc_toppling_moment(g, h, force_profile_FR_points[j],
+                        toppling_moment, stab_moment, over_moment = calc_toppling_moment(g, h, force_profile_FR_points[j],
                                                                force_profile_FL_points[j],
                                                                force_profile_HR_points[j], force_profile_HL_points[j],
                                                                kin_data_stance_section.loc[k, "dyn_footpair_height_FL"],
                                                                kin_data_stance_section.loc[k, "dyn_footpair_height_FR"],
                                                                individual, foot, direction)
                         stance_moments.append(toppling_moment)
+                        stance_stab_moments.append(stab_moment)
+                        stance_over_moments.append(over_moment)
 
                         moments_dict[direction][individual].append(toppling_moment)
 
@@ -249,37 +263,80 @@ def hfren_climbing_moments():
 
                     if foot == "FR":
                         stance_moments_FR.append(stance_moments)
+                        stance_stab_moments_FR.append(stance_stab_moments)
+                        stance_over_moments_FR.append(stance_over_moments)
                     elif foot == "FL":
                         stance_moments_FL.append(stance_moments)
+                        stance_stab_moments_FL.append(stance_stab_moments)
+                        stance_over_moments_FL.append(stance_over_moments)
 
-        ### plot moments in current stance
-        # compress array
-        print("length of moments: ", len(stance_moments_FR), "stance moments FR: ", stance_moments_FR)
+                    print(f">>>>> stab moments: {stance_stab_moments}\n")
+                    print(f">>>>> over moments: {stance_over_moments}\n")
+
+
+        ################################################################################################################
+        ### PLOT moments in current stance
+        # compress arrays
         stance_moments_FR = [stance for stance in stance_moments_FR if not np.isnan(stance[0])]
+        stance_stab_moments_FR = [stance for stance in stance_stab_moments_FR if not np.isnan(stance[0])]
+        stance_over_moments_FR = [stance for stance in stance_over_moments_FR if not np.isnan(stance[0])]
         stance_moments_FR = [stance for stance in stance_moments_FR if len(stance)>3]
-        print("length: ", len(stance_moments_FR), "stance moments FR after length filter: ", stance_moments_FR)
-        stance_lengths_FR = [len(stance) for stance in stance_moments_FR]
-        stance_moments_FR_new = []
-        for stance in stance_moments_FR:
-            stance = np.array(stance)
-            stance_moments_FR_interp = interp.interp1d(np.arange(np.array(stance).size), stance)
-            stance_moments_FR_new.append(stance_moments_FR_interp(np.linspace(0, stance.size - 1, int(np.nanmean(stance_lengths_FR)))))
+        stance_stab_moments_FR = [stance for stance in stance_stab_moments_FR if len(stance)>3]
+        stance_over_moments_FR = [stance for stance in stance_over_moments_FR if len(stance)>3]
 
-        print("stance_moments_FR: ", stance_moments_FR_new)
+        if len(stance_moments_FR) > 0 and len(stance_stab_moments_FR) > 0 and len(stance_over_moments_FR) > 0:
+            print("length: ", len(stance_moments_FR), "stance moments FR after length filter: ", stance_moments_FR)
+            stance_lengths_FR = [len(stance) for stance in stance_moments_FR]
+            stance_stab_lengths_FR = [len(stance) for stance in stance_stab_moments_FR]
+            stance_over_lengths_FR = [len(stance) for stance in stance_over_moments_FR]
 
-        if len(stance_moments_FR) > 0:
+            stance_moments_FR_new = []
+            stance_stab_moments_FR_new = []
+            stance_over_moments_FR_new = []
+            # interpolate net moments
+            for stance in stance_moments_FR:
+                stance = np.array(stance)
+                stance_moments_FR_interp = interp.interp1d(np.arange(np.array(stance).size), stance)
+                stance_moments_FR_new.append(
+                    stance_moments_FR_interp(np.linspace(0, stance.size - 1, int(np.nanmean(stance_lengths_FR)))))
+            # interpolate stabilization moments
+            for stance_int, stance in enumerate(stance_stab_moments_FR):
+                print(f"INTERPOLATION stab: stance: {stance}, stance_int: {stance_int}")
+                stance = np.array(stance)
+                stance_stab_moments_FR_interp = interp.interp1d(np.arange(np.array(stance).size), stance)
+                stance_stab_moments_FR_new.append(stance_stab_moments_FR_interp(
+                    np.linspace(0, stance.size - 1, int(np.nanmean(stance_stab_lengths_FR)))))
+                # generate stance_over array like this, because m,g, h are constant:
+                stance_over_moments_FR_new.append(np.full(shape=int(np.nanmean(stance_stab_lengths_FR)),
+                                                          fill_value=np.nanmean(stance_over_moments_FR[stance_int])))
+
+            print("stance_moments_FR: ", stance_moments_FR_new)
+            print("stance_stab_moments_FR: ", stance_stab_moments_FR_new)
+            print("stance_over_moments_FR: ", stance_over_moments_FR_new)
+
             x = np.linspace(1, int(np.nanmean(stance_lengths_FR)) + 1, num=int(np.nanmean(stance_lengths_FR)))
             plot_filename = f"FR-{filename}"
-            for stance in stance_moments_FR_new:
-                plt.plot(x, stance)
-                plt.scatter(x, y=stance)
-            plt.hlines(y=0, xmin=1, xmax=int(np.nanmean(stance_lengths_FR)) + 1)
+            fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2)
+            for stance, stance_stab, stance_over in zip(stance_moments_FR_new, stance_stab_moments_FR_new,
+                                                        stance_over_moments_FR_new):
+                # plot the net toppling moments over the duration of a stride
+                ax1.plot(x, stance)
+                ax1.scatter(x, y=stance)
+
+                # plot the stabilizing and overturning impulse moments separately over the duration of a stride
+                ax2.plot(x, stance_stab, c="b")         # stabilizing = blue
+                ax2.plot(x, stance_over, c="g")         # overtunring = green
+
+            ax1.hlines(y=0, xmin=1, xmax=int(np.nanmean(stance_lengths_FR)) + 1)
+            ax2.hlines(y=0, xmin=1, xmax=int(np.nanmean(stance_lengths_FR)) + 1)
             plt.title(plot_filename)
             plt.ylabel("frame wise toppling moment")
             plt.xlabel("frame of stance phase")
-            plt.savefig(r'C:\Users\JojoS\Documents\phd\ClimbingRobot_XGen4\ClimbingLizardForceAnalysis_2020\forceData_hfren\correctedForces\dynamic_toppling_moments\{}.png'.format(plot_filename), dpi=100)
+            plt.savefig(
+                r'C:\Users\JojoS\Documents\phd\ClimbingRobot_XGen4\ClimbingLizardForceAnalysis_2020\forceData_hfren\correctedForces\dynamic_toppling_moments\{}.png'.format(
+                    plot_filename), dpi=100)
             plt.close()
-            #plt.show()
+            # plt.show()
 
 
     print("\n DONE! \n >>>>>>>>>>>>>> moments_dict: \n", moments_dict)
