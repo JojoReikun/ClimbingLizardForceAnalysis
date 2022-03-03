@@ -41,6 +41,15 @@ dmypy.json
 
 # Folders:
 MatlabCode
+forceData_geckos
+lizard_forceAnalysis_files
+force_plot_examples
+
 
 # Files:
 LizardForceAnalysis_Demo.mp4
+G11_run12.jpg
+IMG_3706.JPG
+IMG_3707.JPG
+hfren_forces_TinaSRP.csv
+hfren_forces_TinaSRP.xlsx
